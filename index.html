@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Khata — personal ledger</title>
+<meta name="theme-color" content="#0E1726">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Khata">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="manifest" href='data:application/manifest+json,{"name":"Khata","short_name":"Khata","display":"standalone","background_color":"%230E1726","theme_color":"%230E1726","start_url":"."}'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E1726; --surface:#16223A; --surface2:#1E2C46; --line:#2A3A56;
+    --text:#EAEEF6; --muted:#8A99B4; --faint:#5D6B85;
+    --green:#3ACE96; --green-dim:#1E3A34;
+    --amber:#E8A557; --amber-dim:#3A2E1C;
+    --red:#EA6A6A; --red-dim:#3A2222;
+    --accent:#3ACE96; --accent-ink:#08110C;
+    --r:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.45;min-height:100vh}
+  .num{font-family:'Space Grotesk',sans-serif;font-feature-settings:"tnum" 1;letter-spacing:-.01em}
+  .app{max-width:460px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;animation:fade .4s ease both}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  @media (prefers-reduced-motion:reduce){.app{animation:none}}
+
+  header{padding:22px 20px 8px;display:flex;align-items:baseline;justify-content:space-between}
+  .brand{font-family:'Space Grotesk';font-weight:700;font-size:22px;letter-spacing:-.02em}
+  .brand span{color:var(--accent)}
+  .brand small{display:block;font-family:'Inter';font-weight:400;font-size:11px;color:var(--faint);margin-top:1px}
+  .status{font-size:11px;color:var(--faint);text-align:right}
+  .status b{display:block;color:var(--accent);font-weight:600;opacity:0;transition:opacity .3s}
+  .status b.on{opacity:1}
+
+  main{flex:1;padding:8px 16px 100px}
+  .banner{background:var(--red-dim);border:1px solid #5a3030;color:#F3B4B4;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.5;margin-bottom:14px}
+  .banner b{color:#fff}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:14px}
+  .card.flat{background:transparent;border:none;padding:6px 4px 2px}
+  .eyebrow{font-size:12px;color:var(--muted);font-weight:500}
+  .hero .label{font-size:13px;color:var(--muted);margin-bottom:4px}
+  .hero .big{font-family:'Space Grotesk';font-weight:700;font-size:40px;line-height:1.05;letter-spacing:-.03em}
+  .hero .big .cur{font-size:24px;color:var(--muted);font-weight:600;vertical-align:top;margin-right:2px}
+
+  .bar{height:10px;background:var(--surface2);border-radius:99px;overflow:hidden;margin:14px 0 8px}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,#2FB183,var(--green));border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .barmeta{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)}
+  .barmeta b{color:var(--text);font-weight:600}
+
+  .move{display:flex;gap:13px;align-items:flex-start}
+  .move .dot{width:9px;height:9px;border-radius:99px;background:var(--accent);margin-top:6px;flex:none;box-shadow:0 0 0 4px rgba(58,206,150,.15)}
+  .move .txt{font-size:15px}
+  .move .amt{font-family:'Space Grotesk';font-weight:600}
+
+  .row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);gap:10px}
+  .row:last-child{border-bottom:none}
+  .row .k{font-size:14.5px;color:var(--text);min-width:0}
+  .row .k small{display:block;color:var(--faint);font-size:12px;font-weight:400}
+  .row .v{font-family:'Space Grotesk';font-weight:600;font-size:15px;white-space:nowrap}
+  .v.pos{color:var(--green)} .v.neg{color:var(--amber)} .v.big{font-size:18px}
+  .row.total{border-top:1px solid var(--line);border-bottom:none;margin-top:2px;padding-top:14px}
+  .row.total .k{font-weight:600}
+  .row.off .k,.row.off .v{color:var(--faint);text-decoration:line-through}
+
+  h2.sec{font-family:'Space Grotesk';font-weight:600;font-size:15px;color:var(--muted);margin:20px 4px 8px}
+
+  label.f{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+  label.f:last-of-type{border-bottom:none}
+  label.f .fl{font-size:14.5px;color:var(--text);flex:1;min-width:0}
+  label.f .fl small{display:block;color:var(--faint);font-size:12px}
+  input.in{background:var(--surface2);border:1px solid var(--line);border-radius:10px;color:var(--text);font-family:'Space Grotesk';font-weight:600;font-size:15px;padding:9px 11px;width:118px;text-align:right}
+  input.txt{width:100%;text-align:left;font-family:'Inter';font-weight:400}
+  input.in:focus{outline:none;border-color:var(--accent);background:#1A2942}
+  .pre{position:relative;display:inline-block}
+  .pre .cur{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--faint);font-size:14px;font-family:'Space Grotesk'}
+  .pre input{padding-left:24px}
+
+  .chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:5px 11px;border-radius:99px;font-weight:500}
+  .chip.ok{background:var(--green-dim);color:var(--green)}
+  .chip.over{background:var(--amber-dim);color:var(--amber)}
+
+  button{font-family:'Inter';cursor:pointer;border:none}
+  .btn{background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14.5px;padding:12px 16px;border-radius:12px;width:100%;display:block;text-align:center}
+  .btn:active{transform:translateY(1px)}
+  .btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .btn.danger{background:transparent;color:var(--red);border:1px solid #5a3030}
+  .btn.sm{width:auto;padding:8px 14px;font-size:13px;display:inline-block}
+  .btn + .btn{margin-top:8px}
+  .add{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}
+  .add .two{display:grid;grid-template-columns:1fr 110px;gap:8px}
+  .add input{background:var(--surface2);border:1px solid var(--line);border-radius:10px;color:var(--text);font-size:14px;padding:11px 12px;font-family:'Inter';width:100%}
+  .add input.amt{font-family:'Space Grotesk';font-weight:600;text-align:right}
+  .add input:focus{outline:none;border-color:var(--accent)}
+
+  .skip{font-size:12px;color:var(--muted);background:var(--surface2);border:1px solid var(--line);padding:6px 10px;border-radius:8px;white-space:nowrap}
+  .skip.on{color:var(--amber);border-color:var(--amber);background:var(--amber-dim)}
+  .trash{color:var(--faint);background:none;font-size:18px;padding:4px 6px;line-height:1}
+  .settle{font-size:12px;color:var(--faint);background:var(--surface2);border:1px solid var(--line);padding:6px 10px;border-radius:8px}
+
+  .mbar{display:flex;align-items:center;justify-content:space-between;margin:4px 0 14px}
+  .mbar .mlabel{font-family:'Space Grotesk';font-weight:600;font-size:17px}
+  .mbar .mlabel small{display:block;font-family:'Inter';font-weight:400;font-size:11px;color:var(--faint);text-align:center}
+  .mnav{background:var(--surface);border:1px solid var(--line);color:var(--text);width:40px;height:40px;border-radius:12px;font-size:20px;line-height:1}
+
+  .iou{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);gap:10px}
+  .iou:last-child{border-bottom:none}
+  .iou .who{font-size:14.5px;font-weight:500;min-width:0}
+  .iou .who small{display:block;color:var(--faint);font-size:12px;font-weight:400}
+  .iou .right{display:flex;align-items:center;gap:10px;flex:none}
+  .iou .amt{font-family:'Space Grotesk';font-weight:600;font-size:15px}
+  .iou.in .amt{color:var(--green)} .iou.out .amt{color:var(--amber)}
+
+  .fx .rate{font-family:'Space Grotesk';font-weight:700;font-size:30px;letter-spacing:-.02em}
+  .fxmeta{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .fxrow{display:flex;gap:8px;align-items:center;margin-top:12px}
+
+  .empty{text-align:center;color:var(--faint);font-size:13.5px;padding:16px 8px}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+  .note b{color:var(--text);font-weight:600}
+  .link{background:none;color:var(--accent);font-size:13px;font-weight:500;padding:6px 0}
+
+  nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:460px;background:rgba(14,23,38,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:8px 4px calc(8px + env(safe-area-inset-bottom))}
+  nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--faint);padding:6px 0;font-size:10.5px;font-weight:500}
+  nav button svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7}
+  nav button.on{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand">Kh<span>a</span>ta<small>your money, tracked</small></div>
+    <div class="status"><b id="flash">saved</b><span id="where">…</span></div>
+  </header>
+  <main id="app"></main>
+  <nav id="nav">
+    <button data-action="tab" data-tab="home" class="on"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</button>
+    <button data-action="tab" data-tab="budget"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg>Budget</button>
+    <button data-action="tab" data-tab="pots"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>Pots</button>
+    <button data-action="tab" data-tab="portfolio"><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-8M22 19H2"/></svg>Portfolio</button>
+    <button data-action="tab" data-tab="iou"><svg viewBox="0 0 24 24"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg>Owed</button>
+  </nav>
+</div>
+
+<script>
+/* ================= defaults: your locked £666 plan ================= */
+function u(){return Math.random().toString(36).slice(2,9)}
+const DEFAULT_STATE={
+  income:2330, rent:666, capPct:50,
+  expenses:[
+    {id:u(),label:"Food & groceries",amount:250},
+    {id:u(),label:"Mobile",amount:6},
+    {id:u(),label:"Transport",amount:20},
+    {id:u(),label:"Misc",amount:100},
+  ],
+  invest:[ {id:u(),label:"Indian equity",amount:100} ],
+  potOrder:["ef","etf","pension","india"],
+  pots:{
+    ef:     {label:"Emergency fund",start:0,target:6252,auto:0,note:"6× your monthly costs"},
+    etf:    {label:"ETF (ISA)",start:0,target:0,auto:0,note:"starts once the fund is full"},
+    pension:{label:"Pension pot",start:0,target:0,auto:440,note:"£440/mo lands automatically"},
+    india:  {label:"Indian equity",start:0,target:0,auto:0,note:"from your monthly investing"},
+  },
+  months:{},
+  portfolio:{gbp:[],inr:[]},
+  fx:{rate:129.5,updated:null,source:"default"},
+  receivables:[], debts:[],
+};
+
+/* ================= storage: device first, Claude storage as bonus ================= */
+const KEY="khata_v2";
+let storeMode="none";
+async function storeGet(){
+  try{ if(window.storage){const r=await window.storage.get(KEY);if(r&&r.value){storeMode="claude";return r.value;}} }catch(e){}
+  try{ const v=localStorage.getItem(KEY); if(v!=null){storeMode="device";return v;} }catch(e){}
+  return null;
+}
+async function storeSet(v){
+  let ok=false;
+  try{ if(window.storage){await window.storage.set(KEY,v);storeMode="claude";ok=true;} }catch(e){}
+  try{ localStorage.setItem(KEY,v); if(!ok)storeMode="device"; ok=true; }catch(e){}
+  if(!ok)storeMode="none";
+  return ok;
+}
+function whereLabel(){
+  return storeMode==="device"?"saved on this device":storeMode==="claude"?"saved in Claude":"not saving here";
+}
+function setWhere(){const w=document.getElementById("where");if(w){w.textContent=whereLabel();w.style.color=storeMode==="none"?"var(--red)":"var(--faint)";}}
+
+let state=null, tab="home", mkey=null, showTemplate=false, fxBusy=false, pendingImport=null, confirmReset=false;
+function num(v){const n=parseFloat(v);return isNaN(n)?0:n}
+function fmt(v){return Math.round(num(v)).toLocaleString("en-GB")}
+function fmtInr(v){return Math.round(num(v)).toLocaleString("en-IN")}
+function pad(n){return String(n).padStart(2,"0")}
+function nowKey(){const d=new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)}
+function keyLabel(k){const p=k.split("-");return new Date(+p[0],+p[1]-1,1).toLocaleString("en-GB",{month:"long",year:"numeric"})}
+function shiftKey(k,n){const p=k.split("-");const d=new Date(+p[0],+p[1]-1+n,1);return d.getFullYear()+"-"+pad(d.getMonth()+1)}
+
+let saveTimer;
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(async()=>{
+    const ok=await storeSet(JSON.stringify(state));
+    setWhere(); if(ok)flashSaved();
+  },250);
+}
+function flashSaved(){const s=document.getElementById("flash");s.classList.add("on");setTimeout(()=>s.classList.remove("on"),900);}
+
+function migrate(s){
+  const d=JSON.parse(JSON.stringify(DEFAULT_STATE));
+  s=Object.assign({},d,s||{});
+  s.pots=Object.assign({},d.pots,s.pots||{});
+  for(const k of d.potOrder){
+    s.pots[k]=Object.assign({},d.pots[k],s.pots[k]||{});
+    if(s.pots[k].balance!==undefined&&!num(s.pots[k].start)){s.pots[k].start=s.pots[k].balance;}
+    delete s.pots[k].balance;
+  }
+  s.potOrder=d.potOrder;
+  ["expenses","invest","receivables","debts"].forEach(k=>{if(!Array.isArray(s[k]))s[k]=d[k];});
+  if(!s.months||typeof s.months!=="object")s.months={};
+  s.portfolio=Object.assign({gbp:[],inr:[]},s.portfolio||{});
+  s.fx=Object.assign({},d.fx,s.fx||{});
+  return s;
+}
+function getMonth(k){
+  if(!state.months[k])state.months[k]={skip:{},extras:[],potAdds:{}};
+  const m=state.months[k];
+  if(!m.skip)m.skip={}; if(!m.extras)m.extras=[]; if(!m.potAdds)m.potAdds={};
+  return m;
+}
+
+/* ================= calculations ================= */
+function sum(arr,f){return arr.reduce((a,x)=>a+num(f?f(x):x),0)}
+function calcMonth(k){
+  const m=getMonth(k);
+  const recur=sum(state.expenses.filter(e=>!m.skip[e.id]),e=>e.amount);
+  const oneCost=sum(m.extras.filter(x=>x.kind==="cost"),x=>x.amount);
+  const oneInc=sum(m.extras.filter(x=>x.kind==="income"),x=>x.amount);
+  const living=num(state.rent)+recur+oneCost;
+  const invest=sum(state.invest.filter(e=>!m.skip[e.id]),e=>e.amount);
+  const income=num(state.income)+oneInc;
+  const surplus=income-living-invest;
+  const cap=num(state.income)*num(state.capPct)/100;
+  return {m,recur,oneCost,oneInc,living,invest,income,surplus,cap,capLeft:cap-living};
+}
+function addsSum(pk,beforeKey){
+  let s=0;
+  for(const key of Object.keys(state.months)){
+    if(beforeKey&&key>=beforeKey)continue;
+    s+=num((state.months[key].potAdds||{})[pk]);
+  }
+  return s;
+}
+function balance(pk){return num(state.pots[pk].start)+addsSum(pk)}
+function balanceBefore(pk,k){return num(state.pots[pk].start)+addsSum(pk,k)}
+function suggest(k){
+  const c=calcMonth(k);
+  const efLeft=Math.max(0,num(state.pots.ef.target)-balanceBefore("ef",k));
+  const s=Math.max(0,c.surplus);
+  const toEf=Math.min(s,efLeft), toEtf=s-toEf;
+  return {ef:toEf,etf:toEtf,pension:num(state.pots.pension.auto),india:c.invest,surplus:c.surplus,efLeft};
+}
+function rate(){return num(state.fx.rate)||1}
+function calcAll(){
+  const pots=sum(state.potOrder,k=>balance(k));
+  const pfGbp=sum(state.portfolio.gbp,x=>x.amount);
+  const pfInr=sum(state.portfolio.inr,x=>x.amount);
+  const pfInrGbp=pfInr/rate();
+  const portfolio=pfGbp+pfInrGbp;
+  const inn=sum(state.receivables,x=>x.amount), out=sum(state.debts,x=>x.amount);
+  const netIou=inn-out;
+  const ef=state.pots.ef, efBal=balance("ef");
+  const efPct=num(ef.target)>0?Math.min(100,efBal/num(ef.target)*100):0;
+  return {pots,pfGbp,pfInr,pfInrGbp,portfolio,inn,out,netIou,wealth:pots+portfolio,trueNet:pots+portfolio+netIou,efBal,efPct};
+}
+
+/* ================= live exchange rate ================= */
+async function fetchRate(){
+  if(fxBusy)return; fxBusy=true; refreshFx();
+  const urls=["https://api.frankfurter.app/latest?from=GBP&to=INR","https://open.er-api.com/v6/latest/GBP"];
+  let ok=false;
+  for(const url of urls){
+    try{
+      const r=await fetch(url,{cache:"no-store"}); const j=await r.json();
+      const v=j&&j.rates&&j.rates.INR;
+      if(v){state.fx={rate:+(+v).toFixed(2),updated:Date.now(),source:"live"};save();ok=true;break;}
+    }catch(e){}
+  }
+  fxBusy=false;
+  if(!ok&&state.fx.source==="live")state.fx.source="stale";
+  if(!ok&&state.fx.source==="default")state.fx.source="offline";
+  if(tab==="portfolio"||tab==="home")render(); else refreshFx();
+}
+function fxStatus(){
+  const f=state.fx;
+  if(fxBusy)return "Fetching live rate…";
+  if(f.source==="live"&&f.updated){
+    const mins=Math.round((Date.now()-f.updated)/60000);
+    const when=mins<1?"just now":mins<60?mins+" min ago":mins<1440?Math.round(mins/60)+"h ago":Math.round(mins/1440)+"d ago";
+    return "Live mid-market rate · updated "+when;
+  }
+  if(f.source==="manual")return "Rate set by you · tap Refresh for live";
+  if(f.source==="stale")return "Could not reach rate service · showing last live rate";
+  return "No internet for the live rate · using saved rate. Edit it, or Refresh when online.";
+}
+
+/* ================= backup / restore ================= */
+async function exportBackup(){
+  const json=JSON.stringify(state,null,2);
+  const name="khata-backup-"+nowKey()+"-"+pad(new Date().getDate())+".json";
+  try{
+    const file=new File([json],name,{type:"application/json"});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"Khata backup"});return;}
+  }catch(e){}
+  const blob=new Blob([json],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
+
+/* ================= views ================= */
+function monthBar(){
+  const isNow=mkey===nowKey();
+  return `<div class="mbar"><button class="mnav" data-action="prevM">‹</button>
+    <div class="mlabel">${keyLabel(mkey)}<small>${isNow?"this month":"tap ‹ › to change month"}</small></div>
+    <button class="mnav" data-action="nextM">›</button></div>`;
+}
+function field(label,bind,val,cur,sub){
+  return `<label class="f"><span class="fl">${label}${sub?`<small>${sub}</small>`:""}</span>
+    <span class="pre">${cur?`<span class="cur">${cur}</span>`:""}<input class="in" inputmode="decimal" data-bind="${bind}" value="${val}" ${cur?"":'style="padding-left:11px"'}></span></label>`;
+}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function banner(){
+  if(storeMode!=="none")return "";
+  return `<div class="banner"><b>Not saving here.</b> This window cannot store data. Open the file in Chrome or Safari on your phone (or host it online) and it will save automatically. Use Export on the Home tab to keep a backup.</div>`;
+}
+
+function vHome(){
+  const c=calcAll(), k=nowKey(), sg=suggest(k);
+  const move=sg.efLeft>0?`Top up your <b>Emergency fund</b>`:`Fund full — invest into your <b>ETF (ISA)</b>`;
+  const moveAmt=sg.efLeft>0?Math.min(sg.surplus,sg.efLeft):sg.surplus;
+  return `${banner()}
+  <div class="card hero">
+    <div class="label">Total wealth</div>
+    <div class="big num"><span class="cur">£</span>${fmt(c.wealth)}</div>
+    <div class="bar"><i style="width:${c.efPct}%"></i></div>
+    <div class="barmeta"><span>Emergency fund</span><span><b>£${fmt(c.efBal)}</b> of £${fmt(state.pots.ef.target)} · ${Math.round(c.efPct)}%</span></div>
+  </div>
+  <div class="card">
+    <div class="eyebrow" style="margin-bottom:12px">${keyLabel(k)} — your move</div>
+    <div class="move"><span class="dot"></span><div class="txt">${move}<div class="amt" style="font-size:20px;margin-top:2px">£${fmt(moveAmt)}</div></div></div>
+  </div>
+  <div class="card">
+    <div class="row"><div class="k">Savings pots<small>built through this plan</small></div><div class="v">£${fmt(c.pots)}</div></div>
+    <div class="row"><div class="k">Existing portfolio<small>£ holdings + India at ₹${state.fx.rate}</small></div><div class="v">£${fmt(c.portfolio)}</div></div>
+    <div class="row"><div class="k">Owed to you</div><div class="v pos">${c.inn?"+":""}£${fmt(c.inn)}</div></div>
+    <div class="row"><div class="k">You owe</div><div class="v neg">${c.out?"−":""}£${fmt(c.out)}</div></div>
+    <div class="row total"><div class="k">True net position</div><div class="v big ${c.netIou<0?"neg":""}">£${fmt(c.trueNet)}</div></div>
+    ${iouEffect(c)}
+  </div>
+
+  <h2 class="sec">Backup</h2>
+  <div class="card">
+    ${pendingImport?`<div class="note" style="margin:0 0 12px"><b>Replace everything with the backup you picked?</b> This cannot be undone.</div>
+      <button class="btn" data-action="importYes">Yes, restore this backup</button>
+      <button class="btn ghost" data-action="importNo">Cancel</button>`
+    :`<div class="note" style="margin:0 0 12px">Your data is ${whereLabel()}. Export a backup before clearing browser data or moving to a new phone, then Import it there.</div>
+      <button class="btn ghost" data-action="export">Export backup</button>
+      <label class="btn ghost">Import backup<input type="file" id="importFile" accept=".json,application/json" style="display:none"></label>
+      <button class="btn ${confirmReset?"danger":"ghost"}" data-action="reset">${confirmReset?"Tap again to erase everything":"Reset all data"}</button>`}
+  </div>`;
+}
+function iouEffect(c){
+  if(c.out>0&&c.inn>0)return `<div class="note">Keep <b>£${fmt(c.out)}</b> accessible to settle what you owe. The <b>£${fmt(c.inn)}</b> coming back is a future boost — do not spend it yet.</div>`;
+  if(c.out>0)return `<div class="note">You owe <b>£${fmt(c.out)}</b> — a claim on your savings, so keep it accessible rather than locked away.</div>`;
+  if(c.inn>0)return `<div class="note"><b>£${fmt(c.inn)}</b> is due back to you — treat it as a future top-up, not money you already have.</div>`;
+  return "";
+}
+
+function vBudget(){
+  const c=calcMonth(mkey), m=c.m, over=c.capLeft<0;
+  const recRow=(e)=>{const off=!!m.skip[e.id];return `<div class="row ${off?"off":""}"><div class="k">${esc(e.label)}</div>
+    <div style="display:flex;align-items:center;gap:10px"><span class="v">£${fmt(e.amount)}</span>
+    <button class="skip ${off?"on":""}" data-action="skip" data-id="${e.id}">${off?"Skipped":"Skip"}</button></div></div>`;};
+  const oneRow=(x)=>`<div class="row"><div class="k">${esc(x.label)}<small>one-off</small></div>
+    <div style="display:flex;align-items:center;gap:6px"><span class="v ${x.kind==="income"?"pos":""}">${x.kind==="income"?"+":""}£${fmt(x.amount)}</span>
+    <button class="trash" data-action="delExtra" data-id="${x.id}">×</button></div></div>`;
+  const costs=m.extras.filter(x=>x.kind==="cost"), incs=m.extras.filter(x=>x.kind==="income");
+  return `${banner()}${monthBar()}
+  <div class="card">
+    <div class="row"><div class="k">Take-home${c.oneInc?`<small>incl. £${fmt(c.oneInc)} extra income</small>`:""}</div><div class="v" id="s-inc">£${fmt(c.income)}</div></div>
+    <div class="row"><div class="k">Living costs</div><div class="v neg" id="s-living">−£${fmt(c.living)}</div></div>
+    <div class="row"><div class="k">Investing</div><div class="v neg" id="s-invest">−£${fmt(c.invest)}</div></div>
+    <div class="row total"><div class="k">Left to save this month</div><div class="v big ${c.surplus<0?"neg":"pos"}" id="s-surplus">£${fmt(c.surplus)}</div></div>
+    <div style="margin-top:12px" id="s-chip">${over?`<span class="chip over">Over your £${fmt(c.cap)} cap by £${fmt(-c.capLeft)}</span>`:`<span class="chip ok">£${fmt(c.capLeft)} under your £${fmt(c.cap)} cap</span>`}</div>
+  </div>
+  <h2 class="sec">Costs this month</h2>
+  <div class="card">
+    <div class="row"><div class="k">Rent (all bills)</div><div class="v">£${fmt(state.rent)}</div></div>
+    ${state.expenses.map(recRow).join("")}
+    ${costs.map(oneRow).join("")}
+    <div class="add"><div class="two"><input id="x-cost-l" placeholder="One-off cost, e.g. Travel"><input id="x-cost-a" class="amt" inputmode="decimal" placeholder="£"></div>
+      <button class="btn ghost" data-action="addExtra" data-kind="cost">Add one-off cost</button></div>
+  </div>
+  <h2 class="sec">Investing this month</h2>
+  <div class="card">
+    ${state.invest.length?state.invest.map(recRow).join(""):`<div class="empty">No regular investing set up.</div>`}
+    <div class="note">Skip an item for months you want to pause it — the saved amount flows to your surplus instead.</div>
+  </div>
+  <h2 class="sec">Extra income this month</h2>
+  <div class="card">
+    ${incs.length?incs.map(oneRow).join(""):`<div class="empty">Nothing extra coming in this month.</div>`}
+    <div class="add"><div class="two"><input id="x-inc-l" placeholder="e.g. Bonus, refund, gift"><input id="x-inc-a" class="amt" inputmode="decimal" placeholder="£"></div>
+      <button class="btn ghost" data-action="addExtra" data-kind="income">Add extra income</button></div>
+  </div>
+  <h2 class="sec">Your regular budget <button class="link" data-action="toggleTpl">${showTemplate?"Hide":"Edit"}</button></h2>
+  ${showTemplate?vTemplate():`<div class="card flat"><div class="note" style="margin:0">These are the defaults every month starts from. Tap Edit to change salary, rent, or regular costs.</div></div>`}`;
+}
+function vTemplate(){
+  const line=(kind,e)=>`<label class="f">
+    <input class="fl txt" style="background:none;border:none;color:var(--text);font-size:14.5px;padding:0" data-${kind}="${e.id}" data-k="label" value="${esc(e.label)}">
+    <span style="display:flex;align-items:center;gap:6px"><span class="pre"><span class="cur">£</span><input class="in" style="width:96px" inputmode="decimal" data-${kind}="${e.id}" data-k="amount" value="${e.amount}"></span>
+    <button class="trash" data-action="${kind==="exp"?"delExp":"delInv"}" data-id="${e.id}">×</button></span></label>`;
+  return `
+  <div class="card">
+    ${field("Take-home","income",state.income,"£","after tax, NI and pension")}
+    ${field("Rent (all bills included)","rent",state.rent,"£")}
+    ${field("Spending cap","capPct",state.capPct,"","% of take-home")}
+  </div>
+  <div class="card"><div class="eyebrow" style="margin-bottom:6px">Regular costs</div>
+    ${state.expenses.map(e=>line("exp",e)).join("")}
+    <div class="add"><div class="two"><input id="exp-l" placeholder="Add a regular cost"><input id="exp-a" class="amt" inputmode="decimal" placeholder="£"></div><button class="btn ghost" data-action="addExp">Add cost</button></div>
+  </div>
+  <div class="card"><div class="eyebrow" style="margin-bottom:6px">Regular investing</div>
+    ${state.invest.map(e=>line("inv",e)).join("")}
+    <div class="add"><div class="two"><input id="inv-l" placeholder="e.g. Indian equity"><input id="inv-a" class="amt" inputmode="decimal" placeholder="£"></div><button class="btn ghost" data-action="addInv">Add</button></div>
+  </div>`;
+}
+
+function vPots(){
+  const c=calcAll(), sg=suggest(mkey), m=getMonth(mkey);
+  const potCard=(k)=>{
+    const p=state.pots[k], bal=balance(k), isEf=k==="ef";
+    const pct=num(p.target)>0?Math.min(100,bal/num(p.target)*100):0;
+    return `<div class="card">
+      <div class="row" style="border:none;padding:0 0 6px"><div class="k" style="font-weight:600;font-size:15px">${p.label}<small>${p.note}</small></div><div class="v big" id="bal-${k}">£${fmt(bal)}</div></div>
+      ${isEf?`<div class="bar"><i id="efbar" style="width:${pct}%"></i></div><div class="barmeta"><span id="efpct">${Math.round(pct)}% of target</span><span>target £${fmt(p.target)}</span></div>`:""}
+      <label class="f"><span class="fl">Added in ${keyLabel(mkey).split(" ")[0]}</span>
+        <span class="pre"><span class="cur">£</span><input class="in" inputmode="decimal" data-padd="${k}" value="${m.potAdds[k]!==undefined?m.potAdds[k]:""}" placeholder="0"></span></label>
+      <label class="f"><span class="fl">Opening balance<small>what was already here</small></span>
+        <span class="pre"><span class="cur">£</span><input class="in" inputmode="decimal" data-pot="${k}" data-k="start" value="${p.start}"></span></label>
+      ${isEf?`<label class="f"><span class="fl">Target</span><span class="pre"><span class="cur">£</span><input class="in" inputmode="decimal" data-pot="${k}" data-k="target" value="${p.target}"></span></label>`:""}
+      ${k==="pension"?`<label class="f"><span class="fl">Lands every month<small>employer + you</small></span><span class="pre"><span class="cur">£</span><input class="in" inputmode="decimal" data-pot="${k}" data-k="auto" value="${p.auto}"></span></label>`:""}
+    </div>`;
+  };
+  return `${banner()}${monthBar()}
+  <div class="card hero"><div class="label">Total across all pots</div><div class="big num"><span class="cur">£</span><span id="s-pots">${fmt(c.pots)}</span></div></div>
+  <div class="card">
+    <div class="eyebrow" style="margin-bottom:10px">Plan for ${keyLabel(mkey)}</div>
+    <div class="row"><div class="k">Emergency fund</div><div class="v">£${fmt(sg.ef)}</div></div>
+    <div class="row"><div class="k">ETF (ISA)</div><div class="v">£${fmt(sg.etf)}</div></div>
+    <div class="row"><div class="k">Pension</div><div class="v">£${fmt(sg.pension)}</div></div>
+    <div class="row"><div class="k">Indian equity</div><div class="v">£${fmt(sg.india)}</div></div>
+    <div style="margin-top:12px"><button class="btn" data-action="fillPlan">Log these amounts for this month</button></div>
+    <div class="note">Based on this month's budget (surplus £${fmt(sg.surplus)}). You can edit any figure below afterwards.</div>
+  </div>
+  ${state.potOrder.map(potCard).join("")}`;
+}
+
+function vPortfolio(){
+  const c=calcAll(), f=state.fx;
+  const gbpRow=(x)=>`<div class="iou in"><div class="who">${esc(x.label)}</div><div class="right">
+    <span class="pre"><span class="cur">£</span><input class="in" style="width:110px" inputmode="decimal" data-pf="gbp" data-id="${x.id}" value="${x.amount}"></span>
+    <button class="trash" data-action="delPf" data-cur="gbp" data-id="${x.id}">×</button></div></div>`;
+  const inrRow=(x)=>`<div class="iou in"><div class="who">${esc(x.label)}<small>≈ £<span id="conv-${x.id}">${fmt(num(x.amount)/rate())}</span></small></div><div class="right">
+    <span class="pre"><span class="cur">₹</span><input class="in" style="width:120px" inputmode="decimal" data-pf="inr" data-id="${x.id}" value="${x.amount}"></span>
+    <button class="trash" data-action="delPf" data-cur="inr" data-id="${x.id}">×</button></div></div>`;
+  return `${banner()}
+  <div class="card">
+    <div class="fx"><span class="rate">£1 = ₹<span id="fx-rate">${f.rate}</span></span></div>
+    <div class="fxmeta" id="fx-status">${fxStatus()}</div>
+    <div class="fxrow">
+      <span class="pre" style="flex:1"><span class="cur">₹</span><input class="in" style="width:100%" inputmode="decimal" data-fx="1" value="${f.rate}"></span>
+      <button class="btn sm" data-action="refreshFx" ${fxBusy?"disabled":""}>${fxBusy?"…":"Refresh"}</button>
+    </div>
+    <div class="note">Live rate comes from the European Central Bank feed. Edit the box to use your own rate — e.g. what your transfer app actually gives you.</div>
+  </div>
+  <div class="card hero"><div class="label">Existing portfolio</div><div class="big num"><span class="cur">£</span><span id="s-pf-total">${fmt(c.portfolio)}</span></div>
+    <div class="barmeta" style="margin-top:8px"><span>In pounds <b id="s-pf-gbp">£${fmt(c.pfGbp)}</b></span><span>In India <b id="s-pf-inrgbp">£${fmt(c.pfInrGbp)}</b> (₹<span id="s-pf-inr">${fmtInr(c.pfInr)}</span>)</span></div></div>
+  <h2 class="sec">Held in pounds</h2>
+  <div class="card">
+    ${state.portfolio.gbp.length?state.portfolio.gbp.map(gbpRow).join(""):`<div class="empty">Add UK accounts, ISAs, or investments you already hold.</div>`}
+    <div class="add"><div class="two"><input id="pf-gbp-l" placeholder="e.g. Trading 212 ISA"><input id="pf-gbp-a" class="amt" inputmode="decimal" placeholder="£"></div><button class="btn ghost" data-action="addPf" data-cur="gbp">Add £ holding</button></div>
+  </div>
+  <h2 class="sec">Held in India (₹)</h2>
+  <div class="card">
+    ${state.portfolio.inr.length?state.portfolio.inr.map(inrRow).join(""):`<div class="empty">Add your Indian stocks, mutual funds, or FDs in rupees — they convert to pounds automatically.</div>`}
+    <div class="add"><div class="two"><input id="pf-inr-l" placeholder="e.g. Zerodha, MF portfolio"><input id="pf-inr-a" class="amt" inputmode="decimal" placeholder="₹"></div><button class="btn ghost" data-action="addPf" data-cur="inr">Add ₹ holding</button></div>
+  </div>`;
+}
+
+function vIou(){
+  const c=calcAll();
+  const row=(kind,r,dir)=>`<div class="iou ${dir}"><div class="who">${esc(r.name)}${r.note?`<small>${esc(r.note)}</small>`:""}</div>
+    <div class="right"><span class="amt">£${fmt(r.amount)}</span><button class="settle" data-action="${kind==="recv"?"delRecv":"delDebt"}" data-id="${r.id}">Settle</button></div></div>`;
+  return `${banner()}
+  <div class="card">
+    <div class="row"><div class="k">Owed to you</div><div class="v pos">£${fmt(c.inn)}</div></div>
+    <div class="row"><div class="k">You owe</div><div class="v neg">£${fmt(c.out)}</div></div>
+    <div class="row total"><div class="k">Net</div><div class="v big ${c.netIou<0?"neg":"pos"}">${c.netIou<0?"−":"+"}£${fmt(Math.abs(c.netIou))}</div></div>
+    <div class="note">True net position (wealth ${c.netIou<0?"−":"+"} this): <b>£${fmt(c.trueNet)}</b></div>
+  </div>
+  <h2 class="sec">Owed to you</h2>
+  <div class="card">
+    ${state.receivables.length?state.receivables.map(r=>row("recv",r,"in")).join(""):`<div class="empty">No one owes you right now.</div>`}
+    <div class="add"><input id="recv-n" placeholder="Who owes you?"><div class="two"><input id="recv-note" placeholder="What for (optional)"><input id="recv-a" class="amt" inputmode="decimal" placeholder="£"></div>
+      <button class="btn" data-action="addRecv">Add what you are owed</button></div>
+  </div>
+  <h2 class="sec">You owe</h2>
+  <div class="card">
+    ${state.debts.length?state.debts.map(r=>row("debt",r,"out")).join(""):`<div class="empty">Nobody to pay back right now.</div>`}
+    <div class="add"><input id="debt-n" placeholder="Who do you owe?"><div class="two"><input id="debt-note" placeholder="What for (optional)"><input id="debt-a" class="amt" inputmode="decimal" placeholder="£"></div>
+      <button class="btn" data-action="addDebt">Add what you owe</button></div>
+  </div>`;
+}
+
+/* ================= render + live refresh ================= */
+const VIEWS={home:vHome,budget:vBudget,pots:vPots,portfolio:vPortfolio,iou:vIou};
+function render(){
+  document.getElementById("app").innerHTML=VIEWS[tab]();
+  document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.tab===tab));
+  setWhere(); window.scrollTo(0,0);
+}
+const $=(id)=>document.getElementById(id);
+const set=(id,v)=>{const el=$(id);if(el)el.textContent=v;};
+function refresh(){
+  if(tab==="budget"){
+    const c=calcMonth(mkey), over=c.capLeft<0;
+    set("s-inc","£"+fmt(c.income)); set("s-living","−£"+fmt(c.living)); set("s-invest","−£"+fmt(c.invest));
+    const s=$("s-surplus"); if(s){s.textContent="£"+fmt(c.surplus);s.className="v big "+(c.surplus<0?"neg":"pos");}
+    const ch=$("s-chip"); if(ch)ch.innerHTML=over?`<span class="chip over">Over your £${fmt(c.cap)} cap by £${fmt(-c.capLeft)}</span>`:`<span class="chip ok">£${fmt(c.capLeft)} under your £${fmt(c.cap)} cap</span>`;
+  }
+  if(tab==="pots"){
+    const c=calcAll(); set("s-pots",fmt(c.pots));
+    for(const k of state.potOrder)set("bal-"+k,"£"+fmt(balance(k)));
+    const b=$("efbar"); if(b)b.style.width=c.efPct+"%"; set("efpct",Math.round(c.efPct)+"% of target");
+  }
+  if(tab==="portfolio")refreshFx();
+}
+function refreshFx(){
+  const c=calcAll();
+  set("fx-rate",state.fx.rate); set("fx-status",fxStatus());
+  set("s-pf-total",fmt(c.portfolio)); set("s-pf-gbp","£"+fmt(c.pfGbp)); set("s-pf-inrgbp","£"+fmt(c.pfInrGbp)); set("s-pf-inr",fmtInr(c.pfInr));
+  for(const x of state.portfolio.inr)set("conv-"+x.id,fmt(num(x.amount)/rate()));
+}
+
+/* ================= events ================= */
+const app=$("app");
+app.addEventListener("input",e=>{
+  const t=e.target; if(t.tagName!=="INPUT"||t.type==="file")return; const d=t.dataset;
+  if(d.bind!==undefined)state[d.bind]=t.value;
+  else if(d.exp!==undefined)upd(state.expenses,d.exp,d.k,t.value);
+  else if(d.inv!==undefined)upd(state.invest,d.inv,d.k,t.value);
+  else if(d.pot!==undefined)state.pots[d.pot][d.k]=t.value;
+  else if(d.padd!==undefined)getMonth(mkey).potAdds[d.padd]=t.value;
+  else if(d.pf!==undefined)upd(state.portfolio[d.pf],d.id,"amount",t.value);
+  else if(d.fx!==undefined){state.fx.rate=t.value;state.fx.source="manual";state.fx.updated=null;}
+  else return;
+  save(); refresh();
+});
+app.addEventListener("change",e=>{
+  if(e.target.id!=="importFile")return;
+  const f=e.target.files&&e.target.files[0]; if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{ try{ const data=JSON.parse(r.result); if(!data||typeof data!=="object")throw 0; pendingImport=data; }
+    catch(err){ pendingImport=null; alert("That file is not a valid Khata backup."); }
+    render(); };
+  r.readAsText(f);
+});
+function upd(arr,id,k,v){const it=arr.find(x=>x.id===id);if(it)it[k]=v;}
+
+$("nav").addEventListener("click",onClick); app.addEventListener("click",onClick);
+function onClick(e){
+  const b=e.target.closest("button[data-action]"); if(!b)return;
+  const a=b.dataset.action, m=getMonth(mkey);
+  if(a!=="reset")confirmReset=false;
+  switch(a){
+    case "tab": tab=b.dataset.tab; render(); return;
+    case "prevM": mkey=shiftKey(mkey,-1); render(); return;
+    case "nextM": mkey=shiftKey(mkey,1); render(); return;
+    case "toggleTpl": showTemplate=!showTemplate; render(); return;
+    case "refreshFx": fetchRate(); return;
+    case "export": exportBackup(); return;
+    case "importYes": state=migrate(pendingImport); pendingImport=null; break;
+    case "importNo": pendingImport=null; render(); return;
+    case "reset": if(!confirmReset){confirmReset=true;render();return;} confirmReset=false; state=migrate({}); break;
+    case "skip": m.skip[b.dataset.id]=!m.skip[b.dataset.id]; break;
+    case "addExtra": {const l=val(b.dataset.kind==="cost"?"x-cost-l":"x-inc-l"), am=val(b.dataset.kind==="cost"?"x-cost-a":"x-inc-a");
+      if(!l&&!am)return; m.extras.push({id:u(),label:l||"One-off",amount:num(am),kind:b.dataset.kind}); break;}
+    case "delExtra": m.extras=m.extras.filter(x=>x.id!==b.dataset.id); break;
+    case "fillPlan": {const s=suggest(mkey); m.potAdds={ef:Math.round(s.ef),etf:Math.round(s.etf),pension:Math.round(s.pension),india:Math.round(s.india)}; break;}
+    case "addExp": addLine(state.expenses,"exp-l","exp-a"); break;
+    case "addInv": addLine(state.invest,"inv-l","inv-a"); break;
+    case "delExp": state.expenses=state.expenses.filter(x=>x.id!==b.dataset.id); break;
+    case "delInv": state.invest=state.invest.filter(x=>x.id!==b.dataset.id); break;
+    case "addPf": {const cur=b.dataset.cur, l=val("pf-"+cur+"-l"), am=val("pf-"+cur+"-a"); if(!l&&!am)return;
+      state.portfolio[cur].push({id:u(),label:l||"Holding",amount:num(am)}); break;}
+    case "delPf": state.portfolio[b.dataset.cur]=state.portfolio[b.dataset.cur].filter(x=>x.id!==b.dataset.id); break;
+    case "addRecv": addIou(state.receivables,"recv-n","recv-a","recv-note"); break;
+    case "addDebt": addIou(state.debts,"debt-n","debt-a","debt-note"); break;
+    case "delRecv": state.receivables=state.receivables.filter(x=>x.id!==b.dataset.id); break;
+    case "delDebt": state.debts=state.debts.filter(x=>x.id!==b.dataset.id); break;
+    default: return;
+  }
+  save(); render();
+}
+function val(id){const el=$(id);return el?el.value.trim():"";}
+function addLine(arr,lId,aId){const l=val(lId),a=val(aId);if(!l&&!a)return;arr.push({id:u(),label:l||"Untitled",amount:num(a)});}
+function addIou(arr,nId,aId,noteId){const n=val(nId),a=val(aId),note=val(noteId);if(!n&&!a)return;arr.push({id:u(),name:n||"Someone",amount:num(a),note});}
+
+/* ================= boot ================= */
+(async function(){
+  const raw=await storeGet();
+  let loaded=null; try{ loaded=raw?JSON.parse(raw):null; }catch(e){}
+  state=migrate(loaded); mkey=nowKey();
+  render();
+  await storeSet(JSON.stringify(state)); setWhere(); render();
+  const age=state.fx.updated?Date.now()-state.fx.updated:Infinity;
+  if(state.fx.source!=="manual"&&age>6*3600*1000)fetchRate();
+})();
+</script>
+</body>
+</html>
