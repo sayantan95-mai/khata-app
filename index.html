@@ -2,640 +2,1893 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Khata — personal ledger</title>
-<meta name="theme-color" content="#0E1726">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Khata">
-<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAHxklEQVR42u3deUybdRzH8afQg1JaaDvKUUr7sA1km85jmZsuumWHu9zVkphoYuIfGhNjULMW2H2XmphliVeMJhqPJbSM6abLMm+zqPHanLq5yVPu0lIKhdKD0vqPf8yEjcXfL/Hp7/m8/+cXnm9flAfa/n4yXVkth9B05WEECDgQcCDgQMCBgAMBBwIOBBwIOBBwIAQcCDgQcCDgQMCBgAMBBwIOBBwIOBACDgQcCDgQcCDgQMCBgAMBBwIOBBwIAQcCDgQcCDgQcCDgQMCBgAMBBwIOBBwIAQe69eS58o3e9v6Tcn3hf/va+JXAX43H6c+upJB321VWI+E66ZEJf7Mv4Q8DBys/VQYN77arLAZSGZGY4PIle4bxzMFICmORrdWuMutJZYRjgsub7Ivg1worMkxa3u1QVhQTrjMZGhOafKn+EdxzMJKyTGdrdSjLdKQyglHB5U0ForghZUVGRTHvdihMWsJ1UoFRweWbDEZFfr3AcaupzHpbq11hLCKV0T8iuLyTQ+P4U5YVGRYD77bLDRrCdZK9EaHJmw7HcuMvMjzwM1ZgM9qO2OUlhaQyeoYFly8dieXKhQPHTDJqSvkj2/J1asJ1Ev6wv9mXHpnIoWsHjpulnmOyHd6Wry0gldEZEprbp6Lx3Lp84LixjLpy26Gt+RoV4Trxa0F/S/vUWCLnJgAc01dYX2E7uDWvUEkq489Bf0v7VCyZi0MAjmnSLDBb92/JUysI15m4PNC1syNHZQDHdDIWWqx7N+UVEMv4vd+/syMTT+XuKIDjXxXdVV29d1OeknQssV97u/aczMQnc3oawHGdjEU2666NMnIZF3q69pzMJNO5PhDg+CftvXz1jo0yRT7hOuM/dXXv+yiTSjMwE+DgOI7TLZ1tadkgk5O+aXLsB3/3gVNZJmQAB8dxnG7ZXEvTOlk+sYzvOrsPns6mp5iZjNRxFC+vq9q+VpYnI1wnev5az5GPs+kMS8ORNI6SlfXm59dQkPHN1R73J9mpDGPzkS4O/Zr55sZVnIxUxugXV3pfPJPNZNkbkURxGNbfXvnMSo4UBjfy6R99L51lUoZEcRgeXlj59ApyGZGzv/UdPcdls6wOSnI4jFvuqnjqQfJ1Imcu9R07x2VZnpW0cMxqWFT+xDLydYZPXeh/5XO2ZUgLR+kji8sev498nfDJXwZe+0IKE5MKDtOjS0yPLSFfZ6j9p8AbX0lkaJLAUTDbpK4rJ18n1PbD4FvfSOe5VhI4yF804Tgu9MH3g++cl9QtGl5buaWC734bfO9bqV01cMzc4NvnQ8e/l+CFA8cMBd78esj7ozSvHThu1sDrX4Y7fpbs5QPHjWW8+nn4wwtSngBwTFeW63/5s+HTFyU+BuCYpr5j5yJnLmEO2GpymtRzTOSv2QIHmxk23GF+dhV8AMf06dcuMDeuJn+fGHAw6mPNfPNzkvYBHDf1sXpe1QtrJOsDOGaoZGV91faHyN+hDhyM+lhxG5XPtgAHmxUvr6tyUfhUHHAw6uOBWiqfmgQONtMtm2tpXk/lrUPAIZbSo3Fau2Xo7p9D5fP4wCGWJgOjXbs7Mgk6++zols6u3rFRJs8HDkaKXezt2tVBax8m7ZKa6l0UdnoBDtH4uNTn33WC1g5u2sV89e6H2fYhrRvSid/6/TtOZCYo+Vhks+7ZRL6HGHCIxscfAwK9XWOL7rFa91DYfRA4xFL8SoDirsJFd1dX79vMpA+J/p8j/uegv9k3NU7Jx50W6/7NeSo5cLDi42pQaPLR2q9es9BiPbCFfN9j4BBLib+CQpNvKkrJx+1V1gMUdkwHDtH46AwJLm96lM5JKJoFZtvBrXlqJXCw4sM/JLi8tM5QKpxXaTtE4SwO4BBLya6w4PKmI5R81Ffwh7eRn+IDHKLx0T0suLzpYTqn86nrym257wM4rvPRMyw4qZ3rqa4tsx2x5xepgIMVH32RTmcbrROB1XNNvNtOfn4gcIilVP+I4GybDI1RWa1gtol32/N1BcDBio+BUcHZRuus+YKaUt7tID+ZFjhE4yMQ7dzuTQ1S8sHP4lsd8mI1cDDSZDAqONtSgVE6PmxGvtVBfuY5cIjHx5jg9Kb6R6isprIaeY9DrtcABys+QmOC05vqo+TDYuA9DrlBAxys+AiPd7rakr0ROj6q9LzHITdqgIOR0uGY4PQme4bp+DDrazwNillFwMGKj0hMcHmT3XR8KCtLeE+DolQLHMz4mBCcbQl/mI6PimLe06AwaYGDFR+jccHlTQhDdHyU63hPg7JMBxyMNBWNC03eRGeIjo8yHe9xKMt1wMGMj4TQ5ItfC1JZTWHS8Z4GZUUxcLDiYyzhb/bFrw7S8VGq5T0NysoS4GDFx3jS39wevxKg42NWUY2nQWXWAwcrPmJJoaV94vIAldXkRg3vcaiqxOJDpiurxWOM8MyBgAMBBwIOBBwIOBBwIOBAwIGAAyHgQMCBgAMBBwIOJJ7Evq/qgk8a2X4ALq07KtrvTbxv9mGehfiJ4NcKyjUcknraEO314pkDAQdiBoeY7+FxQ4qQ6D+3gv9zAAfCPQcCDgQcCDgQcCAEHAg4EHAg4EDAgYADAQcCDgQcCDgQAg4EHAg4EHAg4EDAgYADAQcCDgQcCDgwAgQcCDgQcCDgQP9nfwOfWmiL85TTJgAAAABJRU5ErkJggg==">
-<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAHxklEQVR42u3deUybdRzH8afQg1JaaDvKUUr7sA1km85jmZsuumWHu9zVkphoYuIfGhNjULMW2H2XmphliVeMJhqPJbSM6abLMm+zqPHanLq5yVPu0lIKhdKD0vqPf8yEjcXfL/Hp7/m8/+cXnm9flAfa/n4yXVkth9B05WEECDgQcCDgQMCBgAMBBwIOBBwIOBBwIAQcCDgQcCDgQMCBgAMBBwIOBBwIOBACDgQcCDgQcCDgQMCBgAMBBwIOBBwIAQcCDgQcCDgQcCDgQMCBgAMBBwIOBBwIAQe69eS58o3e9v6Tcn3hf/va+JXAX43H6c+upJB321VWI+E66ZEJf7Mv4Q8DBys/VQYN77arLAZSGZGY4PIle4bxzMFICmORrdWuMutJZYRjgsub7Ivg1worMkxa3u1QVhQTrjMZGhOafKn+EdxzMJKyTGdrdSjLdKQyglHB5U0ForghZUVGRTHvdihMWsJ1UoFRweWbDEZFfr3AcaupzHpbq11hLCKV0T8iuLyTQ+P4U5YVGRYD77bLDRrCdZK9EaHJmw7HcuMvMjzwM1ZgM9qO2OUlhaQyeoYFly8dieXKhQPHTDJqSvkj2/J1asJ1Ev6wv9mXHpnIoWsHjpulnmOyHd6Wry0gldEZEprbp6Lx3Lp84LixjLpy26Gt+RoV4Trxa0F/S/vUWCLnJgAc01dYX2E7uDWvUEkq489Bf0v7VCyZi0MAjmnSLDBb92/JUysI15m4PNC1syNHZQDHdDIWWqx7N+UVEMv4vd+/syMTT+XuKIDjXxXdVV29d1OeknQssV97u/aczMQnc3oawHGdjEU2666NMnIZF3q69pzMJNO5PhDg+CftvXz1jo0yRT7hOuM/dXXv+yiTSjMwE+DgOI7TLZ1tadkgk5O+aXLsB3/3gVNZJmQAB8dxnG7ZXEvTOlk+sYzvOrsPns6mp5iZjNRxFC+vq9q+VpYnI1wnev5az5GPs+kMS8ORNI6SlfXm59dQkPHN1R73J9mpDGPzkS4O/Zr55sZVnIxUxugXV3pfPJPNZNkbkURxGNbfXvnMSo4UBjfy6R99L51lUoZEcRgeXlj59ApyGZGzv/UdPcdls6wOSnI4jFvuqnjqQfJ1Imcu9R07x2VZnpW0cMxqWFT+xDLydYZPXeh/5XO2ZUgLR+kji8sev498nfDJXwZe+0IKE5MKDtOjS0yPLSFfZ6j9p8AbX0lkaJLAUTDbpK4rJ18n1PbD4FvfSOe5VhI4yF804Tgu9MH3g++cl9QtGl5buaWC734bfO9bqV01cMzc4NvnQ8e/l+CFA8cMBd78esj7ozSvHThu1sDrX4Y7fpbs5QPHjWW8+nn4wwtSngBwTFeW63/5s+HTFyU+BuCYpr5j5yJnLmEO2GpymtRzTOSv2QIHmxk23GF+dhV8AMf06dcuMDeuJn+fGHAw6mPNfPNzkvYBHDf1sXpe1QtrJOsDOGaoZGV91faHyN+hDhyM+lhxG5XPtgAHmxUvr6tyUfhUHHAw6uOBWiqfmgQONtMtm2tpXk/lrUPAIZbSo3Fau2Xo7p9D5fP4wCGWJgOjXbs7Mgk6++zols6u3rFRJs8HDkaKXezt2tVBax8m7ZKa6l0UdnoBDtH4uNTn33WC1g5u2sV89e6H2fYhrRvSid/6/TtOZCYo+Vhks+7ZRL6HGHCIxscfAwK9XWOL7rFa91DYfRA4xFL8SoDirsJFd1dX79vMpA+J/p8j/uegv9k3NU7Jx50W6/7NeSo5cLDi42pQaPLR2q9es9BiPbCFfN9j4BBLib+CQpNvKkrJx+1V1gMUdkwHDtH46AwJLm96lM5JKJoFZtvBrXlqJXCw4sM/JLi8tM5QKpxXaTtE4SwO4BBLya6w4PKmI5R81Ffwh7eRn+IDHKLx0T0suLzpYTqn86nrym257wM4rvPRMyw4qZ3rqa4tsx2x5xepgIMVH32RTmcbrROB1XNNvNtOfn4gcIilVP+I4GybDI1RWa1gtol32/N1BcDBio+BUcHZRuus+YKaUt7tID+ZFjhE4yMQ7dzuTQ1S8sHP4lsd8mI1cDDSZDAqONtSgVE6PmxGvtVBfuY5cIjHx5jg9Kb6R6isprIaeY9DrtcABys+QmOC05vqo+TDYuA9DrlBAxys+AiPd7rakr0ROj6q9LzHITdqgIOR0uGY4PQme4bp+DDrazwNillFwMGKj0hMcHmT3XR8KCtLeE+DolQLHMz4mBCcbQl/mI6PimLe06AwaYGDFR+jccHlTQhDdHyU63hPg7JMBxyMNBWNC03eRGeIjo8yHe9xKMt1wMGMj4TQ5ItfC1JZTWHS8Z4GZUUxcLDiYyzhb/bFrw7S8VGq5T0NysoS4GDFx3jS39wevxKg42NWUY2nQWXWAwcrPmJJoaV94vIAldXkRg3vcaiqxOJDpiurxWOM8MyBgAMBBwIOBBwIOBBwIOBAwIGAAyHgQMCBgAMBBwIOJJ7Evq/qgk8a2X4ALq07KtrvTbxv9mGehfiJ4NcKyjUcknraEO314pkDAQdiBoeY7+FxQ4qQ6D+3gv9zAAfCPQcCDgQcCDgQcCAEHAg4EHAg4EDAgYADAQcCDgQcCDgQAg4EHAg4EHAg4EDAgYADAQcCDgQcCDgwAgQcCDgQcCDgQP9nfwOfWmiL85TTJgAAAABJRU5ErkJggg==">
-<link rel="manifest" href='data:application/manifest+json,{"name":"Khata","short_name":"Khata","display":"standalone","background_color":"%230E1726","theme_color":"%230E1726","start_url":"."}'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python for Software Testing — revision handbook</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0E1726; --surface:#16223A; --surface2:#1E2C46; --line:#2A3A56;
-    --text:#EAEEF6; --muted:#8A99B4; --faint:#5D6B85;
-    --green:#3ACE96; --green-dim:#1E3A34;
-    --amber:#E8A557; --amber-dim:#3A2E1C;
-    --red:#EA6A6A; --red-dim:#3A2222;
-    --accent:#3ACE96; --accent-ink:#08110C;
-    --r:16px;
+    --paper:#EFF1F3; --surface:#FFFFFF; --ink:#17222C; --muted:#63737F;
+    --hair:#D9DFE5; --pass:#2F6B45; --fail:#B23A22; --skip:#A8760F; --steel:#2C5A8A;
+    --code-bg:#152029; --code-fg:#DCE6EE;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{background:var(--bg)}
-  body{font-family:'Inter',system-ui,sans-serif;color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.45;min-height:100vh}
-  .num{font-family:'Space Grotesk',sans-serif;font-feature-settings:"tnum" 1;letter-spacing:-.01em}
-  .app{max-width:460px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;animation:fade .4s ease both}
-  @keyframes fade{from{opacity:0}to{opacity:1}}
-  @media (prefers-reduced-motion:reduce){.app{animation:none}}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper); color:var(--ink); font-family:var(--sans);
+    font-size:16px; line-height:1.55; -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:0 16px 80px}
 
-  header{padding:22px 20px 8px;display:flex;align-items:baseline;justify-content:space-between}
-  .brand{font-family:'Space Grotesk';font-weight:700;font-size:22px;letter-spacing:-.02em}
-  .brand span{color:var(--accent)}
-  .brand small{display:block;font-family:'Inter';font-weight:400;font-size:11px;color:var(--faint);margin-top:1px}
-  .status{font-size:11px;color:var(--faint);text-align:right}
-  .status b{display:block;color:var(--accent);font-weight:600;opacity:0;transition:opacity .3s}
-  .status b.on{opacity:1}
+  /* ---------- header ---------- */
+  header.top{
+    position:sticky;top:0;z-index:30;background:var(--paper);
+    border-bottom:1px solid var(--hair);
+  }
+  .top-inner{max-width:820px;margin:0 auto;padding:12px 16px 0}
+  h1{font-size:19px;line-height:1.25;margin:0;font-weight:600;letter-spacing:-.01em}
+  h1 span{color:var(--muted);font-weight:400}
+  .session{
+    font-family:var(--mono);font-size:12px;color:var(--muted);
+    margin:6px 0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+  }
+  .session b{color:var(--pass);font-weight:500}
+  .modes{display:flex;gap:0;border-bottom:1px solid transparent}
+  .modes button{
+    appearance:none;background:none;border:0;border-bottom:2px solid transparent;
+    font:500 14px/1 var(--sans);color:var(--muted);padding:12px 14px;cursor:pointer
+  }
+  .modes button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+  .modes button:focus-visible{outline:2px solid var(--steel);outline-offset:-2px}
 
-  main{flex:1;padding:8px 16px 100px}
-  .banner{background:var(--red-dim);border:1px solid #5a3030;color:#F3B4B4;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.5;margin-bottom:14px}
-  .banner b{color:#fff}
+  /* ---------- module chips ---------- */
+  .chips{display:flex;gap:6px;overflow-x:auto;padding:12px 0 14px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{
+    flex:0 0 auto;font-family:var(--mono);font-size:12px;padding:7px 11px;
+    border:1px solid var(--hair);background:var(--surface);border-radius:3px;
+    color:var(--muted);cursor:pointer;min-height:34px
+  }
+  .chip[data-done="1"]{color:var(--pass);border-color:#BBD3C3}
+  .chip[aria-current="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
 
-  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:14px}
-  .card.flat{background:transparent;border:none;padding:6px 4px 2px}
-  .eyebrow{font-size:12px;color:var(--muted);font-weight:500}
-  .hero .label{font-size:13px;color:var(--muted);margin-bottom:4px}
-  .hero .big{font-family:'Space Grotesk';font-weight:700;font-size:40px;line-height:1.05;letter-spacing:-.03em}
-  .hero .big .cur{font-size:24px;color:var(--muted);font-weight:600;vertical-align:top;margin-right:2px}
+  /* ---------- search ---------- */
+  .search{width:100%;padding:10px 12px;border:1px solid var(--hair);border-radius:4px;
+    font:400 15px var(--sans);background:var(--surface);color:var(--ink);margin:14px 0 4px}
+  .search:focus{outline:2px solid var(--steel);outline-offset:-1px}
 
-  .bar{height:10px;background:var(--surface2);border-radius:99px;overflow:hidden;margin:14px 0 8px}
-  .bar > i{display:block;height:100%;background:linear-gradient(90deg,#2FB183,var(--green));border-radius:99px;transition:width .5s cubic-bezier(.4,0,.2,1)}
-  .barmeta{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)}
-  .barmeta b{color:var(--text);font-weight:600}
+  /* ---------- module ---------- */
+  .rule{
+    display:flex;align-items:center;gap:10px;margin:30px 0 12px;
+    font-family:var(--mono);font-size:12px;color:var(--muted)
+  }
+  .rule::after{content:"";flex:1;height:1px;background:var(--hair)}
+  h2{font-size:22px;line-height:1.2;margin:0 0 4px;font-weight:600;letter-spacing:-.015em}
+  .why{color:var(--muted);font-size:14px;margin:0 0 16px}
 
-  .move{display:flex;gap:13px;align-items:flex-start}
-  .move .dot{width:9px;height:9px;border-radius:99px;background:var(--accent);margin-top:6px;flex:none;box-shadow:0 0 0 4px rgba(58,206,150,.15)}
-  .move .txt{font-size:15px}
-  .move .amt{font-family:'Space Grotesk';font-weight:600}
+  .digest{border-left:2px solid var(--ink);padding:2px 0 2px 14px;margin:0 0 18px}
+  .digest li{margin:0 0 9px;list-style:none}
+  .digest ul{margin:0;padding:0}
+  .digest code,p code,li code,.trap code{
+    font-family:var(--mono);font-size:.86em;background:#E3E8EC;padding:1px 4px;border-radius:3px
+  }
 
-  .row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);gap:10px}
-  .row:last-child{border-bottom:none}
-  .row .k{font-size:14.5px;color:var(--text);min-width:0}
-  .row .k small{display:block;color:var(--faint);font-size:12px;font-weight:400}
-  .row .v{font-family:'Space Grotesk';font-weight:600;font-size:15px;white-space:nowrap}
-  .v.pos{color:var(--green)} .v.neg{color:var(--amber)} .v.big{font-size:18px}
-  .row.total{border-top:1px solid var(--line);border-bottom:none;margin-top:2px;padding-top:14px}
-  .row.total .k{font-weight:600}
-  .row.off .k,.row.off .v{color:var(--faint);text-decoration:line-through}
+  details.dd{border:1px solid var(--hair);background:var(--surface);border-radius:5px;margin:0 0 10px}
+  details.dd>summary{
+    cursor:pointer;padding:13px 14px;font-weight:500;font-size:15px;list-style:none;
+    display:flex;align-items:center;gap:9px
+  }
+  details.dd>summary::-webkit-details-marker{display:none}
+  details.dd>summary::before{
+    content:"+";font-family:var(--mono);color:var(--steel);font-size:15px;width:12px
+  }
+  details.dd[open]>summary::before{content:"\2212"}
+  details.dd[open]>summary{border-bottom:1px solid var(--hair)}
+  .dd-body{padding:4px 14px 14px}
+  .dd-body p{margin:12px 0}
 
-  h2.sec{font-family:'Space Grotesk';font-weight:600;font-size:15px;color:var(--muted);margin:20px 4px 8px}
+  pre{
+    background:var(--code-bg);color:var(--code-fg);border-radius:5px;margin:12px 0;
+    padding:13px 13px 13px 14px;overflow-x:auto;position:relative
+  }
+  pre code{font-family:var(--mono);font-size:12.5px;line-height:1.65;white-space:pre}
+  .cp{
+    position:absolute;top:7px;right:7px;background:#25333F;color:#9FB3C4;border:0;
+    border-radius:3px;font:500 11px var(--mono);padding:5px 8px;cursor:pointer
+  }
+  .cp:active{background:var(--pass);color:#fff}
+  .k{color:#8FB8E8}.s{color:#B7D9A0}.c{color:#6E8496;font-style:italic}
+  .d{color:#E0B36A}.n{color:#D9A7C7}
 
-  label.f{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
-  label.f:last-of-type{border-bottom:none}
-  label.f .fl{font-size:14.5px;color:var(--text);flex:1;min-width:0}
-  label.f .fl small{display:block;color:var(--faint);font-size:12px}
-  input.in{background:var(--surface2);border:1px solid var(--line);border-radius:10px;color:var(--text);font-family:'Space Grotesk';font-weight:600;font-size:15px;padding:9px 11px;width:118px;text-align:right}
-  input.txt{width:100%;text-align:left;font-family:'Inter';font-weight:400}
-  input.in:focus{outline:none;border-color:var(--accent);background:#1A2942}
-  .pre{position:relative;display:inline-block}
-  .pre .cur{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--faint);font-size:14px;font-family:'Space Grotesk'}
-  .pre input{padding-left:24px}
+  .traps{margin:16px 0 0}
+  .trap{
+    display:flex;gap:9px;font-size:14.5px;padding:10px 12px;background:#FBF3F0;
+    border-left:2px solid var(--fail);border-radius:0 4px 4px 0;margin-bottom:7px
+  }
+  .trap span:first-child{font-family:var(--mono);color:var(--fail);font-weight:600}
 
-  .chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:5px 11px;border-radius:99px;font-weight:500}
-  .chip.ok{background:var(--green-dim);color:var(--green)}
-  .chip.over{background:var(--amber-dim);color:var(--amber)}
+  .mark{
+    display:flex;align-items:center;gap:10px;margin:18px 0 4px;padding:11px 13px;
+    border:1px dashed var(--hair);border-radius:5px;background:var(--surface);
+    font-family:var(--mono);font-size:13px;color:var(--muted);cursor:pointer;width:100%;
+    text-align:left
+  }
+  .mark[data-done="1"]{color:var(--pass);border-style:solid;border-color:#BBD3C3;background:#F3F8F4}
 
-  button{font-family:'Inter';cursor:pointer;border:none}
-  .btn{background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14.5px;padding:12px 16px;border-radius:12px;width:100%;display:block;text-align:center}
-  .btn:active{transform:translateY(1px)}
-  .btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
-  .btn.danger{background:transparent;color:var(--red);border:1px solid #5a3030}
-  .btn.sm{width:auto;padding:8px 14px;font-size:13px;display:inline-block}
-  .btn + .btn{margin-top:8px}
-  .add{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}
-  .add .two{display:grid;grid-template-columns:1fr 110px;gap:8px}
-  .add input{background:var(--surface2);border:1px solid var(--line);border-radius:10px;color:var(--text);font-size:14px;padding:11px 12px;font-family:'Inter';width:100%}
-  .add input.amt{font-family:'Space Grotesk';font-weight:600;text-align:right}
-  .add input:focus{outline:none;border-color:var(--accent)}
+  /* ---------- drill ---------- */
+  .q{border:1px solid var(--hair);background:var(--surface);border-radius:5px;padding:15px;margin:0 0 12px}
+  .q-tag{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:7px}
+  .q-text{font-weight:500;margin:0 0 12px}
+  .opt{
+    display:block;width:100%;text-align:left;background:var(--paper);border:1px solid var(--hair);
+    border-radius:4px;padding:11px 12px;margin:0 0 7px;font:400 15px/1.4 var(--sans);
+    color:var(--ink);cursor:pointer
+  }
+  .opt code{font-family:var(--mono);font-size:.87em}
+  .opt.right{background:#EFF6F1;border-color:var(--pass);color:var(--pass);font-weight:500}
+  .opt.wrong{background:#FBF0ED;border-color:var(--fail);color:var(--fail)}
+  .opt[disabled]{cursor:default}
+  .why-box{
+    font-size:14px;border-left:2px solid var(--hair);padding-left:12px;margin-top:11px;color:#3D4A55
+  }
+  .scoreline{font-family:var(--mono);font-size:13px;padding:12px 0;color:var(--muted)}
 
-  .skip{font-size:12px;color:var(--muted);background:var(--surface2);border:1px solid var(--line);padding:6px 10px;border-radius:8px;white-space:nowrap}
-  .skip.on{color:var(--amber);border-color:var(--amber);background:var(--amber-dim)}
-  .trash{color:var(--faint);background:none;font-size:18px;padding:4px 6px;line-height:1}
-  .settle{font-size:12px;color:var(--faint);background:var(--surface2);border:1px solid var(--line);padding:6px 10px;border-radius:8px}
+  /* ---------- cards ---------- */
+  .card{
+    background:var(--surface);border:1px solid var(--hair);border-radius:6px;padding:26px 20px;
+    min-height:210px;display:flex;flex-direction:column;justify-content:center;text-align:center;
+    cursor:pointer;font-size:17px;line-height:1.5
+  }
+  .card .side{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:12px}
+  .card code{font-family:var(--mono);font-size:.88em;background:#E3E8EC;padding:1px 4px;border-radius:3px}
+  .card-nav{display:flex;gap:8px;margin-top:12px}
+  .card-nav button{
+    flex:1;padding:12px;border:1px solid var(--hair);background:var(--surface);border-radius:4px;
+    font:500 14px var(--sans);color:var(--ink);cursor:pointer;min-height:44px
+  }
+  .card-nav button:active{background:var(--paper)}
 
-  .mbar{display:flex;align-items:center;justify-content:space-between;margin:4px 0 14px}
-  .mbar .mlabel{font-family:'Space Grotesk';font-weight:600;font-size:17px}
-  .mbar .mlabel small{display:block;font-family:'Inter';font-weight:400;font-size:11px;color:var(--faint);text-align:center}
-  .mnav{background:var(--surface);border:1px solid var(--line);color:var(--text);width:40px;height:40px;border-radius:12px;font-size:20px;line-height:1}
-
-  .iou{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);gap:10px}
-  .iou:last-child{border-bottom:none}
-  .iou .who{font-size:14.5px;font-weight:500;min-width:0}
-  .iou .who small{display:block;color:var(--faint);font-size:12px;font-weight:400}
-  .iou .right{display:flex;align-items:center;gap:10px;flex:none}
-  .iou .amt{font-family:'Space Grotesk';font-weight:600;font-size:15px}
-  .iou.in .amt{color:var(--green)} .iou.out .amt{color:var(--amber)}
-
-  .fx .rate{font-family:'Space Grotesk';font-weight:700;font-size:30px;letter-spacing:-.02em}
-  .fxmeta{font-size:12.5px;color:var(--muted);margin-top:4px}
-  .fxrow{display:flex;gap:8px;align-items:center;margin-top:12px}
-
-  .empty{text-align:center;color:var(--faint);font-size:13.5px;padding:16px 8px}
-  .note{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
-  .note b{color:var(--text);font-weight:600}
-  .link{background:none;color:var(--accent);font-size:13px;font-weight:500;padding:6px 0}
-
-  nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:460px;background:rgba(14,23,38,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:8px 4px calc(8px + env(safe-area-inset-bottom))}
-  nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--faint);padding:6px 0;font-size:10.5px;font-weight:500}
-  nav button svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7}
-  nav button.on{color:var(--accent)}
+  .hint{font-size:13.5px;color:var(--muted);margin:14px 0 0}
+  .empty{font-family:var(--mono);font-size:13px;color:var(--muted);padding:30px 0}
+  @media (min-width:700px){ h1{font-size:22px} h2{font-size:26px} body{font-size:17px} }
+  @media (prefers-reduced-motion:no-preference){ details.dd[open] .dd-body{animation:f .18s ease-out} }
+  @keyframes f{from{opacity:0}to{opacity:1}}
 </style>
 </head>
 <body>
-<div class="app">
-  <header>
-    <div class="brand">Kh<span>a</span>ta<small>your money, tracked</small></div>
-    <div class="status"><b id="flash">saved</b><span id="where">…</span></div>
-  </header>
-  <main id="app"></main>
-  <nav id="nav">
-    <button data-action="tab" data-tab="home" class="on"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</button>
-    <button data-action="tab" data-tab="budget"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg>Budget</button>
-    <button data-action="tab" data-tab="pots"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>Pots</button>
-    <button data-action="tab" data-tab="portfolio"><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-8M22 19H2"/></svg>Portfolio</button>
-    <button data-action="tab" data-tab="iou"><svg viewBox="0 0 24 24"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg>Owed</button>
-  </nav>
+<header class="top">
+  <div class="top-inner">
+    <h1>Python for software testing <span>— revision handbook</span></h1>
+    <div class="session" id="session"></div>
+    <nav class="modes" role="tablist">
+      <button role="tab" id="tab-notes" aria-selected="true" data-mode="notes">Notes</button>
+      <button role="tab" id="tab-drill" aria-selected="false" data-mode="drill">Drill</button>
+      <button role="tab" id="tab-cards" aria-selected="false" data-mode="cards">Cards</button>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div id="pane-notes">
+    <div class="chips" id="chips"></div>
+    <input class="search" id="search" type="search" placeholder="Search topics, e.g. fixture scope, monkeypatch, waits">
+    <div id="notes"></div>
+  </div>
+
+  <div id="pane-drill" hidden>
+    <div class="chips" id="drill-chips"></div>
+    <div id="drill"></div>
+  </div>
+
+  <div id="pane-cards" hidden>
+    <div class="chips" id="card-chips"></div>
+    <div id="cards"></div>
+  </div>
 </div>
 
 <script>
-/* ================= defaults: your locked £666 plan ================= */
-function u(){return Math.random().toString(36).slice(2,9)}
-const DEFAULT_STATE={
-  income:2330, rent:666, capPct:50,
-  expenses:[
-    {id:u(),label:"Food & groceries",amount:250},
-    {id:u(),label:"Mobile",amount:6},
-    {id:u(),label:"Transport",amount:20},
-    {id:u(),label:"Misc",amount:100},
-  ],
-  invest:[ {id:u(),label:"Indian equity",amount:100} ],
-  potOrder:["ef","etf","pension","india"],
-  pots:{
-    ef:     {label:"Emergency fund",start:0,target:6252,auto:0,note:"6× your monthly costs"},
-    etf:    {label:"ETF (ISA)",start:0,target:0,auto:0,note:"starts once the fund is full"},
-    pension:{label:"Pension pot",start:0,target:0,auto:440,note:"£440/mo lands automatically"},
-    india:  {label:"Indian equity",start:0,target:0,auto:0,note:"from your monthly investing"},
-  },
-  months:{},
-  portfolio:{gbp:[],inr:[]},
-  fx:{rate:129.5,updated:null,source:"default"},
-  receivables:[], debts:[],
-};
+const MODULES = [
+{
+n:"01", id:"core", title:"Python core, tester's cut",
+why:"The handful of language rules that actually cause test bugs: identity, mutability, truthiness, copying.",
+digest:[
+ "<code>==</code> compares value, <code>is</code> compares identity. Only use <code>is</code> for <code>None</code>, <code>True</code>, <code>False</code>.",
+ "Mutable: list, dict, set, most objects. Immutable: int, str, tuple, frozenset. Assignment never copies — it binds a second name to the same object.",
+ "Falsy values: <code>0</code>, <code>0.0</code>, <code>\"\"</code>, <code>[]</code>, <code>{}</code>, <code>()</code>, <code>None</code>. So <code>if response.json():</code> silently treats an empty list as a failure.",
+ "<code>list.copy()</code> is shallow. Nested test data needs <code>copy.deepcopy()</code>.",
+ "f-strings do the work: <code>f\"{value!r}\"</code> for repr in assertion messages, <code>f\"{price:.2f}\"</code>, <code>f\"{total=}\"</code> prints <code>total=42</code>.",
+ "Strings are immutable — building a locator in a loop with <code>+=</code> makes a new object each time; use <code>join</code> or f-strings.",
+ "Chained comparison works: <code>200 &lt;= status &lt; 300</code>."
+],
+deep:[
+ {h:"Identity vs equality in assertions",
+  body:"Two objects can be equal and not identical. Small ints and short strings are interned by CPython, which makes <code>is</code> look like it works — until it doesn't. Never let an identity check into an assertion unless you mean identity.",
+  code:`a = [1, 2, 3]
+b = [1, 2, 3]
+a == b        # True  -> same contents
+a is b        # False -> different objects
 
-/* ================= storage: device first, Claude storage as bonus ================= */
-const KEY="khata_v2";
-let storeMode="none";
-async function storeGet(){
-  try{ if(window.storage){const r=await window.storage.get(KEY);if(r&&r.value){storeMode="claude";return r.value;}} }catch(e){}
-  try{ const v=localStorage.getItem(KEY); if(v!=null){storeMode="device";return v;} }catch(e){}
-  return null;
-}
-async function storeSet(v){
-  let ok=false;
-  try{ if(window.storage){await window.storage.set(KEY,v);storeMode="claude";ok=true;} }catch(e){}
-  try{ localStorage.setItem(KEY,v); if(!ok)storeMode="device"; ok=true; }catch(e){}
-  if(!ok)storeMode="none";
-  return ok;
-}
-function whereLabel(){
-  return storeMode==="device"?"saved on this device":storeMode==="claude"?"saved in Claude":"not saving here";
-}
-function setWhere(){const w=document.getElementById("where");if(w){w.textContent=whereLabel();w.style.color=storeMode==="none"?"var(--red)":"var(--faint)";}}
+x = 256; y = 256
+x is y        # True  (interned) -- do not rely on this
+x = 257; y = 257
+x is y        # False on most builds
 
-let state=null, tab="home", mkey=null, showTemplate=false, fxBusy=false, pendingImport=null, confirmReset=false;
-function num(v){const n=parseFloat(v);return isNaN(n)?0:n}
-function fmt(v){return Math.round(num(v)).toLocaleString("en-GB")}
-function fmtInr(v){return Math.round(num(v)).toLocaleString("en-IN")}
-function pad(n){return String(n).padStart(2,"0")}
-function nowKey(){const d=new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)}
-function keyLabel(k){const p=k.split("-");return new Date(+p[0],+p[1]-1,1).toLocaleString("en-GB",{month:"long",year:"numeric"})}
-function shiftKey(k,n){const p=k.split("-");const d=new Date(+p[0],+p[1]-1+n,1);return d.getFullYear()+"-"+pad(d.getMonth()+1)}
+# In tests:
+assert resp.error is None        # correct: identity of a singleton
+assert resp.items == expected    # correct: value comparison`},
+ {h:"Mutable default arguments and shared state",
+  body:"A default argument is evaluated once, at function definition. A mutable default is then shared by every call — a classic source of tests that pass alone and fail in a suite.",
+  code:`def add_user(name, users=[]):      # BROKEN
+    users.append(name)
+    return users
 
-let saveTimer;
-function save(){
-  clearTimeout(saveTimer);
-  saveTimer=setTimeout(async()=>{
-    const ok=await storeSet(JSON.stringify(state));
-    setWhere(); if(ok)flashSaved();
-  },250);
+add_user("ana")   # ['ana']
+add_user("bob")   # ['ana', 'bob']  <- leaked
+
+def add_user(name, users=None):    # correct
+    users = [] if users is None else users
+    users.append(name)
+    return users`},
+ {h:"Shallow vs deep copy of test payloads",
+  body:"Building one base payload and mutating copies per test case is standard practice. A shallow copy shares nested dicts, so mutating a nested key contaminates every other case.",
+  code:`import copy
+
+BASE = {"user": {"name": "ana", "roles": ["viewer"]}, "active": True}
+
+shallow = BASE.copy()
+shallow["user"]["name"] = "bob"
+BASE["user"]["name"]            # 'bob'  <- leaked
+
+deep = copy.deepcopy(BASE)
+deep["user"]["name"] = "bob"
+BASE["user"]["name"]            # 'ana'  <- safe`},
+ {h:"Truthiness in API assertions",
+  body:"Explicit is safer than truthy when a value has a meaningful empty state. An empty list, a zero count and a missing key all collapse to falsy, so a truthy check cannot tell you which happened.",
+  code:`data = resp.json()
+
+if not data:              # fires for [], {}, 0, None, ""
+    raise AssertionError("no data")
+
+# say what you mean instead
+assert data is not None, "body was not JSON"
+assert len(data["items"]) == 3, f"got {len(data['items'])} items"`}
+],
+traps:[
+ "<code>is</code> against a literal string or number — passes on your machine, fails in CI on a different build.",
+ "A shared list or dict at module level in <code>conftest.py</code> mutated by one test and read by another. Test order then decides the result.",
+ "<code>assert response.text</code> to mean 'a body came back' — an empty 200 body passes as falsy and fails the assertion for the wrong reason.",
+ "Comparing floats with <code>==</code>. Use <code>pytest.approx(1.1, rel=1e-3)</code>."
+],
+quiz:[
+ {q:"A test mutates <code>payload['user']['id']</code> after <code>payload = BASE.copy()</code>. What happens to BASE?",
+  opts:["Unchanged — copy() is safe","BASE['user']['id'] also changes","Raises TypeError","Only changes if BASE is a module-level global"],
+  a:1, why:"copy() is shallow: the outer dict is new, the nested 'user' dict is the same object. Use copy.deepcopy for nested payloads."},
+ {q:"Which check correctly asserts an API returned an empty list rather than null?",
+  opts:["assert not data","assert data == []","assert data is []","assert len(data)"],
+  a:1, why:"`data == []` distinguishes an empty list from None; `not data` is true for both, and `is []` compares identity against a fresh object, which is always False."}
+],
+cards:[
+ {f:"When is <code>is</code> the right operator in a test?", b:"Only for singletons: <code>None</code>, <code>True</code>, <code>False</code>, and sentinel objects you created. Everything else uses <code>==</code>."},
+ {f:"Why does <code>def f(x, cache={})</code> leak between tests?", b:"Defaults are evaluated once at definition time, so all calls share the same dict. Use <code>None</code> and build inside the function."},
+ {f:"How do you compare floats in pytest?", b:"<code>assert value == pytest.approx(expected, rel=1e-3)</code> — also works on lists and dicts of floats."}
+]
+},
+
+{
+n:"02", id:"data", title:"Collections and comprehensions",
+why:"Most assertion work is reshaping a response into something comparable. This is where readable tests are won or lost.",
+digest:[
+ "<code>dict.get(key, default)</code> never raises; <code>d[key]</code> raises <code>KeyError</code>. In assertions, the raise is usually more useful — it names the missing key.",
+ "Compare unordered results as sets: <code>assert set(actual_ids) == set(expected_ids)</code>. Compare ordered results as lists.",
+ "Sort with a key, not by hand: <code>sorted(items, key=lambda i: (i['type'], i['name']))</code>.",
+ "Comprehensions beat loops for extraction: <code>[u['email'] for u in users if u['active']]</code>.",
+ "<code>collections.Counter</code> for duplicate and frequency checks; <code>defaultdict(list)</code> for grouping.",
+ "Tuple unpacking makes parametrize readable: <code>for status, expected in cases:</code>.",
+ "<code>any()</code> / <code>all()</code> express suite-level rules in one line: <code>assert all(r.ok for r in responses)</code>."
+],
+deep:[
+ {h:"Diff-friendly assertions",
+  body:"pytest rewrites assertions and shows a rich diff for lists, dicts and sets. That only helps if you assert on whole structures instead of looping and asserting item by item. One structural assertion gives you the full delta in the failure output.",
+  code:`# weak: fails on the first mismatch, tells you nothing about the rest
+for user in users:
+    assert user["status"] == "active"
+
+# strong: one failure shows every offender
+bad = [u["id"] for u in users if u["status"] != "active"]
+assert bad == [], f"inactive users: {bad}"
+
+# strong: full dict diff in the report
+assert response.json() == {"id": 7, "name": "ana", "roles": ["admin"]}`},
+ {h:"Set operations for coverage checks",
+  body:"Sets answer 'what is missing' and 'what is extra' directly, which is exactly the shape of a data-validation failure.",
+  code:`expected = {"id", "name", "email", "created_at"}
+actual = set(response.json().keys())
+
+missing = expected - actual
+extra = actual - expected
+assert not missing, f"missing fields: {sorted(missing)}"
+assert not extra, f"unexpected fields: {sorted(extra)}"`},
+ {h:"Grouping and counting",
+  body:"Counter and defaultdict remove a lot of bookkeeping when validating reports, search results or DB rows.",
+  code:`from collections import Counter, defaultdict
+
+counts = Counter(row["region"] for row in rows)
+assert counts["UK"] == 12
+assert counts.most_common(1)[0][0] == "UK"
+
+by_status = defaultdict(list)
+for order in orders:
+    by_status[order["status"]].append(order["id"])
+assert by_status["failed"] == []`},
+ {h:"Dict merging for payload variants",
+  body:"The <code>|</code> operator (3.9+) builds a variant payload without touching the base — the cleanest way to drive negative test cases.",
+  code:`BASE = {"name": "ana", "email": "a@x.com", "age": 30}
+
+cases = [
+    ("missing email", {k: v for k, v in BASE.items() if k != "email"}),
+    ("blank name",    BASE | {"name": ""}),
+    ("negative age",  BASE | {"age": -1}),
+]
+# note: | is shallow too -- nested dicts are still shared`}
+],
+traps:[
+ "<code>set()</code> comparison hides duplicates. <code>[1,1,2]</code> and <code>[1,2]</code> compare equal as sets — use <code>Counter</code> when duplicates matter.",
+ "Sorting dicts of mixed types raises <code>TypeError</code> in Python 3. Give <code>sorted</code> an explicit key.",
+ "Comprehensions with a side effect (appending, clicking, asserting) — write a loop; a comprehension used for its effects hides intent.",
+ "<code>d.get('missing')</code> returning <code>None</code> then flowing into an assertion produces 'None != 5' instead of 'key missing'."
+],
+quiz:[
+ {q:"An endpoint returns items in a non-deterministic order. What is the cleanest assertion for exact contents including duplicates?",
+  opts:["assert set(actual) == set(expected)","assert sorted(actual) == sorted(expected)","assert actual == expected","assert len(actual) == len(expected)"],
+  a:1, why:"sorted() preserves duplicates and normalises order. set() would pass even if an item appeared twice."},
+ {q:"Which gives the most useful pytest failure output when 3 of 50 users are inactive?",
+  opts:["A loop asserting each user","assert all(u['status']=='active' for u in users)","assert [u['id'] for u in users if u['status']!='active'] == []","assert len(users) == 50"],
+  a:2, why:"It fails once and prints the offending ids. `all()` only reports False; the loop stops at the first bad user."}
+],
+cards:[
+ {f:"Set vs Counter in assertions?", b:"Set = membership only, duplicates collapse. Counter = membership plus multiplicity. Use Counter whenever duplicates are a real defect."},
+ {f:"How do you build payload variants without mutating the base?", b:"<code>BASE | {\"field\": bad_value}</code> for overrides, or a dict comprehension to drop keys. Both are shallow — deepcopy for nested."},
+ {f:"Why prefer one structural assertion over a loop of assertions?", b:"pytest's assertion rewriting prints a full diff of the structure; a loop stops at the first failure and hides the rest."}
+]
+},
+
+{
+n:"03", id:"functions", title:"Functions, closures, decorators",
+why:"Fixtures, markers, retries and custom helpers are all built from these. Understanding decorators demystifies pytest.",
+digest:[
+ "<code>*args</code> collects positionals into a tuple, <code>**kwargs</code> collects keywords into a dict. Order in a signature: positional, <code>*args</code>, keyword-only, <code>**kwargs</code>.",
+ "A bare <code>*</code> forces keyword-only arguments: <code>def click(locator, *, timeout=5)</code> — good for helper APIs that read well at call sites.",
+ "A decorator is a function that takes a function and returns a replacement. <code>@retry</code> is just <code>login = retry(login)</code>.",
+ "Always use <code>functools.wraps</code> inside a decorator or pytest loses the test's name, docstring and signature.",
+ "Closures capture variables by reference, not by value — a loop variable captured in a closure ends up at its last value.",
+ "<code>functools.partial</code> pre-binds arguments: <code>get_json = partial(session.get, timeout=10)</code>.",
+ "Type hints are documentation the IDE enforces: <code>def find(sel: str, timeout: float = 5) -> Element:</code>."
+],
+deep:[
+ {h:"Writing a retry decorator",
+  body:"The pattern behind pytest-rerunfailures and most flaky-handling utilities. Note the layers: outer takes configuration, middle takes the function, inner takes the call arguments.",
+  code:`import functools, time
+
+def retry(times=3, delay=0.5, on=(AssertionError,)):
+    def decorator(func):
+        @functools.wraps(func)          # keeps __name__ for reporting
+        def wrapper(*args, **kwargs):
+            last = None
+            for attempt in range(1, times + 1):
+                try:
+                    return func(*args, **kwargs)
+                except on as exc:
+                    last = exc
+                    time.sleep(delay * attempt)   # linear backoff
+            raise last
+        return wrapper
+    return decorator
+
+@retry(times=3, on=(TimeoutError,))
+def load_dashboard(page):
+    page.goto("/dashboard")`},
+ {h:"Why functools.wraps matters in test code",
+  body:"Without wraps, every decorated function reports as <code>wrapper</code>. pytest collects by name, so undecorated names break reports, <code>-k</code> filtering and traceback readability.",
+  code:`def timed(func):
+    def wrapper(*a, **kw):
+        return func(*a, **kw)
+    return wrapper
+
+@timed
+def test_login(): ...
+
+test_login.__name__     # 'wrapper'  -> unusable in reports
+
+# with @functools.wraps(func) on wrapper:
+test_login.__name__     # 'test_login'`},
+ {h:"The late-binding closure trap",
+  body:"Generating tests or callbacks in a loop is common in data-driven testing. The closure reads the variable when it runs, not when it was created.",
+  code:`checks = []
+for status in (200, 404, 500):
+    checks.append(lambda: assert_status(status))   # all see 500
+
+checks = []
+for status in (200, 404, 500):
+    checks.append(lambda s=status: assert_status(s))  # bound at creation
+
+# better still: let pytest do it
+@pytest.mark.parametrize("status", [200, 404, 500])
+def test_status(status): ...`},
+ {h:"Keyword-only arguments in page helpers",
+  body:"Boolean and numeric positionals at a call site are unreadable six months later. Forcing keywords makes the helper self-documenting without a comment.",
+  code:`def upload(path, *, wait=True, timeout=30, retries=2): ...
+
+upload("a.csv", True, 30, 2)                  # TypeError, and good
+upload("a.csv", wait=True, timeout=30)        # reads as English`}
+],
+traps:[
+ "Decorating a test and forgetting <code>functools.wraps</code> — pytest reports every test as <code>wrapper</code>.",
+ "A decorator that swallows the exception and returns <code>None</code>: the test then passes silently. Re-raise the last error.",
+ "Mutable default in a helper (<code>headers={}</code>) that later gets an auth token added — every subsequent call carries it.",
+ "Putting retry logic on assertions instead of on waits. Retrying a bad assertion hides a real bug; retrying a slow element is legitimate."
+],
+quiz:[
+ {q:"You wrap a test in a custom decorator without functools.wraps. What breaks first?",
+  opts:["The test never runs","Reports and -k filtering show 'wrapper' instead of the test name","Fixtures stop injecting","Nothing"],
+  a:1, why:"wraps copies __name__, __doc__ and __wrapped__. Without it, pytest sees a generic wrapper — and fixture injection also breaks, since pytest reads the signature."},
+ {q:"In a loop, <code>callbacks.append(lambda: check(i))</code> for i in 0,1,2. What does the first callback check?",
+  opts:["0","2","Raises NameError","Undefined behaviour"],
+  a:1, why:"Closures capture the variable, not its value. All three see i's final value, 2. Bind with a default argument or use parametrize."}
+],
+cards:[
+ {f:"What are the three layers of a parameterised decorator?", b:"Outer takes the config, middle takes the function, inner takes the call args. <code>retry(times=3)</code> returns the decorator that returns the wrapper."},
+ {f:"When is retry legitimate in a test?", b:"On environmental waits — element readiness, service warm-up, eventual consistency. Never around an assertion about business behaviour."},
+ {f:"What does a bare <code>*</code> do in a signature?", b:"Everything after it is keyword-only, so <code>upload(path, *, timeout=30)</code> forbids <code>upload('a.csv', 30)</code>."}
+]
+},
+
+{
+n:"04", id:"oop", title:"OOP for page objects and clients",
+why:"Page objects, API clients and test data builders are all class design. Bad hierarchies here are the top cause of unmaintainable frameworks.",
+digest:[
+ "<code>__init__</code> takes the collaborators (driver, page, session) — a page object should not create its own driver.",
+ "Prefer composition over inheritance. A <code>BasePage</code> three levels deep is a smell; a page holding a <code>Header</code> component is not.",
+ "<code>@property</code> turns a computed value into an attribute: <code>page.error_text</code> reads the DOM on access.",
+ "<code>@classmethod</code> for alternative constructors (<code>User.from_json(...)</code>); <code>@staticmethod</code> for a helper that just lives nearby.",
+ "<code>@dataclass</code> gives you <code>__init__</code>, <code>__repr__</code> and <code>__eq__</code> free — ideal for test data and expected models.",
+ "<code>__repr__</code> is what pytest prints on failure. Define it or debug blind.",
+ "Method chaining (<code>return self</code> or return the next page object) makes flows read as steps."
+],
+deep:[
+ {h:"A page object that does not lie",
+  body:"Actions that navigate return the page object they land on. That makes an illegal flow a type error at review time rather than a runtime surprise, and it keeps assertions out of the page class.",
+  code:`class LoginPage:
+    URL = "/login"
+
+    def __init__(self, page):
+        self.page = page
+        self.username = page.get_by_label("Username")
+        self.password = page.get_by_label("Password")
+        self.submit = page.get_by_role("button", name="Sign in")
+
+    def open(self):
+        self.page.goto(self.URL)
+        return self
+
+    def login_as(self, user, pwd):
+        self.username.fill(user)
+        self.password.fill(pwd)
+        self.submit.click()
+        return DashboardPage(self.page)    # navigation is explicit
+
+    @property
+    def error_text(self):
+        return self.page.locator(".form-error").inner_text()
+
+# the test owns the assertions
+def test_bad_password(page):
+    login = LoginPage(page).open()
+    login.username.fill("ana"); login.password.fill("wrong"); login.submit.click()
+    assert "Invalid credentials" in login.error_text`},
+ {h:"Dataclasses as expected models",
+  body:"A dataclass gives structural equality for free, so a whole-object comparison replaces a stack of field assertions and prints a readable diff when it fails.",
+  code:`from dataclasses import dataclass, field, asdict
+
+@dataclass
+class User:
+    name: str
+    email: str
+    roles: list[str] = field(default_factory=list)   # not roles=[]
+    active: bool = True
+
+expected = User("ana", "a@x.com", ["admin"])
+actual = User(**response.json())
+assert actual == expected          # one diff, all fields
+payload = asdict(expected)         # straight back to a dict for POSTing`},
+ {h:"super() and cooperative init",
+  body:"When a base page holds shared waits or a common header, the child must call <code>super().__init__</code> or those attributes never exist. Keep the base thin — shared behaviour only, never page-specific locators.",
+  code:`class BasePage:
+    def __init__(self, page, timeout=10):
+        self.page = page
+        self.timeout = timeout
+        self.header = HeaderComponent(page)   # composition
+
+class SettingsPage(BasePage):
+    def __init__(self, page):
+        super().__init__(page)                # required
+        self.save = page.get_by_role("button", name="Save")`},
+ {h:"classmethod vs staticmethod",
+  body:"A classmethod receives the class, so it works correctly for subclasses — the right tool for factories in a framework people extend.",
+  code:`class ApiClient:
+    def __init__(self, session, base_url):
+        self.session, self.base_url = session, base_url
+
+    @classmethod
+    def from_env(cls, session):
+        import os
+        return cls(session, os.environ["BASE_URL"])   # cls, not ApiClient
+
+    @staticmethod
+    def auth_header(token):
+        return {"Authorization": f"Bearer {token}"}`}
+],
+traps:[
+ "Assertions inside page objects. The page reports state; the test decides pass or fail. Otherwise failures are unreadable and pages are unreusable.",
+ "Locators resolved in <code>__init__</code> with Selenium (<code>driver.find_element</code>) — the element is captured too early and goes stale. Store the selector, resolve on use. Playwright locators are lazy, so this is safe there.",
+ "<code>@dataclass</code> with a mutable default: use <code>field(default_factory=list)</code> or it raises at import.",
+ "A <code>BasePage</code> that accumulates every helper anyone ever needed. Push shared behaviour into components instead."
+],
+quiz:[
+ {q:"Why store selectors rather than resolved elements in a Selenium page object's __init__?",
+  opts:["It is faster","The element goes stale after navigation or re-render","find_element cannot run in __init__","So fixtures can inject them"],
+  a:1, why:"A WebElement references a specific DOM node. Any re-render invalidates it (StaleElementReferenceException). Resolve at the moment of use."},
+ {q:"Where do assertions belong in a page-object framework?",
+  opts:["In the page object, so they are reusable","In the test","In the base page","In conftest.py"],
+  a:1, why:"Pages expose state (properties, getters); tests assert on it. Mixing them makes pages single-purpose and failure messages opaque."}
+],
+cards:[
+ {f:"Composition or inheritance for a shared header?", b:"Composition — <code>self.header = HeaderComponent(page)</code>. Inheritance is for genuinely shared behaviour, not for sharing widgets."},
+ {f:"Why does pytest failure output depend on <code>__repr__</code>?", b:"pytest prints repr() of both sides of a failed assertion. A default repr shows an object address; a dataclass gives you a field-by-field diff."},
+ {f:"What should a navigating page method return?", b:"The page object for the destination — <code>return DashboardPage(self.page)</code> — making the flow explicit and chainable."}
+]
+},
+
+{
+n:"05", id:"errors", title:"Exceptions and context managers",
+why:"Negative testing, clean teardown and readable failures all come from this. It is also the most common interview area after pytest.",
+digest:[
+ "Catch the narrowest exception you can. Bare <code>except:</code> also swallows <code>KeyboardInterrupt</code> and pytest's own control-flow exceptions.",
+ "<code>try/except/else/finally</code>: <code>else</code> runs only when no exception fired; <code>finally</code> always runs, even on <code>return</code>.",
+ "<code>raise NewError(...) from exc</code> preserves the cause in the traceback — do this in framework helpers.",
+ "Custom exceptions give the framework a vocabulary: <code>class ElementNotReady(TimeoutError)</code>.",
+ "<code>with</code> guarantees cleanup. Any object with <code>__enter__</code>/<code>__exit__</code> works; <code>@contextmanager</code> builds one from a generator.",
+ "<code>pytest.raises</code> is a context manager, and <code>excinfo.value</code> holds the exception for further assertions.",
+ "<code>assert</code> statements vanish under <code>python -O</code>. Never use <code>assert</code> for production validation — only inside tests."
+],
+deep:[
+ {h:"Asserting on failure properly",
+  body:"Testing that something fails is only half the test. Assert the type, and then assert the message or attributes — otherwise a completely different bug produces a passing test.",
+  code:`import pytest
+
+def test_rejects_negative_amount():
+    with pytest.raises(ValueError, match=r"amount must be positive") as excinfo:
+        create_order(amount=-5)
+    assert excinfo.value.field == "amount"
+
+# match= is a regex SEARCH against str(exception) -- escape special chars
+with pytest.raises(ValueError, match=re.escape("bad value (x)")):
+    ...
+
+# expect no exception: just call it. Never wrap in try/except pass.`},
+ {h:"Custom exception hierarchy for a framework",
+  body:"One base class per framework lets callers catch broadly at the edges while raising precisely inside. It also makes retry policies expressible in one place.",
+  code:`class FrameworkError(Exception):
+    """Base for everything this framework raises."""
+
+class ElementNotReady(FrameworkError, TimeoutError): ...
+class ApiContractError(FrameworkError): ...
+
+def get_user(client, uid):
+    resp = client.get(f"/users/{uid}")
+    try:
+        return User(**resp.json())
+    except TypeError as exc:
+        raise ApiContractError(
+            f"unexpected fields for user {uid}: {sorted(resp.json())}"
+        ) from exc          # keeps the original traceback attached`},
+ {h:"Context managers for guaranteed cleanup",
+  body:"Anything that must be undone — a feature flag, a seeded row, a browser tab — belongs in a context manager or a yield fixture. <code>finally</code> runs even if the test fails, which is exactly the point.",
+  code:`from contextlib import contextmanager
+
+@contextmanager
+def feature_flag(api, name, value=True):
+    original = api.get_flag(name)
+    api.set_flag(name, value)
+    try:
+        yield              # the test body runs here
+    finally:
+        api.set_flag(name, original)   # runs on pass, fail or error
+
+def test_new_checkout(api, page):
+    with feature_flag(api, "new_checkout"):
+        page.goto("/checkout")
+        assert page.get_by_test_id("v2").is_visible()`},
+ {h:"else and finally, precisely",
+  body:"Putting the success path in <code>else</code> keeps the <code>try</code> block down to the single line that can fail, so you never accidentally catch an exception raised by the success path itself.",
+  code:`try:
+    resp = session.get(url, timeout=10)
+except requests.Timeout:
+    pytest.fail(f"{url} timed out")           # explicit test failure
+else:
+    assert resp.status_code == 200            # not inside try
+finally:
+    session.close()                           # always`}
+],
+traps:[
+ "<code>except Exception: pass</code> around a flaky step. The test now passes forever and tests nothing.",
+ "<code>pytest.raises</code> wrapping several lines — an earlier line may raise the expected type and the real target never runs. Wrap exactly one call.",
+ "Forgetting that <code>match=</code> is a regex: <code>match=\"cost: $5\"</code> silently never matches because of <code>$</code>.",
+ "Cleanup written after the assertion instead of in <code>finally</code> or a fixture — when the assertion fails, cleanup is skipped and the next test inherits the mess."
+],
+quiz:[
+ {q:"What is wrong with wrapping five lines of setup inside a single pytest.raises block?",
+  opts:["Nothing","An earlier line can raise the expected exception, so the test passes without exercising the target","pytest.raises only accepts one statement","It disables assertion rewriting"],
+  a:1, why:"The block passes as soon as any line raises a matching exception. Keep exactly the call under test inside the block."},
+ {q:"A fixture must reset a feature flag even when the test fails. Where does the reset go?",
+  opts:["After the yield, inside try/finally or a yield fixture","At the end of the test function","In a teardown module","In an except block"],
+  a:0, why:"Code after yield in a fixture (or in finally in a context manager) runs regardless of the test outcome; code at the end of a failing test never runs."}
+],
+cards:[
+ {f:"<code>raise X from exc</code> — why bother?", b:"It chains the original exception onto the new one, so the traceback shows both the framework-level message and the underlying cause."},
+ {f:"What does <code>match=</code> in pytest.raises do?", b:"Runs <code>re.search</code> against <code>str(exception)</code>. It is a regex, so escape <code>. $ ( ) [ ]</code> or use <code>re.escape</code>."},
+ {f:"Why is <code>except Exception: pass</code> fatal in a test?", b:"It converts every failure — including real defects — into a pass. If a step is genuinely optional, assert the optional condition explicitly instead."}
+]
+},
+
+{
+n:"06", id:"structure", title:"Modules, imports, environments",
+why:"'It works locally but not in CI' is nearly always an import path, an environment or a dependency-pinning problem.",
+digest:[
+ "An import searches <code>sys.path</code>: script directory (or cwd), then <code>PYTHONPATH</code>, then site-packages. First match wins.",
+ "Never name a file after a stdlib or installed module — <code>email.py</code>, <code>types.py</code>, <code>select.py</code> shadow the real one and break imports far away.",
+ "Run tests as <code>python -m pytest</code> to put the current directory on <code>sys.path</code>; plain <code>pytest</code> does not.",
+ "Use absolute imports inside a package (<code>from framework.pages import LoginPage</code>), not <code>from .pages import</code> guesswork at the top level.",
+ "One virtualenv per project. <code>uv venv</code> / <code>python -m venv .venv</code>, then pin: <code>uv pip compile</code> or <code>pip freeze &gt; requirements.txt</code>.",
+ "<code>pyproject.toml</code> holds dependencies plus pytest, ruff and coverage config in one file — no more scattered ini files.",
+ "<code>if __name__ == \"__main__\":</code> guards code that must not run on import; without it, importing a helper executes it."
+],
+deep:[
+ {h:"Why pytest cannot find your package",
+  body:"pytest inserts rootdir-relative paths based on where <code>__init__.py</code> files stop. With the <code>src</code> layout — the layout most likely to catch packaging mistakes — you install the project in editable mode so imports resolve exactly as they will for a user.",
+  code:`project/
+  pyproject.toml
+  src/framework/__init__.py
+  src/framework/pages.py
+  tests/
+    conftest.py            # no __init__.py needed at top level
+    test_login.py
+
+# make the package importable:
+uv pip install -e .        # or: pip install -e .
+
+# then, from anywhere:
+from framework.pages import LoginPage`},
+ {h:"pyproject.toml as the single source of config",
+  body:"Keeping markers, options and paths in one place stops CI and local runs from diverging. Registering markers also turns typos into warnings instead of silently-unfiltered tests.",
+  code:`[project]
+name = "qa-framework"
+requires-python = ">=3.11"
+dependencies = ["pytest>=8", "playwright", "requests", "pydantic"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers --strict-config"
+markers = [
+  "smoke: fast checks that gate a deploy",
+  "api: talks to a live API",
+  "flaky: known unstable, quarantined",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src"]`},
+ {h:"Environment configuration without secrets in git",
+  body:"Read configuration from the environment with an explicit failure when something required is missing. A test run that silently defaults to localhost and passes is worse than one that refuses to start.",
+  code:`import os
+from functools import lru_cache
+
+@lru_cache                       # read once per session
+def settings():
+    try:
+        return {
+            "base_url": os.environ["BASE_URL"],
+            "api_key": os.environ["API_KEY"],
+            "timeout": float(os.getenv("TIMEOUT", "10")),
+        }
+    except KeyError as exc:
+        raise RuntimeError(f"missing required env var: {exc.args[0]}") from exc`},
+ {h:"Import cost and circular imports",
+  body:"Imports run module-level code once per process. Heavy work at import time slows collection for every run, and two modules importing each other at the top level fail on the second import.",
+  code:`# framework/pages.py imports framework/api.py
+# framework/api.py imports framework/pages.py   -> ImportError
+
+# fix 1: move the import inside the function that needs it
+def as_page(self):
+    from framework.pages import DashboardPage
+    return DashboardPage(self.page)
+
+# fix 2 (better): extract the shared piece into a third module`}
+],
+traps:[
+ "A stray <code>tests/utils.py</code> and <code>src/utils.py</code> — whichever is found first wins, and it differs between local and CI.",
+ "Two <code>test_login.py</code> files in different folders with no <code>__init__.py</code>: pytest raises 'import file mismatch'. Add <code>__init__.py</code> or make the names unique.",
+ "Unpinned dependencies. A minor Playwright or pytest release then breaks CI on a day you changed nothing.",
+ "Forgetting <code>--strict-markers</code>: <code>@pytest.mark.smok</code> is silently ignored and <code>-m smoke</code> runs nothing."
+],
+quiz:[
+ {q:"Two test files share the name test_api.py in different directories with no __init__.py. What happens?",
+  opts:["Both run fine","pytest errors with 'import file mismatch'","Only the first is collected","They are merged"],
+  a:1, why:"Without packages, pytest inserts both under the same module name. Add __init__.py to each directory, or use unique filenames."},
+ {q:"What does --strict-markers do?",
+  opts:["Fails the run on unregistered marker names","Makes markers case-sensitive","Requires markers on every test","Disables built-in markers"],
+  a:0, why:"It turns a typo'd or undeclared marker into an error rather than a warning, so -m selections cannot silently match nothing."}
+],
+cards:[
+ {f:"<code>pytest</code> vs <code>python -m pytest</code>?", b:"<code>python -m pytest</code> prepends the current directory to sys.path, so local packages import without installation. Otherwise identical."},
+ {f:"Where should pytest config live in a modern repo?", b:"<code>[tool.pytest.ini_options]</code> in pyproject.toml, alongside dependencies, coverage and lint config."},
+ {f:"Quick fix for a circular import between two framework modules?", b:"Move one import inside the function that needs it, or extract the shared code into a third module — the second option is the real fix."}
+]
+},
+
+{
+n:"07", id:"files", title:"Files, JSON, CSV, config",
+why:"Test data lives on disk. Path bugs and encoding bugs are the classic Windows-passes-Linux-fails failures.",
+digest:[
+ "<code>pathlib.Path</code> over <code>os.path</code>. Join with <code>/</code>: <code>Path(__file__).parent / \"data\" / \"users.json\"</code>.",
+ "Never build a path from the current working directory — it changes with how the run was launched. Anchor to <code>__file__</code> or a fixture.",
+ "Always pass <code>encoding=\"utf-8\"</code> to <code>open()</code>. The default is platform-dependent and will bite on Windows CI.",
+ "<code>json.load(f)</code> reads a file, <code>json.loads(s)</code> reads a string. Same for <code>dump</code>/<code>dumps</code>.",
+ "<code>csv.DictReader</code> gives dict rows keyed by the header — parametrize straight from it.",
+ "Use <code>tmp_path</code> (a <code>Path</code>) for anything a test writes. Never write into the repo.",
+ "For a downloads or upload assertion, compare content or a hash, not just file existence."
+],
+deep:[
+ {h:"Loading test data reliably",
+  body:"Resolving relative to the test file makes the run independent of the working directory, which is the difference between a suite that works in CI and one that only works from the repo root.",
+  code:`from pathlib import Path
+import json, csv
+
+DATA = Path(__file__).parent / "data"
+
+def load_json(name):
+    return json.loads((DATA / name).read_text(encoding="utf-8"))
+
+def load_cases(name):
+    with (DATA / name).open(newline="", encoding="utf-8") as fh:
+        return list(csv.DictReader(fh))     # [{'user': 'ana', 'expected': '200'}]
+
+@pytest.mark.parametrize("case", load_cases("logins.csv"),
+                         ids=lambda c: c["user"])
+def test_login(case, api):
+    assert api.login(case["user"]).status_code == int(case["expected"])`},
+ {h:"tmp_path and file assertions",
+  body:"pytest gives every test its own temp directory, retained for the last few runs so you can inspect failures. Assert on content, not existence — an empty file exists too.",
+  code:`def test_export_produces_csv(tmp_path, app):
+    target = tmp_path / "export.csv"
+    app.export_orders(target)
+
+    assert target.exists(), "no file was written"
+    rows = list(csv.DictReader(target.open(encoding="utf-8")))
+    assert len(rows) == 25
+    assert rows[0].keys() == {"id", "total", "status"}
+
+# tmp_path      -> Path, per test
+# tmp_path_factory -> session-scoped, for shared fixtures`},
+ {h:"Comparing downloaded or generated files",
+  body:"Hashing is the cheapest exact comparison for binary artefacts; for text, a normalised line comparison gives a readable diff instead of 'bytes differ'.",
+  code:`import hashlib
+
+def digest(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+assert digest(downloaded) == digest(expected_fixture)
+
+# text: normalise line endings before comparing
+actual = downloaded.read_text(encoding="utf-8").splitlines()
+expected = golden.read_text(encoding="utf-8").splitlines()
+assert actual == expected`},
+ {h:"Layered configuration",
+  body:"Defaults in code, overridden by a file, overridden by the environment, overridden by a CLI flag. That order lets one framework serve local runs, CI and a debugging session without edits.",
+  code:`DEFAULTS = {"base_url": "http://localhost:8000", "timeout": 10, "headless": True}
+
+def build_config(file_cfg=None, env=os.environ, cli=None):
+    cfg = DEFAULTS | (file_cfg or {})
+    if "BASE_URL" in env:  cfg["base_url"] = env["BASE_URL"]
+    if "HEADLESS" in env:  cfg["headless"] = env["HEADLESS"].lower() != "false"
+    return cfg | {k: v for k, v in (cli or {}).items() if v is not None}`}
+],
+traps:[
+ "Hardcoded <code>\"data\\\\users.json\"</code> backslashes — breaks on Linux CI. Use <code>Path</code> and forward slashes.",
+ "Reading a UTF-8 file without <code>encoding=</code> on Windows: <code>UnicodeDecodeError</code> on the first accented name in the test data.",
+ "Writing artefacts into the repo, then asserting on leftovers from an earlier run. Use <code>tmp_path</code>.",
+ "Loading a 50k-row CSV at import time for parametrize. Collection now takes longer than the tests; sample or generate instead."
+],
+quiz:[
+ {q:"Which anchor makes a test-data path independent of how pytest was launched?",
+  opts:["Path.cwd() / 'data'","Path(__file__).parent / 'data'","'./data'","os.getcwd() + '/data'"],
+  a:1, why:"__file__ is the test module's own location. cwd depends on the directory the command was run from, which differs between local runs, IDEs and CI."},
+ {q:"Why is <code>assert downloaded.exists()</code> a weak download assertion?",
+  opts:["exists() is slow","A zero-byte or partially written file also exists","It fails on Windows","It needs tmp_path"],
+  a:1, why:"Existence says nothing about content. Assert size, hash, row count or parsed structure."}
+],
+cards:[
+ {f:"tmp_path vs tmp_path_factory?", b:"<code>tmp_path</code> is a fresh Path per test. <code>tmp_path_factory</code> is session-scoped, for shared setup inside a session fixture."},
+ {f:"Two arguments <code>open()</code> should always get in test code?", b:"<code>encoding=\"utf-8\"</code> always, plus <code>newline=\"\"</code> when reading or writing CSV."},
+ {f:"json.load vs json.loads?", b:"<code>load</code> takes a file object, <code>loads</code> takes a string. The trailing s means string — same for dump/dumps."}
+]
+},
+
+{
+n:"08", id:"pytest", title:"pytest core",
+why:"The centre of the whole discipline: discovery, assertions, fixtures, parametrize, markers.",
+digest:[
+ "Discovery: files <code>test_*.py</code>, functions <code>test_*</code>, classes <code>Test*</code> with no <code>__init__</code>.",
+ "Plain <code>assert</code> plus assertion rewriting gives the diff. No <code>assertEqual</code> needed.",
+ "A fixture is requested by naming it as a test argument. <code>conftest.py</code> makes fixtures available to that directory and below, with no import.",
+ "Scopes: <code>function</code> (default), <code>class</code>, <code>module</code>, <code>package</code>, <code>session</code>. Broader scope is faster and more coupled.",
+ "Code after <code>yield</code> in a fixture is teardown, and it runs even when the test fails.",
+ "<code>@pytest.mark.parametrize</code> creates real separate tests — each gets its own pass/fail and its own id.",
+ "Selection: <code>-k \"login and not slow\"</code> by name, <code>-m smoke</code> by marker, <code>-x</code> stop on first failure, <code>--lf</code> last failed.",
+ "Useful flags: <code>-ra</code> summary of non-passes, <code>-q</code>, <code>-s</code> to see prints, <code>--tb=short</code>, <code>--durations=10</code>."
+],
+deep:[
+ {h:"Fixtures: scope, yield and layering",
+  body:"Fixtures compose — a fixture can request another fixture. Layering an expensive session-scoped resource under a cheap function-scoped one gives speed without shared mutable state.",
+  code:`# conftest.py
+import pytest, requests
+
+@pytest.fixture(scope="session")
+def base_url(pytestconfig):
+    return pytestconfig.getoption("--base-url")
+
+@pytest.fixture(scope="session")
+def api_session(base_url):              # created once for the whole run
+    s = requests.Session()
+    s.headers["Authorization"] = f"Bearer {login(base_url)}"
+    yield s
+    s.close()                           # teardown after the last test
+
+@pytest.fixture                          # function scope: fresh per test
+def user(api_session, base_url):
+    resp = api_session.post(f"{base_url}/users", json={"name": "ana"})
+    created = resp.json()
+    yield created
+    api_session.delete(f"{base_url}/users/{created['id']}")   # always cleans up`},
+ {h:"Parametrize properly",
+  body:"Each parameter set is an independent test, so one failing case does not hide the others. Readable ids are what make a CI failure diagnosable at a glance.",
+  code:`@pytest.mark.parametrize(
+    "payload, status, message",
+    [
+        pytest.param({"email": ""}, 422, "email required", id="blank-email"),
+        pytest.param({"email": "nope"}, 422, "invalid email", id="malformed"),
+        pytest.param({"email": "a@x.com"}, 201, None, id="valid"),
+        pytest.param({"email": "A@X.COM"}, 201, None, id="uppercase",
+                     marks=pytest.mark.xfail(reason="BUG-4412 case handling")),
+    ],
+)
+def test_signup(api, payload, status, message):
+    resp = api.post("/signup", json=payload)
+    assert resp.status_code == status
+    if message:
+        assert message in resp.json()["detail"]
+
+# stacking two parametrize decorators = cartesian product (3 x 2 = 6 tests)`},
+ {h:"Indirect parametrization and fixture params",
+  body:"When the parameter should configure a fixture rather than the test body, parametrize the fixture. Running the whole module against three browsers is then a one-line change.",
+  code:`@pytest.fixture(params=["chromium", "firefox", "webkit"])
+def browser(request, playwright):
+    b = getattr(playwright, request.param).launch()
+    yield b
+    b.close()
+# every test using 'browser' now runs three times, ids added automatically
+
+# or drive a fixture from the test's parameter:
+@pytest.fixture
+def user(request, api):
+    return api.create_user(role=request.param)
+
+@pytest.mark.parametrize("user", ["admin", "viewer"], indirect=True)
+def test_permissions(user, page): ...`},
+ {h:"Markers and selective runs",
+  body:"Markers are the contract between the suite and the pipeline. Register them, then let each CI stage select a slice.",
+  code:`@pytest.mark.smoke
+@pytest.mark.api
+def test_health(api): ...
+
+@pytest.mark.skipif(sys.platform == "win32", reason="POSIX paths only")
+def test_permissions(): ...
+
+@pytest.mark.xfail(strict=True, reason="BUG-991: rounding")
+def test_totals(): ...      # strict=True means an unexpected PASS fails the run
+
+# pipeline:
+#   pytest -m "smoke" --maxfail=1        (gate)
+#   pytest -m "not slow and not flaky"   (main)`}
+],
+traps:[
+ "A session-scoped fixture that returns a mutable object mutated by tests — order dependence, and failures that vanish under <code>-k</code>.",
+ "Cleanup written after the assertion inside the fixture instead of after <code>yield</code>: a failing test skips it.",
+ "<code>xfail</code> without <code>strict=True</code>: the bug gets fixed and nobody notices the test is still marked broken.",
+ "Parametrizing over objects with no readable repr — ids come out as <code>test_x[payload0]</code>. Pass <code>id=</code> or an <code>ids=</code> callable.",
+ "Fixtures defined in a test file that another file needs. Move them to <code>conftest.py</code> instead of importing across test modules."
+],
+quiz:[
+ {q:"A fixture is scope='session' and returns a dict that tests modify. What is the risk?",
+  opts:["None, dicts are thread-safe","Tests become order-dependent and fail differently in isolation","pytest raises a scope error","Teardown runs too early"],
+  a:1, why:"One instance is shared for the whole run. Mutations leak forward, so results depend on selection and order. Return a copy, or use function scope."},
+ {q:"What does xfail(strict=True) add over plain xfail?",
+  opts:["It reruns the test","An unexpected pass becomes a failure","It skips the test","It marks the test flaky"],
+  a:1, why:"Strict xfail turns XPASS into a failure, so a fixed bug forces someone to remove the marker."},
+ {q:"Where must a fixture live to be shared across several test files without imports?",
+  opts:["Any test file","conftest.py in a common parent directory","__init__.py","pyproject.toml"],
+  a:1, why:"pytest auto-discovers conftest.py for its directory and all subdirectories. Importing fixtures between test modules is not supported."}
+],
+cards:[
+ {f:"Fixture teardown: where does it go?", b:"After <code>yield</code>. It runs on pass, fail or error — unlike anything written at the end of the test."},
+ {f:"When does a broader fixture scope hurt?", b:"As soon as the object is mutable and tests change it. Speed gain, isolation loss — the trade is only worth it for read-only or reset-able resources."},
+ {f:"<code>-k</code> vs <code>-m</code>?", b:"<code>-k</code> matches test names as a Python-ish expression; <code>-m</code> matches registered markers. <code>-k \"login and not slow\"</code> vs <code>-m \"smoke and api\"</code>."},
+ {f:"Two stacked parametrize decorators produce what?", b:"The cartesian product — 3 values x 2 values = 6 generated tests."}
+]
+},
+{
+n:"09", id:"pytest2", title:"pytest, advanced",
+why:"Factories, hooks, plugins and parallelism — the parts that turn a test folder into a framework.",
+digest:[
+ "Fixture factories: return a function from the fixture so a test can create many objects and still get automatic cleanup.",
+ "<code>autouse=True</code> applies a fixture without it being requested. Powerful and easy to abuse — keep it to logging, timing and hard resets.",
+ "<code>request</code> exposes context: <code>request.node.name</code>, <code>request.param</code>, <code>request.addfinalizer</code>, <code>request.getfixturevalue(\"name\")</code>.",
+ "Custom CLI options come from the <code>pytest_addoption</code> hook in the root <code>conftest.py</code>.",
+ "<code>pytest_collection_modifyitems</code> lets you auto-mark, reorder or skip tests at collection time.",
+ "<code>pytest_runtest_makereport</code> is how you attach a screenshot only on failure.",
+ "Parallelise with <code>pytest-xdist</code>: <code>-n auto --dist loadfile</code> keeps a file's tests on one worker.",
+ "Useful plugins: <code>pytest-xdist</code>, <code>pytest-rerunfailures</code>, <code>pytest-cov</code>, <code>pytest-html</code>, <code>allure-pytest</code>, <code>pytest-timeout</code>, <code>pytest-randomly</code>."
+],
+deep:[
+ {h:"Fixture factories with tracked cleanup",
+  body:"A plain fixture makes one object. A factory fixture makes as many as the test needs, and the fixture still owns their removal — the pattern to reach for whenever a test needs 'two users and an order'.",
+  code:`@pytest.fixture
+def make_user(api):
+    created = []
+
+    def _make(role="viewer", **overrides):
+        user = api.create_user(role=role, **overrides)
+        created.append(user["id"])
+        return user
+
+    yield _make
+    for uid in reversed(created):      # reverse order respects dependencies
+        api.delete_user(uid)
+
+def test_admin_sees_all(make_user, page):
+    admin = make_user(role="admin")
+    viewer = make_user(role="viewer", name="ana")
+    ...     # both are removed afterwards, pass or fail`},
+ {h:"Screenshot on failure, the correct way",
+  body:"A fixture cannot see the test result directly. The <code>makereport</code> hook stashes the outcome on the item, and an autouse fixture reads it during teardown.",
+  code:`# conftest.py
+import pytest
+
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    setattr(item, f"report_{outcome.get_result().when}", outcome.get_result())
+
+@pytest.fixture(autouse=True)
+def capture_on_failure(request, page):
+    yield                                   # test runs
+    report = getattr(request.node, "report_call", None)
+    if report and report.failed:
+        path = f"artifacts/{request.node.name}.png"
+        page.screenshot(path=path, full_page=True)
+        print(f"saved {path}")`},
+ {h:"Custom options and collection rules",
+  body:"Custom flags let one suite serve several environments. Collection hooks let policy live in one place rather than being repeated as a marker on 400 tests.",
+  code:`# conftest.py
+def pytest_addoption(parser):
+    parser.addoption("--env", default="staging", choices=["dev", "staging", "prod"])
+    parser.addoption("--run-slow", action="store_true", default=False)
+
+def pytest_collection_modifyitems(config, items):
+    # auto-mark by location
+    for item in items:
+        if "/api/" in str(item.fspath):
+            item.add_marker(pytest.mark.api)
+
+    if config.getoption("--run-slow"):
+        return
+    skip = pytest.mark.skip(reason="needs --run-slow")
+    for item in items:
+        if "slow" in item.keywords:
+            item.add_marker(skip)`},
+ {h:"Parallel runs without cross-talk",
+  body:"xdist runs tests in separate processes. Anything shared — a fixed username, one database row, a downloads folder — becomes a race. Make test data unique per test and per worker.",
+  code:`import os, uuid
+
+@pytest.fixture
+def unique_email():
+    worker = os.getenv("PYTEST_XDIST_WORKER", "gw0")
+    return f"test-{worker}-{uuid.uuid4().hex[:8]}@example.com"
+
+# -n auto              spread by test
+# --dist loadfile      keep each file on one worker (module fixtures survive)
+# --dist loadgroup     with @pytest.mark.xdist_group("checkout")
+
+# session fixtures run ONCE PER WORKER, not once per run.
+# For truly-once setup, use a file lock in tmp_path_factory.getbasetemp().parent`}
+],
+traps:[
+ "<code>autouse</code> fixtures that log in. Every test now pays for it, including the ones that test logged-out behaviour.",
+ "Assuming a session fixture runs once under <code>-n auto</code>. It runs once per worker — expensive, and wrong for one-shot seeding.",
+ "Hardcoded test data under parallel runs: two workers register <code>test@example.com</code>, one gets a 409.",
+ "Retry plugins used as a flakiness cure. Rerun to keep the pipeline moving, but log every rerun and fix the cause.",
+ "Hooks scattered across nested <code>conftest.py</code> files — put global hooks in the root one."
+],
+quiz:[
+ {q:"Under <code>pytest -n 4</code>, how often does a scope='session' fixture execute?",
+  opts:["Once per run","Once per worker (4 times)","Once per test","Once per file"],
+  a:1, why:"Each xdist worker is a separate process with its own session. One-shot setup needs a lock or a separate pre-run step."},
+ {q:"Why does a fixture need the makereport hook to screenshot on failure?",
+  opts:["Screenshots are slow","A fixture has no access to the test outcome by default","Playwright requires it","autouse forbids it"],
+  a:1, why:"The hook stores the report on the item during the call phase; the fixture reads it at teardown to decide whether to capture."},
+ {q:"Which xdist mode keeps all tests in one file on the same worker?",
+  opts:["--dist load","--dist loadfile","-n auto","--forked"],
+  a:1, why:"loadfile distributes by file, so module-scoped fixtures are created once per file rather than repeatedly."}
+],
+cards:[
+ {f:"What does a factory fixture return?", b:"A function. The test calls it as many times as needed; the fixture tracks what was made and removes it after <code>yield</code>."},
+ {f:"When is <code>autouse=True</code> justified?", b:"Cross-cutting concerns only: timing, logging, artefact capture, resetting global state. Never for logging in or seeding data."},
+ {f:"How do you make parallel-safe test data?", b:"Combine a uuid with <code>PYTEST_XDIST_WORKER</code> so no two workers can collide on a unique constraint."}
+]
+},
+
+{
+n:"10", id:"mock", title:"Mocking and test doubles",
+why:"Isolating the unit under test, forcing error paths you cannot trigger for real, and making tests fast and deterministic.",
+digest:[
+ "Patch where the name is <em>used</em>, not where it is defined: <code>patch(\"myapp.service.requests.get\")</code>.",
+ "<code>Mock</code> returns a new Mock for any attribute. <code>MagicMock</code> also supports dunders (<code>len</code>, <code>[]</code>, context manager).",
+ "<code>return_value</code> for a fixed result; <code>side_effect</code> for a sequence, a function, or an exception to raise.",
+ "Assert the interaction: <code>mock.assert_called_once_with(...)</code>, <code>mock.call_args</code>, <code>mock.call_count</code>.",
+ "<code>autospec=True</code> makes the mock reject calls that do not match the real signature — the single most valuable flag.",
+ "pytest's <code>monkeypatch</code> fixture is the idiomatic way to patch env vars, attributes and dict entries, with automatic undo.",
+ "For HTTP, prefer a library-level fake (<code>responses</code>, <code>requests-mock</code>, <code>respx</code>) over patching <code>requests</code> by hand.",
+ "Mock at the boundary. Mocking your own internals gives you tests that pass while the product is broken."
+],
+deep:[
+ {h:"Patch where it is used",
+  body:"<code>from x import y</code> binds a new name in the importing module. Patching the original module then has no effect, because the importing module still holds the old reference. This is the single most common mocking mistake.",
+  code:`# myapp/service.py
+from requests import get          # local name: myapp.service.get
+
+def fetch(url):
+    return get(url).json()
+
+# test
+from unittest.mock import patch
+
+with patch("myapp.service.get") as mock_get:      # correct
+    mock_get.return_value.json.return_value = {"ok": True}
+    assert fetch("/x") == {"ok": True}
+
+with patch("requests.get"):                       # does nothing here
+    ...`},
+ {h:"side_effect: sequences, exceptions and logic",
+  body:"side_effect is how you test retry logic, timeouts and partial failures — the code paths a live environment will not produce on demand.",
+  code:`from unittest.mock import MagicMock
+import requests
+
+client = MagicMock()
+
+# raise an exception
+client.get.side_effect = requests.Timeout("connection timed out")
+
+# a sequence: fail twice, then succeed -> proves the retry works
+client.get.side_effect = [requests.Timeout, requests.Timeout, MagicMock(status_code=200)]
+assert fetch_with_retry(client, "/x").status_code == 200
+assert client.get.call_count == 3
+
+# dynamic behaviour
+def by_url(url, **kw):
+    return MagicMock(status_code=200 if url.endswith("/ok") else 500)
+client.get.side_effect = by_url`},
+ {h:"monkeypatch, the pytest-native option",
+  body:"monkeypatch undoes every change at the end of the test automatically, which makes it safer than manual setattr for environment and module-level state.",
+  code:`def test_uses_env_base_url(monkeypatch):
+    monkeypatch.setenv("BASE_URL", "https://test.local")
+    monkeypatch.delenv("PROXY", raising=False)
+    monkeypatch.setattr("myapp.config.TIMEOUT", 1)
+    monkeypatch.setitem(settings, "retries", 0)
+    monkeypatch.chdir(tmp_path)
+
+    assert build_client().base_url == "https://test.local"
+    # everything restored automatically`},
+ {h:"autospec and faking HTTP at the right level",
+  body:"A plain Mock accepts any call, including ones the real object would reject — so a refactor that changes a signature leaves the test green. autospec closes that gap. For HTTP, a request-level fake keeps your production code path intact.",
+  code:`from unittest.mock import patch
+import responses
+
+with patch("myapp.client.ApiClient.get_user", autospec=True) as m:
+    m.return_value = {"id": 1}
+    # wrong arity now raises TypeError, as the real method would
+
+@responses.activate
+def test_handles_500():
+    responses.add(responses.GET, "https://api.x/users/1",
+                  json={"detail": "boom"}, status=500)
+    with pytest.raises(ApiError):
+        get_user(1)
+    assert len(responses.calls) == 1`}
+],
+traps:[
+ "Patching the definition module instead of the usage module — the test passes and the mock was never used. Assert <code>call_count</code> to catch it.",
+ "<code>mock.assert_called_once()</code> misspelled (<code>assert_called_once_wiht</code>) — Mock happily creates the attribute and the assertion never runs. <code>autospec</code> or <code>create_autospec</code> prevents this; so does <code>NonCallableMock(spec=...)</code>.",
+ "Mocking so deeply that the test only proves the mock works. Integration and contract tests must hit the real boundary.",
+ "Leaving a patch active because <code>patch()</code> was called without <code>with</code> or the decorator, and <code>start()</code> without <code>stop()</code>."
+],
+quiz:[
+ {q:"myapp/service.py does <code>from requests import get</code>. Which patch target works?",
+  opts:["requests.get","myapp.service.get","service.requests.get","get"],
+  a:1, why:"The import bound a new name inside myapp.service. Patch the name in the module where it is looked up at call time."},
+ {q:"What does autospec=True buy you?",
+  opts:["Faster mocks","The mock rejects calls and attributes the real object would not accept","Automatic teardown","Network recording"],
+  a:1, why:"It builds the mock from the real signature, so typo'd assertion methods and wrong arity fail loudly instead of silently passing."},
+ {q:"How do you prove a retry loop retries exactly twice before succeeding?",
+  opts:["return_value = success","side_effect = [Timeout, Timeout, success] and assert call_count == 3","patch time.sleep","Run it 10 times"],
+  a:1, why:"A side_effect list yields a different outcome per call; call_count then verifies the number of attempts."}
+],
+cards:[
+ {f:"Mock vs MagicMock?", b:"MagicMock is Mock plus configured dunder methods, so it works with <code>len()</code>, indexing, iteration and <code>with</code>. Default to MagicMock unless you want dunders to fail."},
+ {f:"Why is monkeypatch preferred over setattr in pytest?", b:"It records every change and reverses it at teardown, so nothing leaks into the next test."},
+ {f:"Where should mocking stop?", b:"At the system boundary you do not own — third-party HTTP, clock, filesystem, payment gateway. Mocking your own internals tests the mock."}
+]
+},
+
+{
+n:"11", id:"api", title:"API testing in Python",
+why:"The highest-value automation layer: fast, stable, and where most defects are actually reachable.",
+digest:[
+ "Use a <code>requests.Session</code> — connection reuse, shared headers, one place for auth.",
+ "Always pass <code>timeout=</code>. Without it, requests waits forever and CI hangs instead of failing.",
+ "Assert status, then schema, then values. Each layer gives a different diagnosis.",
+ "<code>resp.raise_for_status()</code> is for helpers; in a test, assert the status explicitly so the failure message is about the contract.",
+ "Validate the shape with pydantic or jsonschema, not with a wall of <code>assert \"id\" in body</code>.",
+ "Mount an HTTPAdapter with a Retry policy for transient 5xx and connection errors — never for 4xx.",
+ "Keep auth in a session fixture; keep the token refresh out of the tests.",
+ "Test the boring paths: wrong content type, missing field, extra field, oversized field, bad token, expired token, wrong verb."
+],
+deep:[
+ {h:"A session fixture with retries and auth",
+  body:"Configure the transport once. Retries here cover network flakiness, not application errors, so 4xx must never be retried — that would mask a real bug.",
+  code:`import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+@pytest.fixture(scope="session")
+def api(base_url, token):
+    s = requests.Session()
+    s.headers.update({"Authorization": f"Bearer {token}",
+                      "Accept": "application/json"})
+    retry = Retry(total=3, backoff_factor=0.4,
+                  status_forcelist=[502, 503, 504],
+                  allowed_methods=["GET", "HEAD"])   # idempotent only
+    s.mount("https://", HTTPAdapter(max_retries=retry))
+    s.request = functools.partial(s.request, timeout=15)   # global timeout
+    yield s
+    s.close()`},
+ {h:"Layered assertions with a readable failure",
+  body:"Check status first, because a 500 makes every downstream assertion meaningless. Then validate structure, then business values. Include the body in the failure message — a bare status assertion tells you nothing about why.",
+  code:`from pydantic import BaseModel, EmailStr, ValidationError
+
+class UserOut(BaseModel):
+    id: int
+    email: EmailStr
+    active: bool
+    roles: list[str]
+
+def test_get_user(api, base_url):
+    resp = api.get(f"{base_url}/users/1")
+
+    assert resp.status_code == 200, resp.text          # 1. transport
+    assert resp.headers["content-type"].startswith("application/json")
+
+    user = UserOut.model_validate(resp.json())          # 2. contract
+    assert user.email == "ana@example.com"              # 3. behaviour
+    assert "admin" in user.roles`},
+ {h:"Negative and boundary coverage by parametrize",
+  body:"One table drives the whole error contract. When the API changes its validation messages, one place needs updating.",
+  code:`BASE = {"email": "a@x.com", "password": "Str0ng!pass", "age": 30}
+
+@pytest.mark.parametrize("field, value, status, detail", [
+    ("email",    "",            422, "email"),
+    ("email",    "not-an-email",422, "email"),
+    ("password", "short",       422, "password"),
+    ("age",      -1,            422, "age"),
+    ("age",      "thirty",      422, "age"),
+], ids=lambda v: str(v)[:14])
+def test_signup_validation(api, base_url, field, value, status, detail):
+    resp = api.post(f"{base_url}/signup", json=BASE | {field: value})
+    assert resp.status_code == status, resp.text
+    assert detail in resp.text.lower()`},
+ {h:"State, idempotency and cleanup",
+  body:"An API suite that leaves data behind eventually fails on unique constraints. Create through a fixture, delete after yield, and assert on identifiers you created rather than on 'the first item in the list'.",
+  code:`@pytest.fixture
+def order(api, base_url):
+    resp = api.post(f"{base_url}/orders", json={"sku": "X1", "qty": 2})
+    assert resp.status_code == 201, resp.text
+    created = resp.json()
+    yield created
+    api.delete(f"{base_url}/orders/{created['id']}")
+
+def test_cancel_is_idempotent(api, base_url, order):
+    first = api.post(f"{base_url}/orders/{order['id']}/cancel")
+    second = api.post(f"{base_url}/orders/{order['id']}/cancel")
+    assert first.status_code == 200
+    assert second.status_code in (200, 409), second.text`}
+],
+traps:[
+ "No <code>timeout=</code>. One hung request holds the pipeline until the CI job limit kills it with no useful output.",
+ "<code>assert resp.status_code == 200</code> with no body in the message — you get 'assert 500 == 200' and nothing about the cause.",
+ "Retrying non-idempotent verbs. A retried POST can create two orders and turn a network blip into corrupt data.",
+ "Asserting on <code>results[0]</code>. Add one row anywhere and the test breaks; assert on the id you created.",
+ "Reading the token at import time. It expires mid-run; put it in a fixture that can refresh."
+],
+quiz:[
+ {q:"Which methods are safe to include in an automatic retry policy?",
+  opts:["All of them","GET and HEAD (idempotent only)","POST, because creation is important","None"],
+  a:1, why:"Retrying a non-idempotent request can duplicate side effects. Restrict allowed_methods to idempotent verbs."},
+ {q:"An assertion fails with 'assert 422 == 201'. What single change makes this diagnosable?",
+  opts:["Use raise_for_status()","Add resp.text as the assertion message","Increase the timeout","Retry the request"],
+  a:1, why:"`assert resp.status_code == 201, resp.text` prints the validation detail the API returned, which usually names the offending field."},
+ {q:"Why validate the response with a pydantic model rather than key-by-key asserts?",
+  opts:["It is faster","It checks types and required fields in one place and reports all violations","It replaces status checks","It mocks the API"],
+  a:1, why:"The model is an executable contract: field presence, types and formats are validated together and reported as one structured error."}
+],
+cards:[
+ {f:"Three layers of an API assertion?", b:"Status and headers, then schema or contract, then business values. In that order, so a 500 does not produce twenty confusing failures."},
+ {f:"Why always pass <code>timeout=</code> to requests?", b:"There is no default. A hung connection blocks until the CI job is killed, with no failure message."},
+ {f:"Where does auth belong in an API suite?", b:"A session-scoped fixture that owns the token and can refresh it. Never inline in tests, never read at import time."}
+]
+},
+
+{
+n:"12", id:"ui", title:"UI automation in Python",
+why:"Selenium and Playwright in Python — locator strategy and waiting are the whole game.",
+digest:[
+ "Locator priority: role and accessible name, then label or text, then test id, then CSS, then XPath as a last resort.",
+ "Playwright locators are lazy and auto-wait for actionability (visible, stable, enabled, receives events). Selenium's <code>find_element</code> resolves immediately.",
+ "Never <code>time.sleep()</code>. Use explicit waits on a condition: <code>WebDriverWait(driver, 10).until(EC.element_to_be_clickable(...))</code> or Playwright's <code>expect()</code>.",
+ "Implicit waits and explicit waits together produce unpredictable timeouts in Selenium. Pick explicit only.",
+ "<code>expect(locator).to_be_visible()</code> retries until the timeout; <code>assert locator.is_visible()</code> checks once. Use <code>expect</code>.",
+ "<code>StaleElementReferenceException</code> means the DOM re-rendered after you resolved the element. Re-find, do not sleep.",
+ "Assert on user-visible state, not implementation details like class names or internal ids.",
+ "Trace, video and screenshots on failure are worth more than any amount of logging."
+],
+deep:[
+ {h:"Waiting, done correctly",
+  body:"Every stable UI suite is built on 'wait for a condition that proves the app is ready', never on elapsed time. In Playwright, assertions themselves are the wait.",
+  code:`# Playwright: web-first assertions retry until timeout
+from playwright.sync_api import expect
+
+page.get_by_role("button", name="Save").click()
+expect(page.get_by_role("alert")).to_contain_text("Saved")   # retries
+expect(page.get_by_role("row")).to_have_count(25)            # retries
+
+# Selenium: explicit wait on a condition
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+
+wait = WebDriverWait(driver, 10, poll_frequency=0.25,
+                     ignored_exceptions=(StaleElementReferenceException,))
+alert = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "[role=alert]")))
+assert "Saved" in alert.text
+
+# custom condition when nothing built-in fits
+wait.until(lambda d: d.execute_script("return document.readyState") == "complete")`},
+ {h:"Locator strategy that survives a redesign",
+  body:"Role-based locators mirror what a user perceives, so they break when behaviour changes and survive when styling changes. XPath chains through the DOM structure break on any layout edit.",
+  code:`# best: semantic, readable, resilient
+page.get_by_role("button", name="Add to basket")
+page.get_by_label("Email address")
+page.get_by_role("row", name="Order 4412").get_by_role("button", name="Cancel")
+
+# fine: an explicit, agreed contract with the developers
+page.get_by_test_id("checkout-submit")
+
+# fragile: structural
+page.locator("div > div:nth-child(3) > button")
+driver.find_element(By.XPATH, "//div[2]/table/tbody/tr[1]/td[3]/button")
+
+# scope to a container instead of writing longer selectors
+row = page.get_by_role("row").filter(has_text="Order 4412")
+row.get_by_role("button", name="Cancel").click()`},
+ {h:"Fixtures for browser lifecycle",
+  body:"Launch the browser once, create a fresh context per test. A context is cheap and completely isolated — cookies, storage, permissions — which gives you speed and isolation at the same time.",
+  code:`@pytest.fixture(scope="session")
+def browser(playwright):
+    b = playwright.chromium.launch(headless=True)
+    yield b
+    b.close()
+
+@pytest.fixture
+def page(browser, request):
+    context = browser.new_context(
+        viewport={"width": 1280, "height": 800},
+        record_video_dir="artifacts/video" if request.config.getoption("--video") else None,
+    )
+    context.tracing.start(screenshots=True, snapshots=True)
+    page = context.new_page()
+    yield page
+    context.tracing.stop(path=f"artifacts/{request.node.name}.zip")
+    context.close()
+
+# reuse a logged-in state instead of logging in per test:
+#   context = browser.new_context(storage_state="auth.json")`},
+ {h:"Diagnosing flakiness rather than retrying it",
+  body:"Flakiness has a small number of causes. Naming the cause is the fix; a rerun only moves the failure to a less convenient day.",
+  code:`# 1. Race: asserted before the app finished. -> web-first assertion / explicit wait
+# 2. Stale element: DOM re-rendered.           -> re-find, or use a lazy locator
+# 3. Animation: element moves under the click. -> Playwright waits for stability;
+#                                                 in Selenium, wait on the final state
+# 4. Test data: shared account or fixed email. -> unique data per test
+# 5. Order dependence: leftover state.         -> fresh context, cleanup fixtures
+# 6. Environment: cold start, slow CI machine. -> health check before the suite
+
+# find order dependence deliberately:
+#   pytest -p randomly            (pytest-randomly shuffles)
+#   pytest --lf                   (rerun only what failed)
+#   pytest test_x.py::test_y -n0  (isolate)`}
+],
+traps:[
+ "<code>time.sleep(3)</code>. Slow when it works, still flaky when it does not.",
+ "Mixing an implicit wait with <code>WebDriverWait</code> in Selenium: waits compound unpredictably and timeouts stop meaning anything.",
+ "Asserting <code>is_visible()</code> in Playwright — it is a single instantaneous check. <code>expect(...).to_be_visible()</code> retries.",
+ "One browser context reused across the suite: a leftover cookie or modal from test 4 fails test 17.",
+ "Locators built from generated CSS class names (<code>.css-1x7ab3z</code>). They change on the next build."
+],
+quiz:[
+ {q:"Why is <code>assert page.get_by_role('alert').is_visible()</code> flaky where <code>expect(...).to_be_visible()</code> is not?",
+  opts:["is_visible needs a timeout argument","is_visible checks once; expect retries until the timeout","expect uses a different engine","No difference"],
+  a:1, why:"Web-first assertions poll until the condition holds or the timeout expires. A direct query returns the state at that instant."},
+ {q:"StaleElementReferenceException in Selenium means what?",
+  opts:["The element never existed","The DOM node you referenced was replaced or removed after you found it","The page is still loading","The locator is invalid"],
+  a:1, why:"A WebElement points at a specific node. Any re-render invalidates it — re-locate inside the wait rather than sleeping."},
+ {q:"Fastest correct isolation between UI tests in Playwright?",
+  opts:["A new browser per test","A new context per test, one browser per session","Clearing cookies manually","Restarting the page"],
+  a:1, why:"Contexts are cheap and fully isolated. Launching a browser per test is slow; manual cleanup is incomplete."}
+],
+cards:[
+ {f:"Locator priority order?", b:"Role and accessible name, then label or text, then test id, then CSS. XPath last, and only when nothing else can reach the element."},
+ {f:"What does Playwright auto-wait for before a click?", b:"Attached, visible, stable (not animating), enabled, and able to receive events. Then it retries until the timeout."},
+ {f:"Six common causes of UI flakiness?", b:"Race conditions, stale elements, animation, shared test data, order dependence, environment slowness. Diagnose the cause; do not just rerun."}
+]
+},
+
+{
+n:"13", id:"db", title:"Databases and SQL from Python",
+why:"Back-end verification: the UI can lie, the API can lie, the row is the truth.",
+digest:[
+ "Always use parameterised queries: <code>cur.execute(\"... WHERE id = %s\", (uid,))</code>. String formatting is an injection bug in your own tooling.",
+ "Placeholder style is driver-specific: <code>?</code> for sqlite3, <code>%s</code> for psycopg and mysql-connector.",
+ "Wrap connections in a fixture with <code>yield</code> so they always close.",
+ "Prefer transaction rollback over manual delete for cleanup — it is faster and cannot leave orphans.",
+ "<code>row_factory</code> (sqlite3) or <code>RealDictCursor</code> (psycopg) gives dict rows instead of positional tuples.",
+ "Seed the minimum data the test needs, and only through a documented path — ideally the API rather than raw inserts.",
+ "Assert the whole row against a dict, not field by field.",
+ "Beware eventual consistency: read replicas and async jobs mean 'not there yet' is not the same as 'wrong'. Poll with a timeout."
+],
+deep:[
+ {h:"A connection fixture with rollback isolation",
+  body:"Opening a transaction, running the test inside it and rolling back afterwards leaves the database byte-identical, no matter how the test ended. It is the cleanest teardown available.",
+  code:`import psycopg
+from psycopg.rows import dict_row
+
+@pytest.fixture(scope="session")
+def conn(settings):
+    with psycopg.connect(settings["dsn"], row_factory=dict_row) as c:
+        yield c
+
+@pytest.fixture
+def db(conn):
+    with conn.transaction() as tx:      # everything here is provisional
+        yield conn
+        tx.rollback()                   # never committed`},
+ {h:"Parameterised queries and whole-row assertions",
+  body:"Two rules cover most of it: never interpolate values into SQL, and compare the row as a structure so the failure names the wrong column.",
+  code:`def get_order(db, order_id):
+    with db.cursor() as cur:
+        cur.execute(
+            "SELECT id, sku, qty, status FROM orders WHERE id = %s",
+            (order_id,),                       # tuple -- note the comma
+        )
+        return cur.fetchone()
+
+def test_cancel_updates_row(api, db, order):
+    api.post(f"/orders/{order['id']}/cancel")
+    assert get_order(db, order["id"]) == {
+        "id": order["id"], "sku": "X1", "qty": 2, "status": "cancelled",
+    }`},
+ {h:"Polling for eventual consistency",
+  body:"When a queue or a replica sits between the write and the read, a fixed sleep is a guess. Poll for the expected state with a deadline, and fail with the last observed value.",
+  code:`import time
+
+def wait_for(fn, expected, timeout=15, interval=0.5):
+    deadline = time.monotonic() + timeout
+    last = object()
+    while time.monotonic() < deadline:
+        last = fn()
+        if last == expected:
+            return last
+        time.sleep(interval)
+    raise AssertionError(f"expected {expected!r} within {timeout}s, last saw {last!r}")
+
+wait_for(lambda: get_order(db, oid)["status"], "settled")`},
+ {h:"Seeding without coupling to the schema",
+  body:"Raw inserts bypass validation and defaults, so they drift from reality and break on every migration. Seed through the public API where possible, and keep raw SQL for setup the API genuinely cannot express.",
+  code:`# preferred: the same path a user takes
+@pytest.fixture
+def customer(api):
+    c = api.post("/customers", json={"name": "ana"}).json()
+    yield c
+    api.delete(f"/customers/{c['id']}")
+
+# acceptable when there is no API for it -- keep it in one module
+def seed_legacy_flag(db, customer_id):
+    with db.cursor() as cur:
+        cur.execute("INSERT INTO feature_flags (customer_id, name, on) "
+                    "VALUES (%s, %s, true)", (customer_id, "beta_pricing"))`}
+],
+traps:[
+ "f-strings in SQL: <code>f\"WHERE name = '{name}'\"</code> breaks on an apostrophe and is an injection hole in your test tooling.",
+ "Forgetting the trailing comma in a one-element parameter tuple: <code>(uid)</code> is an int, <code>(uid,)</code> is a tuple.",
+ "Cleanup by <code>DELETE</code> after the assertion — a failing test skips it and poisons the next run. Use rollback or a fixture.",
+ "Asserting immediately after an async write. That is a race, not a bug — poll with a deadline.",
+ "Test SQL that duplicates production logic. If the query is wrong in the same way, the test agrees with the bug."
+],
+quiz:[
+ {q:"Why is <code>cur.execute(f\"SELECT * FROM users WHERE email = '{email}'\")</code> wrong even in a test?",
+  opts:["It is slower","It breaks on quotes in data and is an injection risk in the tooling","execute cannot take f-strings","It needs a commit"],
+  a:1, why:"Parameterised queries let the driver quote and type values correctly. String building fails on legitimate data such as O'Brien."},
+ {q:"Cleanest isolation for a test that writes rows?",
+  opts:["DELETE at the end of the test","Run inside a transaction and roll back in the fixture","Truncate the table before each test","Use a unique prefix"],
+  a:1, why:"A rollback in a yield fixture always runs, is fast, and cannot leave partial state — unlike a delete after a failing assertion."},
+ {q:"An API returns 202 and the row appears about a second later. Correct approach?",
+  opts:["time.sleep(2) then assert","Poll for the expected state with a timeout, failing with the last value seen","Assert immediately and retry the whole test","Skip the DB check"],
+  a:1, why:"Polling adapts to a fast or slow environment and produces a diagnostic message; a sleep is a guess in both directions."}
+],
+cards:[
+ {f:"Placeholder styles?", b:"<code>?</code> for sqlite3, <code>%s</code> for psycopg and MySQL. Never format values into the string yourself."},
+ {f:"Best DB cleanup strategy in tests?", b:"Open a transaction in the fixture and roll it back after yield. Fast, total, and runs even when the test fails."},
+ {f:"When is a fixed sleep acceptable before a DB assertion?", b:"Never. Poll for the expected state with a deadline and report the last value observed."}
+]
+},
+
+{
+n:"14", id:"async", title:"Async and concurrency",
+why:"Async Playwright, httpx and load-ish checks. Also a frequent interview probe: what is actually running in parallel.",
+digest:[
+ "<code>async def</code> makes a coroutine; nothing runs until it is awaited or scheduled on an event loop.",
+ "<code>await</code> yields control while waiting on I/O. It does not create a thread.",
+ "<code>asyncio.gather(*tasks)</code> runs coroutines concurrently and returns results in argument order.",
+ "In pytest use <code>pytest-asyncio</code> with <code>asyncio_mode = \"auto\"</code>, or Playwright's async API with its own plugin.",
+ "One blocking call (<code>time.sleep</code>, <code>requests.get</code>) inside async code stalls the entire loop.",
+ "Rule of thumb: async or threads for I/O-bound work (HTTP, DB, browser), processes (<code>pytest-xdist</code>) for CPU-bound or isolation.",
+ "For test suites, xdist across processes is usually simpler and safer than making the tests themselves async."
+],
+deep:[
+ {h:"Concurrent requests in one test",
+  body:"Useful for setup fan-out and for checking behaviour under simultaneous access — for example that two concurrent claims of the same stock item produce exactly one success.",
+  code:`import asyncio, httpx
+
+async def test_concurrent_claims(base_url, token):
+    async with httpx.AsyncClient(base_url=base_url, timeout=10,
+                                 headers={"Authorization": f"Bearer {token}"}) as c:
+        results = await asyncio.gather(
+            *[c.post("/items/42/claim") for _ in range(5)],
+            return_exceptions=True,       # one failure does not cancel the rest
+        )
+    codes = [r.status_code for r in results if not isinstance(r, Exception)]
+    assert codes.count(201) == 1, f"expected exactly one winner, got {codes}"
+    assert codes.count(409) == 4`},
+ {h:"Async Playwright",
+  body:"The async API mirrors the sync one, with <code>await</code> on every action. Use it when a test genuinely needs two pages progressing at once — a chat, a live dashboard, a collaborative editor.",
+  code:`import pytest
+from playwright.async_api import async_playwright, expect
+
+@pytest.mark.asyncio
+async def test_live_message_appears():
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        sender, receiver = await browser.new_page(), await browser.new_page()
+        await asyncio.gather(sender.goto("/chat"), receiver.goto("/chat"))
+
+        await sender.get_by_role("textbox").fill("hello")
+        await sender.keyboard.press("Enter")
+        await expect(receiver.get_by_text("hello")).to_be_visible()
+        await browser.close()`},
+ {h:"What blocks the loop",
+  body:"Async gives concurrency only while every task cooperates. A synchronous call inside a coroutine freezes every other task until it returns, which quietly removes the concurrency you thought you had.",
+  code:`import asyncio, time, requests
+
+async def bad():
+    time.sleep(2)                 # blocks the whole loop
+    requests.get("https://x")     # also blocks
+
+async def good():
+    await asyncio.sleep(2)
+    async with httpx.AsyncClient() as c:
+        await c.get("https://x")
+
+# unavoidable blocking library? push it to a thread:
+result = await asyncio.to_thread(legacy_sdk.fetch, "arg")`},
+ {h:"Choosing the parallelism model",
+  body:"Most QA suites do not need async at all. Process-level parallelism gives isolation for free and works with ordinary synchronous code — the exception is a test whose subject is genuine concurrency.",
+  code:`# I/O-bound suite, ordinary sync tests   -> pytest -n auto        (processes)
+# many HTTP calls inside ONE test         -> asyncio.gather + httpx
+# two browser sessions interacting        -> async Playwright
+# CPU-bound helper (hashing, parsing)     -> multiprocessing / -n auto
+# a blocking SDK inside async code        -> asyncio.to_thread`}
+],
+traps:[
+ "Calling an async function without awaiting: you get a coroutine object, no execution, and a RuntimeWarning that is easy to miss.",
+ "Mixing sync and async Playwright APIs in one process — the sync API cannot run inside a running event loop.",
+ "<code>time.sleep</code> inside a coroutine. The suite gets slower and the concurrency is gone.",
+ "<code>gather</code> without <code>return_exceptions=True</code> when you want all results: the first exception propagates and the rest are cancelled.",
+ "Assuming async makes tests faster. It only helps when the test itself waits on multiple I/O operations at once."
+],
+quiz:[
+ {q:"<code>time.sleep(1)</code> inside an async test function does what?",
+  opts:["Sleeps only that coroutine","Blocks the entire event loop, stalling every other task","Raises an error","Is converted to asyncio.sleep"],
+  a:1, why:"time.sleep is synchronous and never yields to the loop. Use await asyncio.sleep, or asyncio.to_thread for a blocking library."},
+ {q:"You need 5 concurrent POSTs and all their results, including failures. What do you pass to gather?",
+  opts:["timeout=10","return_exceptions=True","loop=loop","check=False"],
+  a:1, why:"Without it, the first exception propagates immediately and the remaining tasks are cancelled, so you lose the other results."},
+ {q:"An ordinary synchronous suite is slow because of HTTP latency. Simplest speed-up?",
+  opts:["Rewrite every test as async","pytest -n auto with xdist","Add threads inside each test","Increase timeouts"],
+  a:1, why:"Process-level parallelism needs no code changes and gives isolation. Rewriting to async is a large change for a smaller gain."}
+],
+cards:[
+ {f:"Async or xdist for a slow suite?", b:"xdist first — no rewrite, real isolation. Async when a single test must do several things at once."},
+ {f:"What does <code>await</code> actually do?", b:"Suspends this coroutine and returns control to the event loop until the awaited operation completes. No thread is created."},
+ {f:"How do you run a blocking library inside async code?", b:"<code>await asyncio.to_thread(fn, *args)</code> — it moves the call to a worker thread so the loop keeps running."}
+]
+},
+
+{
+n:"15", id:"ci", title:"Quality, CI and flakiness",
+why:"The last mile: making the suite fast, trustworthy and readable to people who did not write it.",
+digest:[
+ "<code>pytest --cov=src --cov-branch --cov-report=term-missing</code>. Coverage shows what was executed, never whether it was verified.",
+ "<code>ruff</code> for linting and formatting, <code>mypy</code> where types earn their keep. One command, wired into CI.",
+ "Fail fast in the gate (<code>-x -m smoke</code>), run wide in the nightly (<code>-n auto</code>, all markers).",
+ "Publish a machine-readable report: <code>--junitxml=report.xml</code> for CI, <code>allure-pytest</code> or <code>pytest-html</code> for humans.",
+ "Upload artefacts on failure: screenshots, Playwright traces, logs, HAR files.",
+ "Quarantine flaky tests with a marker instead of deleting them, and track the quarantine list — it must shrink.",
+ "<code>pytest-randomly</code> or <code>-p no:randomly</code> to expose and then reproduce order dependence.",
+ "Test the tests: a mutation or a deliberate bug should turn something red. If nothing fails, the suite is decorative."
+],
+deep:[
+ {h:"A GitHub Actions job that reports properly",
+  body:"Caching, a matrix, artefacts on failure and a published test summary. Notice <code>if: always()</code> — without it, artefacts are skipped exactly when a failure means you need them.",
+  code:`name: tests
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+      - run: uv sync --frozen
+      - run: uv run playwright install --with-deps chromium
+      - run: uv run ruff check .
+      - name: tests
+        run: uv run pytest -n auto -ra --junitxml=report.xml
+             --cov=src --cov-report=xml --tb=short
+        env:
+          BASE_URL: \${{ secrets.BASE_URL }}
+      - uses: actions/upload-artifact@v4
+        if: always()                 # artefacts matter most on failure
+        with:
+          name: results-\${{ matrix.python }}
+          path: |
+            report.xml
+            artifacts/`},
+ {h:"Reading coverage honestly",
+  body:"Line coverage tells you a line ran. Branch coverage tells you both directions of a condition ran. Neither tells you an assertion existed. Use coverage to find untested code, never as a quality score.",
+  code:`# pyproject.toml
+[tool.coverage.run]
+branch = true
+source = ["src"]
+omit = ["*/migrations/*", "*/__main__.py"]
+
+[tool.coverage.report]
+skip_covered = true
+show_missing = true
+fail_under = 75            # a floor, not a target
+exclude_lines = ["pragma: no cover", "if TYPE_CHECKING:", "raise NotImplementedError"]`},
+ {h:"A flakiness policy that actually works",
+  body:"Rerunning to keep the pipeline green is fine as a stopgap, but only if every rerun is visible and every quarantined test has an owner and a ticket. Otherwise the quarantine grows and confidence quietly disappears.",
+  code:`# 1. Detect: rerun once, and record it
+pytest --reruns 1 --reruns-delay 2 -ra
+
+# 2. Quarantine, with the reason attached
+@pytest.mark.flaky(reason="JIRA-4412 race on basket totals")
+def test_basket_total(): ...
+
+# main pipeline:   pytest -m "not flaky"
+# nightly:         pytest -m flaky        (report, do not gate)
+
+# 3. Reproduce
+pytest test_basket.py::test_total --count=20 -x     # pytest-repeat
+pytest -p randomly --randomly-seed=12345            # fix the seed to replay`},
+ {h:"Structuring a suite people can navigate",
+  body:"The layout is documentation. Someone joining should find where a test belongs without asking, and should be able to run one slice without reading the config.",
+  code:`tests/
+  conftest.py            # global fixtures, hooks, CLI options
+  api/
+    conftest.py          # api client fixtures
+    test_users.py
+  ui/
+    conftest.py          # browser/page fixtures
+    pages/               # page objects (not tests)
+    test_checkout.py
+  data/                  # json/csv fixtures
+  utils/                 # helpers, waits, builders
+
+# pytest tests/api -m smoke -n auto
+# pytest tests/ui/test_checkout.py::test_guest_checkout --headed`}
+],
+traps:[
+ "Treating a coverage number as a quality target. Tests written to raise it typically assert nothing.",
+ "<code>--reruns</code> everywhere with no logging. Green pipeline, unknown reliability, defects reaching production.",
+ "Secrets in code or in the report. Mask them and read from the CI secret store.",
+ "No <code>if: always()</code> on artefact upload — the traces you need on a failing run are the ones never uploaded.",
+ "A suite nobody can run locally. If reproducing CI takes an afternoon, failures get reruns instead of fixes."
+],
+quiz:[
+ {q:"A module has 95% branch coverage and no assertions. What does the number tell you?",
+  opts:["The module works","That the lines and branches executed, nothing about correctness","That tests are strong","Nothing at all"],
+  a:1, why:"Coverage measures execution. Code can be fully executed by tests that verify nothing — which is why coverage is a floor, not a score."},
+ {q:"Why does artefact upload in CI need <code>if: always()</code>?",
+  opts:["To speed the job","Because steps are skipped after a failure, so traces from failing runs never upload","To satisfy the matrix","It caches results"],
+  a:1, why:"Default behaviour stops the job after a failed step, dropping exactly the diagnostic artefacts a failure requires."},
+ {q:"Best first move on a test that fails roughly one run in ten?",
+  opts:["Add --reruns 3","Delete it","Reproduce it with a fixed random seed and repeat runs, then fix the cause","Increase every timeout"],
+  a:2, why:"Reruns and blanket timeout increases hide the cause. Reproduce deterministically, identify which flakiness class it is, then fix it."}
+],
+cards:[
+ {f:"What does coverage not tell you?", b:"Whether anything was asserted. It measures executed lines and branches, so it is a floor for gaps, not a measure of quality."},
+ {f:"Gate run vs nightly run?", b:"Gate: <code>-m smoke -x</code>, minutes, blocks the merge. Nightly: everything, <code>-n auto</code>, full artefacts, reports rather than blocks."},
+ {f:"How should a flaky test be handled?", b:"Marker with a ticket reference, excluded from the gate, run and reported nightly, owned by someone, and removed from quarantine once fixed."}
+]
 }
-function flashSaved(){const s=document.getElementById("flash");s.classList.add("on");setTimeout(()=>s.classList.remove("on"),900);}
+];
 
-function migrate(s){
-  const d=JSON.parse(JSON.stringify(DEFAULT_STATE));
-  s=Object.assign({},d,s||{});
-  s.pots=Object.assign({},d.pots,s.pots||{});
-  for(const k of d.potOrder){
-    s.pots[k]=Object.assign({},d.pots[k],s.pots[k]||{});
-    if(s.pots[k].balance!==undefined&&!num(s.pots[k].start)){s.pots[k].start=s.pots[k].balance;}
-    delete s.pots[k].balance;
+
+// ---------- helpers ----------
+const $ = (s) => document.querySelector(s);
+const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+
+const KW = "def|class|return|if|elif|else|for|while|in|not|and|or|import|from|as|with|yield|try|except|finally|raise|assert|lambda|None|True|False|pass|async|await|global|is|break|continue";
+const RE = new RegExp(
+  '(#[^\\n]*)' +
+  '|("""[\\s\\S]*?"""|\'\'\'[\\s\\S]*?\'\'\'|[frbu]*"(?:[^"\\\\\\n]|\\\\.)*"|[frbu]*\'(?:[^\'\\\\\\n]|\\\\.)*\')' +
+  '|(@[A-Za-z_][\\w.]*)' +
+  '|\\b(' + KW + ')\\b' +
+  '|\\b(\\d+(?:\\.\\d+)?)\\b', 'g');
+
+function hl(code) {
+  let out = "", last = 0, m;
+  RE.lastIndex = 0;
+  while ((m = RE.exec(code)) !== null) {
+    out += esc(code.slice(last, m.index));
+    const cls = m[1] ? "c" : m[2] ? "s" : m[3] ? "d" : m[4] ? "k" : "n";
+    out += '<span class="' + cls + '">' + esc(m[0]) + "</span>";
+    last = m.index + m[0].length;
   }
-  s.potOrder=d.potOrder;
-  ["expenses","invest","receivables","debts"].forEach(k=>{if(!Array.isArray(s[k]))s[k]=d[k];});
-  if(!s.months||typeof s.months!=="object")s.months={};
-  s.portfolio=Object.assign({gbp:[],inr:[]},s.portfolio||{});
-  s.fx=Object.assign({},d.fx,s.fx||{});
-  return s;
-}
-function getMonth(k){
-  if(!state.months[k])state.months[k]={skip:{},extras:[],potAdds:{}};
-  const m=state.months[k];
-  if(!m.skip)m.skip={}; if(!m.extras)m.extras=[]; if(!m.potAdds)m.potAdds={};
-  return m;
+  return out + esc(code.slice(last));
 }
 
-/* ================= calculations ================= */
-function sum(arr,f){return arr.reduce((a,x)=>a+num(f?f(x):x),0)}
-function calcMonth(k){
-  const m=getMonth(k);
-  const recur=sum(state.expenses.filter(e=>!m.skip[e.id]),e=>e.amount);
-  const oneCost=sum(m.extras.filter(x=>x.kind==="cost"),x=>x.amount);
-  const oneInc=sum(m.extras.filter(x=>x.kind==="income"),x=>x.amount);
-  const living=num(state.rent)+recur+oneCost;
-  const invest=sum(state.invest.filter(e=>!m.skip[e.id]),e=>e.amount);
-  const income=num(state.income)+oneInc;
-  const surplus=income-living-invest;
-  const cap=num(state.income)*num(state.capPct)/100;
-  return {m,recur,oneCost,oneInc,living,invest,income,surplus,cap,capLeft:cap-living};
+function codeBlock(src) {
+  return '<pre><button class="cp" data-code="1">copy</button><code>' + hl(src.trim()) + "</code></pre>";
 }
-function addsSum(pk,beforeKey){
-  let s=0;
-  for(const key of Object.keys(state.months)){
-    if(beforeKey&&key>=beforeKey)continue;
-    s+=num((state.months[key].potAdds||{})[pk]);
+
+// ---------- state ----------
+const state = { mode: "notes", filter: "all", done: new Set(), score: { ok: 0, no: 0 }, card: 0, deck: [] };
+
+async function saveDone() {
+  try { await window.storage.set("revised", JSON.stringify([...state.done])); } catch (e) { /* memory only */ }
+}
+async function loadDone() {
+  try {
+    const r = await window.storage.get("revised");
+    if (r && r.value) JSON.parse(r.value).forEach((id) => state.done.add(id));
+  } catch (e) { /* first run */ }
+}
+
+// ---------- progress ----------
+function renderSession() {
+  const dots = MODULES.map((m) => (state.done.has(m.id) ? "<b>.</b>" : "\u00b7")).join("");
+  $("#session").innerHTML = "revision session [" + dots + "] " + state.done.size + " of " + MODULES.length + " marked revised";
+}
+
+// ---------- chips ----------
+function renderChips(container, onPick) {
+  const items = [{ id: "all", label: "all 15" }].concat(
+    MODULES.map((m) => ({ id: m.id, label: m.n + " " + m.title.split(",")[0].toLowerCase() }))
+  );
+  container.innerHTML = items.map((i) =>
+    '<button class="chip" data-id="' + i.id + '"' +
+    (state.filter === i.id ? ' aria-current="true"' : "") +
+    (state.done.has(i.id) ? ' data-done="1"' : "") +
+    ">" + i.label + "</button>"
+  ).join("");
+  container.querySelectorAll(".chip").forEach((b) =>
+    b.addEventListener("click", () => { state.filter = b.dataset.id; onPick(); })
+  );
+}
+
+// ---------- notes ----------
+function moduleHTML(m) {
+  const digest = '<div class="digest"><ul>' + m.digest.map((d) => "<li>" + d + "</li>").join("") + "</ul></div>";
+  const deep = m.deep.map((d) =>
+    '<details class="dd"><summary>' + d.h + '</summary><div class="dd-body">' +
+    "<p>" + d.body + "</p>" + (d.code ? codeBlock(d.code) : "") + "</div></details>"
+  ).join("");
+  const traps = '<div class="traps">' + m.traps.map((t) =>
+    '<div class="trap"><span>!</span><span>' + t + "</span></div>").join("") + "</div>";
+  const marked = state.done.has(m.id);
+  return (
+    '<section data-mod="' + m.id + '">' +
+    '<div class="rule">' + m.n + " " + m.id + "</div>" +
+    "<h2>" + m.title + "</h2>" +
+    '<p class="why">' + m.why + "</p>" +
+    digest +
+    '<p class="hint">Deep dive \u2014 tap to open</p>' +
+    deep + traps +
+    '<button class="mark" data-mark="' + m.id + '" data-done="' + (marked ? 1 : 0) + '">' +
+    (marked ? "[x] revised" : "[ ] mark as revised") + "</button>" +
+    "</section>"
+  );
+}
+
+function renderNotes() {
+  const q = $("#search").value.trim().toLowerCase();
+  let list = state.filter === "all" ? MODULES : MODULES.filter((m) => m.id === state.filter);
+  if (q) {
+    list = MODULES.filter((m) => JSON.stringify(m).toLowerCase().includes(q));
   }
-  return s;
-}
-function balance(pk){return num(state.pots[pk].start)+addsSum(pk)}
-function balanceBefore(pk,k){return num(state.pots[pk].start)+addsSum(pk,k)}
-function suggest(k){
-  const c=calcMonth(k);
-  const efLeft=Math.max(0,num(state.pots.ef.target)-balanceBefore("ef",k));
-  const s=Math.max(0,c.surplus);
-  const toEf=Math.min(s,efLeft), toEtf=s-toEf;
-  return {ef:toEf,etf:toEtf,pension:num(state.pots.pension.auto),india:c.invest,surplus:c.surplus,efLeft};
-}
-function rate(){return num(state.fx.rate)||1}
-function calcAll(){
-  const pots=sum(state.potOrder,k=>balance(k));
-  const pfGbp=sum(state.portfolio.gbp,x=>x.amount);
-  const pfInr=sum(state.portfolio.inr,x=>x.amount);
-  const pfInrGbp=pfInr/rate();
-  const portfolio=pfGbp+pfInrGbp;
-  const inn=sum(state.receivables,x=>x.amount), out=sum(state.debts,x=>x.amount);
-  const netIou=inn-out;
-  const ef=state.pots.ef, efBal=balance("ef");
-  const efPct=num(ef.target)>0?Math.min(100,efBal/num(ef.target)*100):0;
-  return {pots,pfGbp,pfInr,pfInrGbp,portfolio,inn,out,netIou,wealth:pots+portfolio,trueNet:pots+portfolio+netIou,efBal,efPct};
-}
-
-/* ================= live exchange rate ================= */
-async function fetchRate(){
-  if(fxBusy)return; fxBusy=true; refreshFx();
-  const urls=["https://api.frankfurter.app/latest?from=GBP&to=INR","https://open.er-api.com/v6/latest/GBP"];
-  let ok=false;
-  for(const url of urls){
-    try{
-      const r=await fetch(url,{cache:"no-store"}); const j=await r.json();
-      const v=j&&j.rates&&j.rates.INR;
-      if(v){state.fx={rate:+(+v).toFixed(2),updated:Date.now(),source:"live"};save();ok=true;break;}
-    }catch(e){}
+  const host = $("#notes");
+  if (!list.length) {
+    host.innerHTML = '<div class="empty">no match for "' + esc(q) + '" \u2014 try: fixture, monkeypatch, wait, retry</div>';
+    return;
   }
-  fxBusy=false;
-  if(!ok&&state.fx.source==="live")state.fx.source="stale";
-  if(!ok&&state.fx.source==="default")state.fx.source="offline";
-  if(tab==="portfolio"||tab==="home")render(); else refreshFx();
-}
-function fxStatus(){
-  const f=state.fx;
-  if(fxBusy)return "Fetching live rate…";
-  if(f.source==="live"&&f.updated){
-    const mins=Math.round((Date.now()-f.updated)/60000);
-    const when=mins<1?"just now":mins<60?mins+" min ago":mins<1440?Math.round(mins/60)+"h ago":Math.round(mins/1440)+"d ago";
-    return "Live mid-market rate · updated "+when;
-  }
-  if(f.source==="manual")return "Rate set by you · tap Refresh for live";
-  if(f.source==="stale")return "Could not reach rate service · showing last live rate";
-  return "No internet for the live rate · using saved rate. Edit it, or Refresh when online.";
+  host.innerHTML = (q ? '<div class="scoreline">' + list.length + " module(s) match \u201c" + esc(q) + "\u201d</div>" : "") +
+    list.map(moduleHTML).join("");
+  host.querySelectorAll("[data-mark]").forEach((b) =>
+    b.addEventListener("click", () => {
+      const id = b.dataset.mark;
+      state.done.has(id) ? state.done.delete(id) : state.done.add(id);
+      saveDone(); renderSession(); renderNotes(); renderChips($("#chips"), renderNotes);
+    })
+  );
 }
 
-/* ================= backup / restore ================= */
-async function exportBackup(){
-  const json=JSON.stringify(state,null,2);
-  const name="khata-backup-"+nowKey()+"-"+pad(new Date().getDate())+".json";
-  try{
-    const file=new File([json],name,{type:"application/json"});
-    if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"Khata backup"});return;}
-  }catch(e){}
-  const blob=new Blob([json],{type:"application/json"});
-  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;
-  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+// ---------- drill ----------
+function renderDrill() {
+  const list = state.filter === "all" ? MODULES : MODULES.filter((m) => m.id === state.filter);
+  const qs = list.flatMap((m) => m.quiz.map((q) => ({ ...q, mod: m.n + " " + m.title })));
+  $("#drill").innerHTML =
+    '<div class="scoreline" id="score"></div>' +
+    qs.map((q, i) =>
+      '<div class="q" data-i="' + i + '">' +
+      '<div class="q-tag">' + q.mod + "</div>" +
+      '<p class="q-text">' + q.q + "</p>" +
+      q.opts.map((o, j) => '<button class="opt" data-q="' + i + '" data-o="' + j + '">' + o + "</button>").join("") +
+      '<div class="why-box" hidden>' + q.why + "</div></div>"
+    ).join("");
+  updateScore();
+  $("#drill").querySelectorAll(".opt").forEach((b) =>
+    b.addEventListener("click", () => {
+      const box = b.closest(".q"), i = +b.dataset.q, chosen = +b.dataset.o;
+      if (box.dataset.answered) return;
+      box.dataset.answered = "1";
+      box.querySelectorAll(".opt").forEach((o, j) => {
+        o.disabled = true;
+        if (j === qs[i].a) o.classList.add("right");
+        else if (j === chosen) o.classList.add("wrong");
+      });
+      box.querySelector(".why-box").hidden = false;
+      chosen === qs[i].a ? state.score.ok++ : state.score.no++;
+      updateScore();
+    })
+  );
+}
+function updateScore() {
+  const el = $("#score"); if (!el) return;
+  const { ok, no } = state.score;
+  el.innerHTML = "===== <b style='color:var(--pass)'>" + ok + " passed</b>" +
+    (no ? ", <b style='color:var(--fail)'>" + no + " failed</b>" : "") + " =====";
 }
 
-/* ================= views ================= */
-function monthBar(){
-  const isNow=mkey===nowKey();
-  return `<div class="mbar"><button class="mnav" data-action="prevM">‹</button>
-    <div class="mlabel">${keyLabel(mkey)}<small>${isNow?"this month":"tap ‹ › to change month"}</small></div>
-    <button class="mnav" data-action="nextM">›</button></div>`;
+// ---------- cards ----------
+function renderCards() {
+  const list = state.filter === "all" ? MODULES : MODULES.filter((m) => m.id === state.filter);
+  state.deck = list.flatMap((m) => m.cards.map((c) => ({ ...c, mod: m.n })));
+  state.card = 0;
+  $("#cards").innerHTML =
+    '<div class="card" id="card"></div>' +
+    '<div class="card-nav">' +
+    '<button id="prev">back</button><button id="flip">flip</button>' +
+    '<button id="shuffle">shuffle</button><button id="next">next</button></div>' +
+    '<p class="hint">Tap the card to flip. Say the answer out loud before you flip \u2014 recognition is not recall.</p>';
+  paintCard(false);
+  $("#card").addEventListener("click", () => paintCard(!$("#card").dataset.back));
+  $("#flip").addEventListener("click", () => paintCard(!$("#card").dataset.back));
+  $("#next").addEventListener("click", () => { state.card = (state.card + 1) % state.deck.length; paintCard(false); });
+  $("#prev").addEventListener("click", () => { state.card = (state.card - 1 + state.deck.length) % state.deck.length; paintCard(false); });
+  $("#shuffle").addEventListener("click", () => {
+    for (let i = state.deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [state.deck[i], state.deck[j]] = [state.deck[j], state.deck[i]];
+    }
+    state.card = 0; paintCard(false);
+  });
 }
-function field(label,bind,val,cur,sub){
-  return `<label class="f"><span class="fl">${label}${sub?`<small>${sub}</small>`:""}</span>
-    <span class="pre">${cur?`<span class="cur">${cur}</span>`:""}<input class="in" inputmode="decimal" data-bind="${bind}" value="${val}" ${cur?"":'style="padding-left:11px"'}></span></label>`;
-}
-function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function banner(){
-  if(storeMode!=="none")return "";
-  return `<div class="banner"><b>Not saving here.</b> This window cannot store data. Open the file in Chrome or Safari on your phone (or host it online) and it will save automatically. Use Export on the Home tab to keep a backup.</div>`;
-}
-
-function vHome(){
-  const c=calcAll(), k=nowKey(), sg=suggest(k);
-  const move=sg.efLeft>0?`Top up your <b>Emergency fund</b>`:`Fund full — invest into your <b>ETF (ISA)</b>`;
-  const moveAmt=sg.efLeft>0?Math.min(sg.surplus,sg.efLeft):sg.surplus;
-  return `${banner()}
-  <div class="card hero">
-    <div class="label">Total wealth</div>
-    <div class="big num"><span class="cur">£</span>${fmt(c.wealth)}</div>
-    <div class="bar"><i style="width:${c.efPct}%"></i></div>
-    <div class="barmeta"><span>Emergency fund</span><span><b>£${fmt(c.efBal)}</b> of £${fmt(state.pots.ef.target)} · ${Math.round(c.efPct)}%</span></div>
-  </div>
-  <div class="card">
-    <div class="eyebrow" style="margin-bottom:12px">${keyLabel(k)} — your move</div>
-    <div class="move"><span class="dot"></span><div class="txt">${move}<div class="amt" style="font-size:20px;margin-top:2px">£${fmt(moveAmt)}</div></div></div>
-  </div>
-  <div class="card">
-    <div class="row"><div class="k">Savings pots<small>built through this plan</small></div><div class="v">£${fmt(c.pots)}</div></div>
-    <div class="row"><div class="k">Existing portfolio<small>£ holdings + India at ₹${state.fx.rate}</small></div><div class="v">£${fmt(c.portfolio)}</div></div>
-    <div class="row"><div class="k">Owed to you</div><div class="v pos">${c.inn?"+":""}£${fmt(c.inn)}</div></div>
-    <div class="row"><div class="k">You owe</div><div class="v neg">${c.out?"−":""}£${fmt(c.out)}</div></div>
-    <div class="row total"><div class="k">True net position</div><div class="v big ${c.netIou<0?"neg":""}">£${fmt(c.trueNet)}</div></div>
-    ${iouEffect(c)}
-  </div>
-
-  <h2 class="sec">Backup</h2>
-  <div class="card">
-    ${pendingImport?`<div class="note" style="margin:0 0 12px"><b>Replace everything with the backup you picked?</b> This cannot be undone.</div>
-      <button class="btn" data-action="importYes">Yes, restore this backup</button>
-      <button class="btn ghost" data-action="importNo">Cancel</button>`
-    :`<div class="note" style="margin:0 0 12px">Your data is ${whereLabel()}. Export a backup before clearing browser data or moving to a new phone, then Import it there.</div>
-      <button class="btn ghost" data-action="export">Export backup</button>
-      <label class="btn ghost">Import backup<input type="file" id="importFile" accept=".json,application/json" style="display:none"></label>
-      <button class="btn ${confirmReset?"danger":"ghost"}" data-action="reset">${confirmReset?"Tap again to erase everything":"Reset all data"}</button>`}
-  </div>`;
-}
-function iouEffect(c){
-  if(c.out>0&&c.inn>0)return `<div class="note">Keep <b>£${fmt(c.out)}</b> accessible to settle what you owe. The <b>£${fmt(c.inn)}</b> coming back is a future boost — do not spend it yet.</div>`;
-  if(c.out>0)return `<div class="note">You owe <b>£${fmt(c.out)}</b> — a claim on your savings, so keep it accessible rather than locked away.</div>`;
-  if(c.inn>0)return `<div class="note"><b>£${fmt(c.inn)}</b> is due back to you — treat it as a future top-up, not money you already have.</div>`;
-  return "";
+function paintCard(showBack) {
+  const c = state.deck[state.card], el = $("#card");
+  if (!c) { el.innerHTML = '<div class="side">no cards</div>'; return; }
+  el.dataset.back = showBack ? "1" : "";
+  el.innerHTML = '<div class="side">' + c.mod + " \u00b7 " + (state.card + 1) + " of " + state.deck.length +
+    " \u00b7 " + (showBack ? "answer" : "prompt") + "</div><div>" + (showBack ? c.b : c.f) + "</div>";
 }
 
-function vBudget(){
-  const c=calcMonth(mkey), m=c.m, over=c.capLeft<0;
-  const recRow=(e)=>{const off=!!m.skip[e.id];return `<div class="row ${off?"off":""}"><div class="k">${esc(e.label)}</div>
-    <div style="display:flex;align-items:center;gap:10px"><span class="v">£${fmt(e.amount)}</span>
-    <button class="skip ${off?"on":""}" data-action="skip" data-id="${e.id}">${off?"Skipped":"Skip"}</button></div></div>`;};
-  const oneRow=(x)=>`<div class="row"><div class="k">${esc(x.label)}<small>one-off</small></div>
-    <div style="display:flex;align-items:center;gap:6px"><span class="v ${x.kind==="income"?"pos":""}">${x.kind==="income"?"+":""}£${fmt(x.amount)}</span>
-    <button class="trash" data-action="delExtra" data-id="${x.id}">×</button></div></div>`;
-  const costs=m.extras.filter(x=>x.kind==="cost"), incs=m.extras.filter(x=>x.kind==="income");
-  return `${banner()}${monthBar()}
-  <div class="card">
-    <div class="row"><div class="k">Take-home${c.oneInc?`<small>incl. £${fmt(c.oneInc)} extra income</small>`:""}</div><div class="v" id="s-inc">£${fmt(c.income)}</div></div>
-    <div class="row"><div class="k">Living costs</div><div class="v neg" id="s-living">−£${fmt(c.living)}</div></div>
-    <div class="row"><div class="k">Investing</div><div class="v neg" id="s-invest">−£${fmt(c.invest)}</div></div>
-    <div class="row total"><div class="k">Left to save this month</div><div class="v big ${c.surplus<0?"neg":"pos"}" id="s-surplus">£${fmt(c.surplus)}</div></div>
-    <div style="margin-top:12px" id="s-chip">${over?`<span class="chip over">Over your £${fmt(c.cap)} cap by £${fmt(-c.capLeft)}</span>`:`<span class="chip ok">£${fmt(c.capLeft)} under your £${fmt(c.cap)} cap</span>`}</div>
-  </div>
-  <h2 class="sec">Costs this month</h2>
-  <div class="card">
-    <div class="row"><div class="k">Rent (all bills)</div><div class="v">£${fmt(state.rent)}</div></div>
-    ${state.expenses.map(recRow).join("")}
-    ${costs.map(oneRow).join("")}
-    <div class="add"><div class="two"><input id="x-cost-l" placeholder="One-off cost, e.g. Travel"><input id="x-cost-a" class="amt" inputmode="decimal" placeholder="£"></div>
-      <button class="btn ghost" data-action="addExtra" data-kind="cost">Add one-off cost</button></div>
-  </div>
-  <h2 class="sec">Investing this month</h2>
-  <div class="card">
-    ${state.invest.length?state.invest.map(recRow).join(""):`<div class="empty">No regular investing set up.</div>`}
-    <div class="note">Skip an item for months you want to pause it — the saved amount flows to your surplus instead.</div>
-  </div>
-  <h2 class="sec">Extra income this month</h2>
-  <div class="card">
-    ${incs.length?incs.map(oneRow).join(""):`<div class="empty">Nothing extra coming in this month.</div>`}
-    <div class="add"><div class="two"><input id="x-inc-l" placeholder="e.g. Bonus, refund, gift"><input id="x-inc-a" class="amt" inputmode="decimal" placeholder="£"></div>
-      <button class="btn ghost" data-action="addExtra" data-kind="income">Add extra income</button></div>
-  </div>
-  <h2 class="sec">Your regular budget <button class="link" data-action="toggleTpl">${showTemplate?"Hide":"Edit"}</button></h2>
-  ${showTemplate?vTemplate():`<div class="card flat"><div class="note" style="margin:0">These are the defaults every month starts from. Tap Edit to change salary, rent, or regular costs.</div></div>`}`;
-}
-function vTemplate(){
-  const line=(kind,e)=>`<label class="f">
-    <input class="fl txt" style="background:none;border:none;color:var(--text);font-size:14.5px;padding:0" data-${kind}="${e.id}" data-k="label" value="${esc(e.label)}">
-    <span style="display:flex;align-items:center;gap:6px"><span class="pre"><span class="cur">£</span><input class="in" style="width:96px" inputmode="decimal" data-${kind}="${e.id}" data-k="amount" value="${e.amount}"></span>
-    <button class="trash" data-action="${kind==="exp"?"delExp":"delInv"}" data-id="${e.id}">×</button></span></label>`;
-  return `
-  <div class="card">
-    ${field("Take-home","income",state.income,"£","after tax, NI and pension")}
-    ${field("Rent (all bills included)","rent",state.rent,"£")}
-    ${field("Spending cap","capPct",state.capPct,"","% of take-home")}
-  </div>
-  <div class="card"><div class="eyebrow" style="margin-bottom:6px">Regular costs</div>
-    ${state.expenses.map(e=>line("exp",e)).join("")}
-    <div class="add"><div class="two"><input id="exp-l" placeholder="Add a regular cost"><input id="exp-a" class="amt" inputmode="decimal" placeholder="£"></div><button class="btn ghost" data-action="addExp">Add cost</button></div>
-  </div>
-  <div class="card"><div class="eyebrow" style="margin-bottom:6px">Regular investing</div>
-    ${state.invest.map(e=>line("inv",e)).join("")}
-    <div class="add"><div class="two"><input id="inv-l" placeholder="e.g. Indian equity"><input id="inv-a" class="amt" inputmode="decimal" placeholder="£"></div><button class="btn ghost" data-action="addInv">Add</button></div>
-  </div>`;
+// ---------- modes ----------
+function setMode(mode) {
+  state.mode = mode;
+  document.querySelectorAll(".modes button").forEach((b) => b.setAttribute("aria-selected", b.dataset.mode === mode));
+  $("#pane-notes").hidden = mode !== "notes";
+  $("#pane-drill").hidden = mode !== "drill";
+  $("#pane-cards").hidden = mode !== "cards";
+  if (mode === "notes") { renderChips($("#chips"), renderNotes); renderNotes(); }
+  if (mode === "drill") { state.score = { ok: 0, no: 0 }; renderChips($("#drill-chips"), renderDrill); renderDrill(); }
+  if (mode === "cards") { renderChips($("#card-chips"), renderCards); renderCards(); }
+  window.scrollTo({ top: 0 });
 }
 
-function vPots(){
-  const c=calcAll(), sg=suggest(mkey), m=getMonth(mkey);
-  const potCard=(k)=>{
-    const p=state.pots[k], bal=balance(k), isEf=k==="ef";
-    const pct=num(p.target)>0?Math.min(100,bal/num(p.target)*100):0;
-    return `<div class="card">
-      <div class="row" style="border:none;padding:0 0 6px"><div class="k" style="font-weight:600;font-size:15px">${p.label}<small>${p.note}</small></div><div class="v big" id="bal-${k}">£${fmt(bal)}</div></div>
-      ${isEf?`<div class="bar"><i id="efbar" style="width:${pct}%"></i></div><div class="barmeta"><span id="efpct">${Math.round(pct)}% of target</span><span>target £${fmt(p.target)}</span></div>`:""}
-      <label class="f"><span class="fl">Added in ${keyLabel(mkey).split(" ")[0]}</span>
-        <span class="pre"><span class="cur">£</span><input class="in" inputmode="decimal" data-padd="${k}" value="${m.potAdds[k]!==undefined?m.potAdds[k]:""}" placeholder="0"></span></label>
-      <label class="f"><span class="fl">Opening balance<small>what was already here</small></span>
-        <span class="pre"><span class="cur">£</span><input class="in" inputmode="decimal" data-pot="${k}" data-k="start" value="${p.start}"></span></label>
-      ${isEf?`<label class="f"><span class="fl">Target</span><span class="pre"><span class="cur">£</span><input class="in" inputmode="decimal" data-pot="${k}" data-k="target" value="${p.target}"></span></label>`:""}
-      ${k==="pension"?`<label class="f"><span class="fl">Lands every month<small>employer + you</small></span><span class="pre"><span class="cur">£</span><input class="in" inputmode="decimal" data-pot="${k}" data-k="auto" value="${p.auto}"></span></label>`:""}
-    </div>`;
-  };
-  return `${banner()}${monthBar()}
-  <div class="card hero"><div class="label">Total across all pots</div><div class="big num"><span class="cur">£</span><span id="s-pots">${fmt(c.pots)}</span></div></div>
-  <div class="card">
-    <div class="eyebrow" style="margin-bottom:10px">Plan for ${keyLabel(mkey)}</div>
-    <div class="row"><div class="k">Emergency fund</div><div class="v">£${fmt(sg.ef)}</div></div>
-    <div class="row"><div class="k">ETF (ISA)</div><div class="v">£${fmt(sg.etf)}</div></div>
-    <div class="row"><div class="k">Pension</div><div class="v">£${fmt(sg.pension)}</div></div>
-    <div class="row"><div class="k">Indian equity</div><div class="v">£${fmt(sg.india)}</div></div>
-    <div style="margin-top:12px"><button class="btn" data-action="fillPlan">Log these amounts for this month</button></div>
-    <div class="note">Based on this month's budget (surplus £${fmt(sg.surplus)}). You can edit any figure below afterwards.</div>
-  </div>
-  ${state.potOrder.map(potCard).join("")}`;
-}
-
-function vPortfolio(){
-  const c=calcAll(), f=state.fx;
-  const gbpRow=(x)=>`<div class="iou in"><div class="who">${esc(x.label)}</div><div class="right">
-    <span class="pre"><span class="cur">£</span><input class="in" style="width:110px" inputmode="decimal" data-pf="gbp" data-id="${x.id}" value="${x.amount}"></span>
-    <button class="trash" data-action="delPf" data-cur="gbp" data-id="${x.id}">×</button></div></div>`;
-  const inrRow=(x)=>`<div class="iou in"><div class="who">${esc(x.label)}<small>≈ £<span id="conv-${x.id}">${fmt(num(x.amount)/rate())}</span></small></div><div class="right">
-    <span class="pre"><span class="cur">₹</span><input class="in" style="width:120px" inputmode="decimal" data-pf="inr" data-id="${x.id}" value="${x.amount}"></span>
-    <button class="trash" data-action="delPf" data-cur="inr" data-id="${x.id}">×</button></div></div>`;
-  return `${banner()}
-  <div class="card">
-    <div class="fx"><span class="rate">£1 = ₹<span id="fx-rate">${f.rate}</span></span></div>
-    <div class="fxmeta" id="fx-status">${fxStatus()}</div>
-    <div class="fxrow">
-      <span class="pre" style="flex:1"><span class="cur">₹</span><input class="in" style="width:100%" inputmode="decimal" data-fx="1" value="${f.rate}"></span>
-      <button class="btn sm" data-action="refreshFx" ${fxBusy?"disabled":""}>${fxBusy?"…":"Refresh"}</button>
-    </div>
-    <div class="note">Live rate comes from the European Central Bank feed. Edit the box to use your own rate — e.g. what your transfer app actually gives you.</div>
-  </div>
-  <div class="card hero"><div class="label">Existing portfolio</div><div class="big num"><span class="cur">£</span><span id="s-pf-total">${fmt(c.portfolio)}</span></div>
-    <div class="barmeta" style="margin-top:8px"><span>In pounds <b id="s-pf-gbp">£${fmt(c.pfGbp)}</b></span><span>In India <b id="s-pf-inrgbp">£${fmt(c.pfInrGbp)}</b> (₹<span id="s-pf-inr">${fmtInr(c.pfInr)}</span>)</span></div></div>
-  <h2 class="sec">Held in pounds</h2>
-  <div class="card">
-    ${state.portfolio.gbp.length?state.portfolio.gbp.map(gbpRow).join(""):`<div class="empty">Add UK accounts, ISAs, or investments you already hold.</div>`}
-    <div class="add"><div class="two"><input id="pf-gbp-l" placeholder="e.g. Trading 212 ISA"><input id="pf-gbp-a" class="amt" inputmode="decimal" placeholder="£"></div><button class="btn ghost" data-action="addPf" data-cur="gbp">Add £ holding</button></div>
-  </div>
-  <h2 class="sec">Held in India (₹)</h2>
-  <div class="card">
-    ${state.portfolio.inr.length?state.portfolio.inr.map(inrRow).join(""):`<div class="empty">Add your Indian stocks, mutual funds, or FDs in rupees — they convert to pounds automatically.</div>`}
-    <div class="add"><div class="two"><input id="pf-inr-l" placeholder="e.g. Zerodha, MF portfolio"><input id="pf-inr-a" class="amt" inputmode="decimal" placeholder="₹"></div><button class="btn ghost" data-action="addPf" data-cur="inr">Add ₹ holding</button></div>
-  </div>`;
-}
-
-function vIou(){
-  const c=calcAll();
-  const row=(kind,r,dir)=>`<div class="iou ${dir}"><div class="who">${esc(r.name)}${r.note?`<small>${esc(r.note)}</small>`:""}</div>
-    <div class="right"><span class="amt">£${fmt(r.amount)}</span><button class="settle" data-action="${kind==="recv"?"delRecv":"delDebt"}" data-id="${r.id}">Settle</button></div></div>`;
-  return `${banner()}
-  <div class="card">
-    <div class="row"><div class="k">Owed to you</div><div class="v pos">£${fmt(c.inn)}</div></div>
-    <div class="row"><div class="k">You owe</div><div class="v neg">£${fmt(c.out)}</div></div>
-    <div class="row total"><div class="k">Net</div><div class="v big ${c.netIou<0?"neg":"pos"}">${c.netIou<0?"−":"+"}£${fmt(Math.abs(c.netIou))}</div></div>
-    <div class="note">True net position (wealth ${c.netIou<0?"−":"+"} this): <b>£${fmt(c.trueNet)}</b></div>
-  </div>
-  <h2 class="sec">Owed to you</h2>
-  <div class="card">
-    ${state.receivables.length?state.receivables.map(r=>row("recv",r,"in")).join(""):`<div class="empty">No one owes you right now.</div>`}
-    <div class="add"><input id="recv-n" placeholder="Who owes you?"><div class="two"><input id="recv-note" placeholder="What for (optional)"><input id="recv-a" class="amt" inputmode="decimal" placeholder="£"></div>
-      <button class="btn" data-action="addRecv">Add what you are owed</button></div>
-  </div>
-  <h2 class="sec">You owe</h2>
-  <div class="card">
-    ${state.debts.length?state.debts.map(r=>row("debt",r,"out")).join(""):`<div class="empty">Nobody to pay back right now.</div>`}
-    <div class="add"><input id="debt-n" placeholder="Who do you owe?"><div class="two"><input id="debt-note" placeholder="What for (optional)"><input id="debt-a" class="amt" inputmode="decimal" placeholder="£"></div>
-      <button class="btn" data-action="addDebt">Add what you owe</button></div>
-  </div>`;
-}
-
-/* ================= render + live refresh ================= */
-const VIEWS={home:vHome,budget:vBudget,pots:vPots,portfolio:vPortfolio,iou:vIou};
-function render(){
-  document.getElementById("app").innerHTML=VIEWS[tab]();
-  document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.tab===tab));
-  setWhere(); window.scrollTo(0,0);
-}
-const $=(id)=>document.getElementById(id);
-const set=(id,v)=>{const el=$(id);if(el)el.textContent=v;};
-function refresh(){
-  if(tab==="budget"){
-    const c=calcMonth(mkey), over=c.capLeft<0;
-    set("s-inc","£"+fmt(c.income)); set("s-living","−£"+fmt(c.living)); set("s-invest","−£"+fmt(c.invest));
-    const s=$("s-surplus"); if(s){s.textContent="£"+fmt(c.surplus);s.className="v big "+(c.surplus<0?"neg":"pos");}
-    const ch=$("s-chip"); if(ch)ch.innerHTML=over?`<span class="chip over">Over your £${fmt(c.cap)} cap by £${fmt(-c.capLeft)}</span>`:`<span class="chip ok">£${fmt(c.capLeft)} under your £${fmt(c.cap)} cap</span>`;
-  }
-  if(tab==="pots"){
-    const c=calcAll(); set("s-pots",fmt(c.pots));
-    for(const k of state.potOrder)set("bal-"+k,"£"+fmt(balance(k)));
-    const b=$("efbar"); if(b)b.style.width=c.efPct+"%"; set("efpct",Math.round(c.efPct)+"% of target");
-  }
-  if(tab==="portfolio")refreshFx();
-}
-function refreshFx(){
-  const c=calcAll();
-  set("fx-rate",state.fx.rate); set("fx-status",fxStatus());
-  set("s-pf-total",fmt(c.portfolio)); set("s-pf-gbp","£"+fmt(c.pfGbp)); set("s-pf-inrgbp","£"+fmt(c.pfInrGbp)); set("s-pf-inr",fmtInr(c.pfInr));
-  for(const x of state.portfolio.inr)set("conv-"+x.id,fmt(num(x.amount)/rate()));
-}
-
-/* ================= events ================= */
-const app=$("app");
-app.addEventListener("input",e=>{
-  const t=e.target; if(t.tagName!=="INPUT"||t.type==="file")return; const d=t.dataset;
-  if(d.bind!==undefined)state[d.bind]=t.value;
-  else if(d.exp!==undefined)upd(state.expenses,d.exp,d.k,t.value);
-  else if(d.inv!==undefined)upd(state.invest,d.inv,d.k,t.value);
-  else if(d.pot!==undefined)state.pots[d.pot][d.k]=t.value;
-  else if(d.padd!==undefined)getMonth(mkey).potAdds[d.padd]=t.value;
-  else if(d.pf!==undefined)upd(state.portfolio[d.pf],d.id,"amount",t.value);
-  else if(d.fx!==undefined){state.fx.rate=t.value;state.fx.source="manual";state.fx.updated=null;}
-  else return;
-  save(); refresh();
+// ---------- wire up ----------
+document.querySelectorAll(".modes button").forEach((b) =>
+  b.addEventListener("click", () => setMode(b.dataset.mode))
+);
+$("#search").addEventListener("input", renderNotes);
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-code]");
+  if (!btn) return;
+  const text = btn.parentElement.querySelector("code").innerText;
+  navigator.clipboard?.writeText(text).then(() => {
+    btn.textContent = "copied"; setTimeout(() => (btn.textContent = "copy"), 1200);
+  }).catch(() => (btn.textContent = "select manually"));
 });
-app.addEventListener("change",e=>{
-  if(e.target.id!=="importFile")return;
-  const f=e.target.files&&e.target.files[0]; if(!f)return;
-  const r=new FileReader();
-  r.onload=()=>{ try{ const data=JSON.parse(r.result); if(!data||typeof data!=="object")throw 0; pendingImport=data; }
-    catch(err){ pendingImport=null; alert("That file is not a valid Khata backup."); }
-    render(); };
-  r.readAsText(f);
-});
-function upd(arr,id,k,v){const it=arr.find(x=>x.id===id);if(it)it[k]=v;}
 
-$("nav").addEventListener("click",onClick); app.addEventListener("click",onClick);
-function onClick(e){
-  const b=e.target.closest("button[data-action]"); if(!b)return;
-  const a=b.dataset.action, m=getMonth(mkey);
-  if(a!=="reset")confirmReset=false;
-  switch(a){
-    case "tab": tab=b.dataset.tab; render(); return;
-    case "prevM": mkey=shiftKey(mkey,-1); render(); return;
-    case "nextM": mkey=shiftKey(mkey,1); render(); return;
-    case "toggleTpl": showTemplate=!showTemplate; render(); return;
-    case "refreshFx": fetchRate(); return;
-    case "export": exportBackup(); return;
-    case "importYes": state=migrate(pendingImport); pendingImport=null; break;
-    case "importNo": pendingImport=null; render(); return;
-    case "reset": if(!confirmReset){confirmReset=true;render();return;} confirmReset=false; state=migrate({}); break;
-    case "skip": m.skip[b.dataset.id]=!m.skip[b.dataset.id]; break;
-    case "addExtra": {const l=val(b.dataset.kind==="cost"?"x-cost-l":"x-inc-l"), am=val(b.dataset.kind==="cost"?"x-cost-a":"x-inc-a");
-      if(!l&&!am)return; m.extras.push({id:u(),label:l||"One-off",amount:num(am),kind:b.dataset.kind}); break;}
-    case "delExtra": m.extras=m.extras.filter(x=>x.id!==b.dataset.id); break;
-    case "fillPlan": {const s=suggest(mkey); m.potAdds={ef:Math.round(s.ef),etf:Math.round(s.etf),pension:Math.round(s.pension),india:Math.round(s.india)}; break;}
-    case "addExp": addLine(state.expenses,"exp-l","exp-a"); break;
-    case "addInv": addLine(state.invest,"inv-l","inv-a"); break;
-    case "delExp": state.expenses=state.expenses.filter(x=>x.id!==b.dataset.id); break;
-    case "delInv": state.invest=state.invest.filter(x=>x.id!==b.dataset.id); break;
-    case "addPf": {const cur=b.dataset.cur, l=val("pf-"+cur+"-l"), am=val("pf-"+cur+"-a"); if(!l&&!am)return;
-      state.portfolio[cur].push({id:u(),label:l||"Holding",amount:num(am)}); break;}
-    case "delPf": state.portfolio[b.dataset.cur]=state.portfolio[b.dataset.cur].filter(x=>x.id!==b.dataset.id); break;
-    case "addRecv": addIou(state.receivables,"recv-n","recv-a","recv-note"); break;
-    case "addDebt": addIou(state.debts,"debt-n","debt-a","debt-note"); break;
-    case "delRecv": state.receivables=state.receivables.filter(x=>x.id!==b.dataset.id); break;
-    case "delDebt": state.debts=state.debts.filter(x=>x.id!==b.dataset.id); break;
-    default: return;
-  }
-  save(); render();
-}
-function val(id){const el=$(id);return el?el.value.trim():"";}
-function addLine(arr,lId,aId){const l=val(lId),a=val(aId);if(!l&&!a)return;arr.push({id:u(),label:l||"Untitled",amount:num(a)});}
-function addIou(arr,nId,aId,noteId){const n=val(nId),a=val(aId),note=val(noteId);if(!n&&!a)return;arr.push({id:u(),name:n||"Someone",amount:num(a),note});}
-
-/* ================= boot ================= */
-(async function(){
-  const raw=await storeGet();
-  let loaded=null; try{ loaded=raw?JSON.parse(raw):null; }catch(e){}
-  state=migrate(loaded); mkey=nowKey();
-  render();
-  await storeSet(JSON.stringify(state)); setWhere(); render();
-  const age=state.fx.updated?Date.now()-state.fx.updated:Infinity;
-  if(state.fx.source!=="manual"&&age>6*3600*1000)fetchRate();
+(async () => {
+  await loadDone();
+  renderSession();
+  setMode("notes");
 })();
+
 </script>
 </body>
 </html>
